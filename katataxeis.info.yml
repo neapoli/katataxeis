@@ -1,0 +1,17 @@
+name: "Katatáxeis"
+description: "Katatáxeis, dal greco le graduatorie, è un modulo drupal per la gestione delle graduatorie interne, sia docenti che ata, della scuola."
+package: "Ouitoulía"
+
+type: module
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:node
+  - drupal:views
+  - entity_print:entity_print
+  - twig_tools:twig_tools
+  - views_data_export:views_data_export
+  - xls_serialization:xls_serialization
+  - webform:webform
+  - webform:webform_entity_print
+  - webform:webform_entity_print_attachment
+  - webform_views:webform_views

@@ -1,0 +1,11 @@
+langcode: it
+status: true
+dependencies: {  }
+id: profilo_ata
+label: 'Profilo ATA'
+category: Scuola
+likert: false
+options: |-
+  'Assistente Amministrativo': 'Assistente Amministrativo'
+  'Assistente Tecnico': 'Assistente Tecnico'
+  'Collaboratore Scolastico': 'Collaboratore Scolastico'

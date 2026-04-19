@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Comment module.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_uninstall().
+ */
+function katataxeis_uninstall() {
+
+  $webform_ids = [
+    'graduatoria_interna_ata',
+  ];
+
+  $storage = \Drupal::entityTypeManager()->getStorage('webform');
+  foreach ($webform_ids as $webform_id) {
+    $webform_entity = $storage->load($webform_id);
+    if (!is_null($webform_entity)) {
+      $webform_entity->delete();
+    }
+  }
+}

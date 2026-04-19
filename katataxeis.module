@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Bacheca sindacale.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function katataxeis_form_system_modules_uninstall_confirm_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $modules = \Drupal::request()->request->all()['uninstall'] ?? [];
+  if (isset($modules['katataxeis'])) {
+    \Drupal::messenger()->addWarning(t('Attenzione: la disinstallazione di Katatáxeis eliminerà definitivamente tutti i formulari di graduatoria interna (docenti e ATA) e tutti i dati inseriti. Questa operazione è irreversibile.'));
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function katataxeis_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.graduatorie_interne':
+      $output = '';
+      $output .= '<p>' . t('This module helps to provide form for managed graduatorie interne docenti e ata for the school.') . '</p>';
+      $output .= '<p>' . t('Create Webform Option too. When uninstall module, all form are deleted') . '</p>';
+      return $output;
+  }
+}
