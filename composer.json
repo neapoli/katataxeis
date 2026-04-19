@@ -1,0 +1,25 @@
+{
+    "name": "neapoli/katataxeis",
+    "type": "drupal-module",
+    "description": "Katatáxeis, dal greco graduatorie, è un modulo Drupal per la gestione delle graduatorie interne della scuola",
+    "keywords": ["Drupal", "module", "Katatáxeis"],
+    "homepage": "https://github.com/neapoli/katataxeis",
+    "license": "AGPL-3.0-only",
+    "authors": [
+        {
+            "name": "Crescenzo Velleca",
+            "email": "info@softwebadvice.com",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/neapoli/katataxeis/issues",
+        "source": "https://github.com/neapoli/katataxeis"
+    },
+    "require": {
+        "drupal/core": "^10",
+        "ouitoulia/skenografia": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
