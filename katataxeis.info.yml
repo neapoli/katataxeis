@@ -15,4 +15,5 @@ dependencies:
   - webform:webform
   - webform:webform_entity_print
   - webform:webform_entity_print_attachment
+  - webform:webform_ui
   - webform_views:webform_views

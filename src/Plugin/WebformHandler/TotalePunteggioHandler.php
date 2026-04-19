@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\mio_modulo\Plugin\WebformHandler;
+namespace Drupal\katataxeis\Plugin\WebformHandler;
 
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;

@@ -283,9 +283,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_1:
@@ -373,9 +379,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_1:
@@ -469,9 +481,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_1_1:
@@ -565,9 +583,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_c:
@@ -655,9 +679,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_d:
@@ -778,9 +808,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_e:
@@ -868,9 +904,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_anzianita_servizio_anno_precedente_f:
@@ -964,9 +1006,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
   page_esigenze_di_famiglia:
@@ -1088,9 +1136,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_esigenze_famiglia_anno_precedente_b:
@@ -1181,9 +1235,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_esigenze_famiglia_anno_precedente_c:
@@ -1274,9 +1334,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_esigenze_famiglia_anno_precedente_d:
@@ -1366,9 +1432,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_esigenze_famiglia_anno_precedente_d_1:
@@ -1458,9 +1530,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_esigenze_famiglia_anno_precedente_e:
@@ -1552,9 +1630,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
   page_titoli_generali:
@@ -1676,9 +1760,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
       riga_titoli_generali_anno_precedente_b:
@@ -1770,9 +1860,15 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
-            - authenticated
+            - direttore_amministrativo_dsga_
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_view_roles':
             - authenticated
   riepilogo_totali:
@@ -1864,9 +1960,15 @@ elements: |-
       '#default_value': 'Non Verificata'
       '#private': true
       '#access_create_roles':
-        - authenticated
+        - direttore_amministrativo_dsga_
+        - amministratore
+        - capo_redattore
+        - dirigente_scolastico
       '#access_update_roles':
-        - authenticated
+        - direttore_amministrativo_dsga_
+        - amministratore
+        - capo_redattore
+        - dirigente_scolastico
       '#access_view_roles':
         - authenticated
   actions:
