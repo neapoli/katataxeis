@@ -12,5 +12,7 @@ dependencies:
   - views_data_export:views_data_export
   - xls_serialization:xls_serialization
   - webform:webform
+  - webform:webform_entity_print
+  - webform:webform_entity_print_attachment
   - webform:webform_ui
   - webform_views:webform_views

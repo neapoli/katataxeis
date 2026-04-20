@@ -1,0 +1,10 @@
+langcode: it
+status: true
+dependencies: {  }
+id: tipologia_posto_infanzia
+label: 'Tipologia Posto (Infanzia)'
+category: Scuola
+likert: false
+options: |-
+  Comune: Comune
+  Sostegno: Sostegno

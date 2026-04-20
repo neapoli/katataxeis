@@ -1,0 +1,4547 @@
+langcode: it
+status: open
+dependencies:
+  module:
+    - webform_entity_print
+third_party_settings:
+  webform_entity_print:
+    template:
+      header: ''
+      footer: ''
+      css: ''
+    export_types:
+      pdf:
+        enabled: true
+        link_text: ''
+        link_attributes: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: graduatoria_interna_docenti_inf
+title: '- Graduatoria Interna Docenti Infanzia -'
+description: "<p>Tipo di form da utilizzare per creare la graduatoria interna DOCENTI dell'istituto</p>"
+categories: {  }
+elements: |-
+  dati_anagrafici:
+    '#type': webform_wizard_page
+    '#title': 'Dati Anagrafici'
+    '#prev_button_label': 'Dati Anagrafici'
+    '#next_button_label': 'Anzianità Di Servizio'
+    intestazione:
+      '#type': webform_flexbox
+      processed_text:
+        '#type': processed_text
+        '#display_on': both
+        '#text': '<p class="text-align-right"><strong>Al DIRIGENTE SCOLASTICO</strong></p>'
+        '#format': bootstrap_italia_2
+    flex_dati_anagrafici:
+      '#type': webform_flexbox
+      '#align_items': center
+      markup:
+        '#type': webform_markup
+        '#flex': 2
+        '#display_on': both
+        '#markup': 'Il/La sottoscritto/a'
+      cognome:
+        '#type': textfield
+        '#title': Cognome
+        '#autocomplete': 'off'
+        '#readonly': true
+        '#input_mask': "'casing': 'upper'"
+        '#required': true
+        '#flex': 2
+        '#default_value': '[current-user:field_cognome]'
+        '#format_items': comma
+      nome:
+        '#type': textfield
+        '#title': Nome
+        '#autocomplete': 'off'
+        '#readonly': true
+        '#input_mask': "'casing': 'upper'"
+        '#required': true
+        '#flex': 2
+        '#default_value': '[current-user:field_nome]'
+        '#format_items': comma
+      nato:
+        '#type': textfield
+        '#title': 'Nato a'
+        '#autocomplete': 'off'
+        '#input_mask': "'casing': 'upper'"
+        '#required': true
+        '#flex': 2
+        '#format_items': comma
+      provincia:
+        '#type': textfield
+        '#title': Provincia
+        '#autocomplete': 'off'
+        '#input_mask': "'casing': 'upper'"
+        '#required': true
+        '#format_items': comma
+    flex_dati_anagrafici2:
+      '#type': webform_flexbox
+      datanascita:
+        '#type': date
+        '#title': Il
+        '#required': true
+        '#format': d-m-Y
+        '#format_items': comma
+        '#date_date_format': d-m-Y
+      residente:
+        '#type': textfield
+        '#title': 'Residente In'
+        '#description': 'Inserire indirizzo di residenza'
+        '#autocomplete': 'off'
+        '#input_mask': "'casing': 'upper'"
+        '#required': true
+        '#format_items': comma
+      grado_scuola:
+        '#type': select
+        '#title': 'Docente Di Scuola'
+        '#description': '<p>Selezionare grado di scuola</p>'
+        '#disabled': true
+        '#options': grado_scuola
+        '#required': true
+        '#default_value': Infanzia
+    flex_datianagrafici3:
+      '#type': webform_flexbox
+      posto_infanzia:
+        '#type': select
+        '#title': 'Su Posto (Infanzia)'
+        '#description': 'Selezionare tipologia di posto'
+        '#options': tipologia_posto_infanzia
+        '#states':
+          visible:
+            ':input[name="grado_scuola"]':
+              value: Infanzia
+          required:
+            ':input[name="grado_scuola"]':
+              value: Infanzia
+        '#access_create_roles':
+          - authenticated
+        '#access_update_roles':
+          - authenticated
+        '#access_view_roles':
+          - authenticated
+    e_mail:
+      '#type': email
+      '#title': E-mail
+      '#description': 'Compilato in automatico'
+      '#autocomplete': ''
+      '#readonly': true
+      '#required': true
+      '#default_value': '[current-user:mail]'
+      '#format_items': comma
+    processed_text_01:
+      '#type': processed_text
+      '#display_on': both
+      '#text': |
+        <p class="text-align-center">ai fini della <strong>compilazione della graduatoria d’istituto</strong> prevista dal CCNL vigente</p>
+      '#format': bootstrap_italia_2
+    anno_scolastico:
+      '#type': select
+      '#title': 'Anno Scolastico'
+      '#options': anno_scolastico
+      '#required': true
+      '#required_error': 'Il campo Anno Scolastico è obbligatorio'
+      '#unique': true
+      '#unique_user': true
+      '#unique_error': "Graduatoria già inserita per l'Anno Scolastico selezionato"
+      '#default_value': 2025/2026
+    dichiara:
+      '#type': checkbox
+      '#title': 'Dichiara di essere consapevole delle responsabilità civili e penali cui va incontro in caso di dichiarazione non corrispondente al vero, ai sensi del DPR 28.12.2000 n. 445, così come modificato ed integrato dall’art. 15 della legge 16.1.2003'
+      '#required': true
+    primo_anno:
+      '#type': radios
+      '#title': "E' il primo anno di insegnamento presso il nostro Istituto"
+      '#options':
+        SI: SI
+        'NO': 'NO'
+      '#required': true
+      '#default_value': 'NO'
+  page_anzianita_di_servizio:
+    '#type': webform_wizard_page
+    '#title': 'Anzianità Di Servizio'
+    '#prev_button_label': 'Dati Anagrafici'
+    '#next_button_label': 'Esigenze Di Famiglia'
+    tabella_anzianita_di_servizio_01:
+      '#type': webform_table
+      '#title': 'Anzianità di Servizio: RUOLO'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#access_create_roles':
+        - authenticated
+      '#access_update_roles':
+        - authenticated
+      '#access_view_roles':
+        - authenticated
+      '#header':
+        - title: 'A - ANZIANITÀ DI SERVIZIO: RUOLO'
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Anni
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: PUNTI
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'Anzianità di Servizio: RUOLO [A - A1 - A2 - A3 - A4]'
+      '#sticky': true
+      riga_anzianita_servizio_anno_precedente_a:
+        '#type': webform_table_row
+        '#title': 'Anno Precedente ( A )'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_a:
+          '#type': textfield
+          '#title': 'A - INFANZIA RUOLO: Dichiarazione Anno Precedente ( A )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'A - INFANZIA RUOLO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_a:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a == 1 %}{{ data.anzianita_servizio_anni_a }}{% else %}{{ data.anzianita_servizio_anno_precedente_a }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_a:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a == 1 %}{{ data.anzianita_servizio_punti_a }}{% else %}{{ data.anzianita_servizio_punti_precedente_a }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_a:
+        '#type': webform_table_row
+        '#title': 'A - INFANZIA RUOLO: Anzianità di Servizio'
+        anzianita_servizio_processed_text_02_a:
+          '#type': processed_text
+          '#display_on': both
+          '#text': "<p><strong>A)</strong> Per ogni anno di servizio di ruolo NELL'INFANZIA (compresi gli anni di servizio prestati con la sola nomina giuridica coperti da una supplenza di almeno 180 gg. nel grado di appartenenza) COMPLESSIVAMENTE svolti su posto comune e/o sostegno (escluso l’a.s. in corso)</p><p><strong>Punti: 6</strong> (Comune)</p>"
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_a:
+          '#type': number
+          '#title': 'Anni (A)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_a:
+          '#type': webform_computed_twig
+          '#title': 'Punti (A)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 6 * data.anzianita_servizio_anni_a|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_a:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_a_1:
+        '#type': webform_table_row
+        '#title': 'A 1 - INFANZIA RUOLO: SOSTEGNO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_a_1:
+          '#type': textfield
+          '#title': 'A 1 - INFANZIA RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'A 1 - INFANZIA RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_a_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_1 == 1 %}{{ data.anzianita_servizio_anni_a_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_a_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_a_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_1 == 1 %}{{ data.anzianita_servizio_punti_a_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_a_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_a_1:
+        '#type': webform_table_row
+        '#title': 'A 1 - INFANZIA RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_a_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': "<p><strong>A 1)</strong> Per ogni anno di servizio di ruolo NELL'INFANZIA prestati ESCLUSIVAMENTE su posto di sostegno (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio) </p><p><strong>Punti: 6</strong> (Sostegno)</p>"
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_a_1:
+          '#type': number
+          '#title': 'Anni (A 1 - SOLO SOSTEGNO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_a_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (A 1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 6 * data.anzianita_servizio_anni_a_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_a_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_a_2:
+        '#type': webform_table_row
+        '#title': 'A 2 - INFANZIA RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
+        anzianita_servizio_dichiarazione_precedente_a_2:
+          '#type': textfield
+          '#title': 'A 2 - INFANZIA RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'A 2 - INFANZIA RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_a_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_2 == 1 %}{{ data.anzianita_servizio_anni_a_2 }}{% else %}{{ data.anzianita_servizio_anno_precedente_a_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_a_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_2 == 1 %}{{ data.anzianita_servizio_punti_a_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_a_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_a_2:
+        '#type': webform_table_row
+        '#title': 'A 2 - INFANZIA RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anzianità di Servizio'
+        anzianita_servizio_processed_text_02_a_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>A 2)</strong>&nbsp;Per ogni anno di servizio di ruolo NELL'INFANZIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+
+            <p><strong>Punti: 6&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_a_2:
+          '#type': number
+          '#title': 'Anni (A 2)'
+          '#description': '<p>Anni</p>'
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_a_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (A 2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 6 * data.anzianita_servizio_anni_a_2|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_a_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_a_3:
+        '#type': webform_table_row
+        '#title': 'A 3 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_a_3:
+          '#type': textfield
+          '#title': 'A 3 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'A 3 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_a_3:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_3 == 1 %}{{ data.anzianita_servizio_anni_a_3 }}{% else %}{{ data.anzianita_servizio_anno_precedente_a_3 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_a_3:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_3 == 1 %}{{ data.anzianita_servizio_punti_a_3 }}{% else %}{{ data.anzianita_servizio_punti_precedente_a_3 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_a_3:
+        '#type': webform_table_row
+        '#title': 'A 3 - INFANZIA RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
+        anzianita_servizio_processed_text_02_a_3:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>A 3)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>NON COPERTI</strong> da alcuna supplenza (o inferiore ai 180 gg.) o <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta in altro ruolo/grado rispetto a quello della INFANZIA</p>
+
+            <p><strong>Punti: 3&nbsp;</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_a_3:
+          '#type': number
+          '#title': 'Anni (A 3)'
+          '#description': '<p>Anni</p>'
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_a_3:
+          '#type': webform_computed_twig
+          '#title': 'Punti (A 3)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_a_3|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_a_3:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_a_4:
+        '#type': webform_table_row
+        '#title': 'A 4 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_a_4:
+          '#type': textfield
+          '#title': 'A 4 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'A 4 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_a_4:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_4 == 1 %}{{ data.anzianita_servizio_anni_a_4 }}{% else %}{{ data.anzianita_servizio_anno_precedente_a_4 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_a_4:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_a_4 == 1 %}{{ data.anzianita_servizio_punti_a_4 }}{% else %}{{ data.anzianita_servizio_punti_precedente_a_4 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_a_4:
+        '#type': webform_table_row
+        '#title': 'A 4 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_a_4:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>A 4)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta su SOSTEGNO e in altro ruolo/grado rispetto a quello della INFANZIA(ai fini del radoppio del punteggio)</p>
+
+            <p><strong>Punti: 3&nbsp;</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_a_4:
+          '#type': number
+          '#title': 'Anni (A 4)'
+          '#description': '<p>Anni</p>'
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_a_4:
+          '#type': webform_computed_twig
+          '#title': 'Punti (A 4)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_a_4|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_a_4:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+    tabella_anzianita_di_servizio_preruolo:
+      '#type': webform_table
+      '#title': 'Anzianità di Servizio: PRE-RUOLO'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#access_create_roles':
+        - authenticated
+      '#access_update_roles':
+        - authenticated
+      '#access_view_roles':
+        - authenticated
+      '#header':
+        - title: 'B - ANZIANITÀ DI SERVIZIO: PRE-RUOLO'
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Anni
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: PUNTI
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'Anzianità di Servizio: PRE-RUOLO [B1 - B1.1 - B1.2 - B2 - B2.1 - B2.2 - B3 - B3.1 - B3.2]'
+      '#sticky': true
+      riga_anzianita_servizio_anno_precedente_b_1:
+        '#type': webform_table_row
+        '#title': 'B 1 - INFANZIA PRE-RUOLO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_b_1:
+          '#type': textfield
+          '#title': 'B 1 - INFANZIA PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 1 - INFANZIA PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_b_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_1 == 1 %}{{ data.anzianita_servizio_anni_b_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_b_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_1 == 1 %}{{ data.anzianita_servizio_punti_b_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_1:
+        '#type': webform_table_row
+        '#title': 'B 1 - INFANZIA PRE-RUOLO : Anzianità di Servizio'
+        anzianita_servizio_processed_text_02_b_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': "<p><strong>B 1)</strong> Per ogni anno di servizio di pre-ruolo NELL'INFANZIA svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 5</strong></p>"
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_1:
+          '#type': number
+          '#title': 'Anni ( B 1 - INFANZIA PRE-RUOLO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 5 * data.anzianita_servizio_anni_b_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_b_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_1_1:
+        '#type': webform_table_row
+        '#title': 'B 1.1 - INFANZIA PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_b_1_1:
+          '#type': textfield
+          '#title': 'B 1.1 - INFANZIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 1.1 - INFANZIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_b_1_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_1_1 == 1 %}{{ data.anzianita_servizio_anni_b_1_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_b_1_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_1_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_1_1 == 1 %}{{ data.anzianita_servizio_punti_b_1_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_1_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_1_1:
+        '#type': webform_table_row
+        '#title': 'B 1.1 - INFANZIA PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_b_1_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': "<p><strong>B 1.1)</strong> Per ogni anno di servizio di pre-ruolo NELL'INFANZIA prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 5</strong></p>"
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_1_1:
+          '#type': number
+          '#title': 'Anni ( B 1.1 - INFANZIA PRE-RUOLO: SOSTEGNO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_1_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 1.1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 5 * data.anzianita_servizio_anni_b_1_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_b_1_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_1_2:
+        '#type': webform_table_row
+        '#title': 'B 1.2 - INFANZIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_b_1_2:
+          '#type': textfield
+          '#title': 'B 1.2 - INFANZIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 1.2 - INFANZIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_b_1_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_1_2 == 1 %}{{ data.anzianita_servizio_anni_b_1_2 }}{% else %}{{ data.anzianita_servizio_anno_precedente_b_1_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_1_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_1_2 == 1 %}{{ data.anzianita_servizio_punti_b_1_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_1_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_1_2:
+        '#type': webform_table_row
+        '#title': 'B 1.2 - INFANZIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
+        anzianita_servizio_processed_text_02_b_1_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B 1.2)</strong> Per ogni anno di servizio si pre-ruolo NELL'INFANZIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+
+            <p><strong>Punti: 5&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_1_2:
+          '#type': number
+          '#title': 'Anni (B 1.2)'
+          '#description': '<p>Anni</p>'
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_1_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 1.2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 5 * data.anzianita_servizio_anni_b_1_2|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_b_1_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_2:
+        '#type': webform_table_row
+        '#title': 'B 2 - PRIMARIA PRE-RUOLO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_b_2:
+          '#type': textfield
+          '#title': 'B 2 - PRIMARIA PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 2 - PRIMARIA PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_b_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_2 == 1 %}{{ data.anzianita_servizio_anni_b_2 }}{% else %}{{ data.anzianita_servizio_anno_precedente_b_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_2 == 1 %}{{ data.anzianita_servizio_punti_b_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_2:
+        '#type': webform_table_row
+        '#title': 'B 2 - PRIMARIA PRE-RUOLO: Anzianità di Servizio'
+        anzianita_servizio_processed_text_02_b_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': '<p><strong>B 2)</strong> Indicare gli anni di servizio di pre-ruolo NELLA PRIMARIA svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 3</strong></p>'
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_2:
+          '#type': number
+          '#title': 'Anni ( B 2 - PRIMARIA PRE-RUOLO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_b_2|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_b_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_2_1:
+        '#type': webform_table_row
+        '#title': 'B 2.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_b_2_1:
+          '#type': textfield
+          '#title': 'B 2.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 2.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_b_2_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_2_1 == 1 %}{{ data.anzianita_servizio_anni_b_2_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_b_2_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_2_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_2_1 == 1 %}{{ data.anzianita_servizio_punti_b_2_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_2_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_2_1:
+        '#type': webform_table_row
+        '#title': 'B 2.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_b_2_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': '<p><strong>B 2.1)</strong> Indicare gli anni di servizio pre-ruolo NELLA PRIMARIA prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 3</strong></p>'
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_2_1:
+          '#type': number
+          '#title': 'Anni ( B 2.1 - PRIMARIA PRE-RUOLO: SOSTEGNO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_2_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 2.1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_b_2_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_b_2_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_2_2:
+        '#type': webform_table_row
+        '#title': 'B 2.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_b_2_2:
+          '#type': textfield
+          '#title': 'B 2.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 2.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_b_2_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_2_2 == 1 %}{{ data.anzianita_servizio_anni_b_2_2 }}{% else %}{{ data.anzianita_servizio_anno_precedente_b_2_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_2_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_2_2 == 1 %}{{ data.anzianita_servizio_punti_b_2_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_2_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_2_2:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio ( B 2.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO )'
+        anzianita_servizio_processed_text_02_b_2_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B 2.2)</strong>&nbsp;Indicare gli anni di servizio pre-ruolo NELLA PRIMARIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+
+            <p><strong>Punti: 3&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_2_2:
+          '#type': number
+          '#title': 'Anni (B 2.2)'
+          '#description': '<p>Anni</p>'
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_2_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 2.2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_b_2_2|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_b_2_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_3:
+        '#type': webform_table_row
+        '#title': 'B 3 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_b_3:
+          '#type': textfield
+          '#title': 'B 3 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 3 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_b_3:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_3 == 1 %}{{ data.anzianita_servizio_anni_b_3 }}{% else %}{{ data.anzianita_servizio_anni_precedente_b_3 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_3:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_3 == 1 %}{{ data.anzianita_servizio_punti_b_3 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_3 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_3:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (B 3 - SCUOLA SECONDARIA I/II GRADO)'
+        anzianita_servizio_processed_text_02_b_3:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B 3) </strong>Per ogni anno di servizio pre-ruolo nella SCUOLA SECONDARIA I/II GRADO svolti COMPLESSIVAMENTE su posto comune e/o sostegno.</p>
+
+            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
+            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_3:
+          '#type': number
+          '#title': 'Anni (B 3)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_3:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 3)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set anni = data.anzianita_servizio_anni_b_3|default(0)|float %}
+            {% if anni <= 4 %}
+               {{ anni * 3 }}
+            {% else %}
+               {{ 12 + (anni - 4) * 2 }}
+            {% endif %}
+          '#store': true
+        anzianita_servizio_verifica_ds_b_3:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_3_1:
+        '#type': webform_table_row
+        '#title': 'B 3.1 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_b_3_1:
+          '#type': textfield
+          '#title': 'B 3.1 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 3.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_b_3_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_3_1 == 1 %}{{ data.anzianita_servizio_anni_b_3_1 }}{% else %}{{ data.anzianita_servizio_anni_precedente_b_3_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_3_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_3_1 == 1 %}{{ data.anzianita_servizio_punti_b_3_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_3_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_3_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (B 3.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO)'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_b_3_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B 3.1) </strong>Per ogni anno di servizio pre-ruolo nella SCUOLA SECONDARIA I/II GRADO prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
+
+            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
+            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_3_1:
+          '#type': number
+          '#title': 'Anni (B 3.1)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_3_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 3.1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set anni = data.anzianita_servizio_anni_b_3_1|default(0)|float %}
+            {% if anni <= 4 %}
+               {{ anni * 3 }}
+            {% else %}
+               {{ 12 + (anni - 4) * 2 }}
+            {% endif %}
+          '#store': true
+        anzianita_servizio_verifica_ds_b_3_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_b_3_2:
+        '#type': webform_table_row
+        '#title': 'B 3.2 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_b_3_2:
+          '#type': textfield
+          '#title': 'B 3.2 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B 3.2 - SCUOLA SECONDARIA I/II GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_b_3_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_3_2 == 1 %}{{ data.anzianita_servizio_anni_b_3_2 }}{% else %}{{ data.anzianita_servizio_anni_precedente_b_3_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_b_3_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_b_3_2 == 1 %}{{ data.anzianita_servizio_punti_b_3_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_b_3_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_b_3_2:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (B 3.2 - SCUOLA SECONDARIA I/II GRADO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO)'
+        anzianita_servizio_processed_text_02_b_3_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B 3.2)</strong>&nbsp;Per ogni anno di servizio pre-ruolo nella SCUOLA SECONDARIA I/II GRADO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</p>
+            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
+            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_b_3_2:
+          '#type': number
+          '#title': 'Anni (B 3.2)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_b_3_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (B 3.2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set anni = data.anzianita_servizio_anni_b_3_2|default(0)|float %}
+            {% if anni <= 4 %}
+               {{ anni * 3 }}
+            {% else %}
+               {{ 12 + (anni - 4) * 2 }}
+            {% endif %}
+          '#store': true
+        anzianita_servizio_verifica_ds_b_3_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+    tabella_anzianita_di_servizio_altroruolo:
+      '#type': webform_table
+      '#title': 'Anzianità di Servizio: ALTRO-RUOLO'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#access_create_roles':
+        - authenticated
+      '#access_update_roles':
+        - authenticated
+      '#access_view_roles':
+        - authenticated
+      '#header':
+        - title: 'C - ANZIANITÀ DI SERVIZIO: ALTRO-RUOLO'
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Anni
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: PUNTI
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'Anzianità di Servizio: ALTRO-RUOLO [C1 - C1.1 - C1.2 - C2 - C2.1 - C2.2]'
+      '#sticky': true
+      riga_anzianita_servizio_anno_precedente_c_1:
+        '#type': webform_table_row
+        '#title': 'C 1 - PRIMARIA ALTRO-RUOLO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_c_1:
+          '#type': textfield
+          '#title': 'C 1 - PRIMARIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C 1 - PRIMARIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_c_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_1 == 1 %}{{ data.anzianita_servizio_anni_c_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_c_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_c_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_1 == 1 %}{{ data.anzianita_servizio_punti_c_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_c_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_c_1:
+        '#type': webform_table_row
+        '#title': 'C 1 - PRIMARIA ALTRO-RUOLO: Anzianità di Servizio'
+        anzianita_servizio_processed_text_02_c_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': '<p><strong>C 1)</strong> Per ogni anno di servizio svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella PRIMARIA. </p><p><strong>Punti: 3</strong></p>'
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_1:
+          '#type': number
+          '#title': 'Anni ( C 1 - PRIMARIA ALTRO-RUOLO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_c_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_c_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_c_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_c_1_1:
+        '#type': webform_table_row
+        '#title': 'C 1.1 - PRIMARIA ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
+        '#attributes':
+          class:
+            - 'container-inline clearfix'
+        anzianita_servizio_dichiarazione_precedente_c_1_1:
+          '#type': textfield
+          '#title': 'C 1.1 - PRIMARIA ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C 1.1 - PRIMARIA ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_c_1_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_1_1 == 1 %}{{ data.anzianita_servizio_anni_c_1_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_c_1_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_c_1_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_1_1 == 1 %}{{ data.anzianita_servizio_punti_c_1_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_c_1_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_c_1_1:
+        '#type': webform_table_row
+        '#title': 'C 1.1 - PRIMARIA ALTRO-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_c_1_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': '<p><strong>C 1.1)</strong> Per ogni anno di servizio prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 3</strong></p>'
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_1_1:
+          '#type': number
+          '#title': 'Anni ( C 1.1 - PRIMARIA ALTRO-RUOLO: SOSTEGNO )'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_c_1_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 1.1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_c_1_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_c_1_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_c_1_2:
+        '#type': webform_table_row
+        '#title': 'C 1.2 - PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_c_1_2:
+          '#type': textfield
+          '#title': 'C 1.2 - PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C 1.2 - PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_c_1_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_1_2 == 1 %}{{ data.anzianita_servizio_anni_c_1_2 }}{% else %}{{ data.anzianita_servizio_anno_precedente_c_1_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_c_1_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_1_2 == 1 %}{{ data.anzianita_servizio_punti_c_1_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_c_1_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_c_1_2:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio ( C 1.2 - PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO )'
+        anzianita_servizio_processed_text_02_c_1_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 1.2)</strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+
+            <p><strong>Punti: 3&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_1_2:
+          '#type': number
+          '#title': 'Anni (C 1.2)'
+          '#description': '<p>Anni</p>'
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_c_1_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 1.2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_c_1_2|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_c_1_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_c_2:
+        '#type': webform_table_row
+        '#title': 'C 2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_c_2:
+          '#type': textfield
+          '#title': 'C 2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C 2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_c_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_2 == 1 %}{{ data.anzianita_servizio_anni_c_2 }}{% else %}{{ data.anzianita_servizio_anni_precedente_c_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_c_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_2 == 1 %}{{ data.anzianita_servizio_punti_c_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_c_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_c_2:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (C 2 - SCUOLA SECONDARIA I/II GRADO)'
+        anzianita_servizio_processed_text_02_c_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 2) </strong>Per ogni anno di servizio ALTRO-RUOLO svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella SCUOLA SECONDARIA I/II GRADO.</p>
+
+            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
+            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_2:
+          '#type': number
+          '#title': 'Anni (C 2)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_c_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set anni = data.anzianita_servizio_anni_c_2|default(0)|float %}
+            {% if anni <= 4 %}
+               {{ anni * 3 }}
+            {% else %}
+               {{ 12 + (anni - 4) * 2 }}
+            {% endif %}
+          '#store': true
+        anzianita_servizio_verifica_ds_c_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_c_2_1:
+        '#type': webform_table_row
+        '#title': 'C 2.1 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_c_2_1:
+          '#type': textfield
+          '#title': 'C 2.1 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C 2.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_c_2_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_2_1 == 1 %}{{ data.anzianita_servizio_anni_c_2_1 }}{% else %}{{ data.anzianita_servizio_anni_precedente_c_2_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_c_2_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_2_1 == 1 %}{{ data.anzianita_servizio_punti_c_2_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_c_2_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_c_2_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (C 2.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO)'
+        '#states':
+          enabled:
+            ':input[name="posto_infanzia"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_c_2_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 2.1) </strong>Per ogni anno di servizio ALTRO-RUOLO prestati ESCLUSIVAMENTE su posto di sostegno nella SCUOLA SECONDARIA I/II GRADO in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
+
+            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
+            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_2_1:
+          '#type': number
+          '#title': 'Anni (C 2.1)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_c_2_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 2.1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set anni = data.anzianita_servizio_anni_c_2_1|default(0)|float %}
+            {% if anni <= 4 %}
+               {{ anni * 3 }}
+            {% else %}
+               {{ 12 + (anni - 4) * 2 }}
+            {% endif %}
+          '#store': true
+        anzianita_servizio_verifica_ds_c_2_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_c_2_2:
+        '#type': webform_table_row
+        '#title': 'C 2.2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        anzianita_servizio_dichiarazione_precedente_c_2_2:
+          '#type': textfield
+          '#title': 'C 2.2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C 2.2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_c_2_2:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_2_2 == 1 %}{{ data.anzianita_servizio_anni_c_2_2 }}{% else %}{{ data.anzianita_servizio_anni_precedente_c_2_2 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_c_2_2:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#template': '{% if data.anzianita_servizio_verifica_ds_c_2_2 == 1 %}{{ data.anzianita_servizio_punti_c_2_2 }}{% else %}{{ data.anzianita_servizio_punti_precedente_c_2_2 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_c_2_2:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (C 2.2 - SCUOLA SECONDARIA I/II GRADO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO)'
+        anzianita_servizio_processed_text_02_c_2_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 2.2) </strong></strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</p>
+
+            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
+            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_2_2:
+          '#type': number
+          '#title': 'Anni (C 2.2)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_punti_c_2_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 2.2)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set anni = data.anzianita_servizio_anni_c_2_2|default(0)|float %}
+            {% if anni <= 4 %}
+               {{ anni * 3 }}
+            {% else %}
+               {{ 12 + (anni - 4) * 2 }}
+            {% endif %}
+          '#store': true
+        anzianita_servizio_verifica_ds_c_2_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+    tabella_anzianita_di_servizio_03:
+      '#type': webform_table
+      '#title': "Anzianità di Servizio: CONTINUITA'"
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#header':
+        - title: "D - Anzianità di Servizio CONTINUITA'"
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Anni
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: Isole
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: Punti
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': "Anzianità di Servizio: CONTINUITA' [D1 - D1.1]"
+      '#sticky': true
+      riga_anzianita_servizio_anno_precedente_d_1:
+        '#type': webform_table_row
+        '#title': 'Anno Precedente ( D 1 )'
+        '#attributes':
+          style: 'text-align:center'
+        anzianita_servizio_dichiarazione_precedente_d_1:
+          '#type': textfield
+          '#title': "CONTINUITA' NELLA SCUOLA: Dichiarazione Anno Precedente"
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': "CONTINUITA' NELLA SCUOLA: Dichiarazione Anno Precedente"
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anno_precedente_d_1:
+          '#type': webform_computed_twig
+          '#title': Anni(prec_D1)
+          '#description': '<p>Anni</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1 == 1 %}{{ data.anzianita_servizio_anni_d_1 }}{% else %}{{ data.anzianita_servizio_anno_precedente_d_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_isole_precedente_d_1:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1 == 1 %}{{ data.anzianita_servizio_isole_d_1 }}{% else %}{{ data.anzianita_servizio_isole_precedente_d_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_d_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1 == 1 %}{{ data.anzianita_servizio_punti_d_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_d_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_d_1:
+        '#type': webform_table_row
+        '#title': "CONTINUITA' NELLA SCUOLA: Anzianità di Servizio "
+        processed_text_05:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>D 1)</strong>&nbsp;Per ogni anno di servizio di ruolo prestato <strong>nella scuola di attuale titolarità senza soluzione di continuità</strong> (fin dal primo anno escluso l’a.s. in corso)</strong></p>
+
+            <p><b>Per i primi 3 anni: (punti 4 x ciascun anno)
+            <b>Per il quarto e quinto anno (punti 5 x ciascun anno)<br />
+            <b>Oltre il quinto anno (punti 6 x ciascun anno)<br />
+            per il servizio prestato nelle piccole isole il punteggio si raddoppia</b></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_d_1:
+          '#type': number
+          '#title': 'Anni (D 1)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_isole_d_1:
+          '#type': radios
+          '#title': 'Isole (D 1)'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        anzianita_servizio_punti_d_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (D 1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': |-
+            {% set punti = 0 %}
+            {% set anni = data.anzianita_servizio_anni_d_1|default(0)|float %}
+            {# Calcolo dei punti in base agli anni #}
+            {% if anni <= 3 %}
+              {% set punti = anni * 4 %}
+            {% elseif anni <= 5 %}
+              {% set punti = 3 * 4 + (anni - 3) * 5 %}
+            {% else %}
+              {% set punti = 3 * 4 + 2 * 5 + (anni - 5) * 6 %}
+            {% endif %}
+            {# Se il servizio è stato prestato nelle piccole isole, i punti si raddoppiano #}
+            {% if data.anzianita_servizio_isole_d_1 == "si" %}
+              {% set punti = punti * 2 %}
+            {% endif %}
+            {{ punti }}
+          '#store': true
+        anzianita_servizio_verifica_ds_d_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_d_1_1:
+        '#type': webform_table_row
+        '#title': 'Anno Precedente ( D 1.1 )'
+        '#attributes':
+          style: 'text-align:center'
+        anzianita_servizio_dichiarazione_precedente_d_1_1:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( D 1.1 )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': "CONTINUITA' NEL COMUNE: Dichiarazione Anno Precedente"
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_anni_precedente_d_1_1:
+          '#type': webform_computed_twig
+          '#title': Anni
+          '#description': Anni
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1_1 == 1 %}{{ data.anzianita_servizio_anni_d_1_1 }}{% else %}{{ data.anzianita_servizio_anni_precedente_d_1_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_isole_precedente_d_1_1:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1_1 == 1 %}{{ data.anzianita_servizio_isole_d_1_1 }}{% else %}{{ data.anzianita_servizio_isole_precedente_d_1_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_d_1_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1_1 == 1 %}{{ data.anzianita_servizio_punti_d_1_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_d_1_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_d_1_1:
+        '#type': webform_table_row
+        '#title': "CONTINUITA' NEL COMUNE: Anzianità Di Servizio"
+        processed_text_06:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>D 1.1)</strong> Per ogni anno di servizio di ruolo prestato <strong>nel stesso comune di attuale titolarità (gli anni della continuità di scuola non possono coincidere con gli anni prestati nello stesso comune)</strong></p>
+
+            <p><strong>Punti: 1&nbsp;</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_d_1_1:
+          '#type': number
+          '#title': 'Anni (D 1.1)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        anzianita_servizio_isole_d_1_1:
+          '#type': radios
+          '#title': 'Isole (D 1.1)'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        anzianita_servizio_punti_d_1_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (D 1.1)'
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#label_attributes':
+            style: 'text-align:center'
+          '#template': '{{ data.anzianita_servizio_anni_d_1_1|default(0)|float }}'
+          '#store': true
+        anzianita_servizio_verifica_ds_d_1_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+    tabella_anzianita_di_servizio_c1:
+      '#type': webform_table
+      '#title': 'Anzianità Di Servizio: BONUS UNA TANTUM'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#header':
+        - title: 'E - Anzianità Di Servizio: BONUS UNA TANTUM'
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Si/No
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: Punti
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'Anzianità di Servizio: BONUS UNA TANTUM [E 1]'
+      '#sticky': true
+      riga_anzianita_servizio_anno_precedente_e_1:
+        '#type': webform_table_row
+        '#title': 'BONUS UNA TANTUM: Dichiarazione Anno Precedente'
+        anzianita_servizio_anno_precedente_e_1:
+          '#type': textfield
+          '#title': 'BONUS UNA TANTUM: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'BONUS UNA TANTUM: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_si_no_precedente_e_1:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_e_1 == 1 %}{{ data.anzianita_servizio_si_no_e_1 }}{% else %}{{ data.anzianita_servizio_si_no_precedente_e_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_e_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_e_1 == 1 %}{{ data.anzianita_servizio_punti_e_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_e_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_e_1:
+        '#type': webform_table_row
+        '#title': 'BONUS UNA TANTUM: Anzianità Di Servizio'
+        processed_text_00:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>E 1)</strong>&nbsp;A coloro che, <strong>per un triennio</strong>, a decorrere dalle operazioni di mobilità per l'a.s. 2000/2001 e fino all'a.s. 2007/2008, non abbiano presentato domanda di trasferimento provinciale o passaggio provinciale o, pur avendo presentato domanda, l'abbiano revocata nei termini previsti, è riconosciuto, per il predetto triennio, una tantum, un punteggio aggiuntivo</p>
+
+            <p><strong>Punti: 10</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_si_no_e_1:
+          '#type': radios
+          '#title': 'Si/No (E 1)'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#states':
+            disabled:
+              ':input[name="anzianita_servizio_verifica_ds_e_1"]':
+                checked: true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        anzianita_servizio_punti_e_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (E 1)'
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.anzianita_servizio_si_no_e_1 == "si" %}{{ 10 }}{% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_verifica_ds_e_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+  page_esigenze_di_famiglia:
+    '#type': webform_wizard_page
+    '#title': 'Esigenze Di Famiglia'
+    '#prev_button_label': 'Anzianità Di Servizio'
+    '#next_button_label': 'Titoli Generali'
+    tabella_esigenze_di_famiglia_01:
+      '#type': webform_table
+      '#title': 'II - ESIGENZE DI FAMIGLIA (6) (7) - [A-D]'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#header':
+        - title: 'ESIGENZE DI FAMIGLIA'
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Si/No
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: Punti
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica DS'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'ESIGENZE DI FAMIGLIA'
+      '#sticky': true
+      riga_esigenze_famiglia_anno_precedente_a:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente'
+        esigenze_famiglia_dichiarazione_precedente_a:
+          '#type': textfield
+          '#title': 'A - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'A - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        esigenze_famiglia_anni_precedente_a:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_a == 1 %}{{ data.esigenze_famiglia_si_no_a }}{% else %}{{ data.esigenze_famiglia_anni_precedente_a }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_punti_precedente_a:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_a == 1 %}{{ data.esigenze_famiglia_punti_a }}{% else %}{{ data.esigenze_famiglia_punti_precedente_a }}{% endif %}'
+          '#store': true
+      riga_esigenze_famiglia_a:
+        '#type': webform_table_row
+        '#title': 'Esigenze di Famiglia(A)'
+        esigenze_famiglia_01_processed_text_02:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>A)</strong>&nbsp;per NON ALLONTANAMENTO dal coniuge (o parte dell’unione civile/convivente di fatto) OVVERO SOLO NEL CASO DI DOCENTI SENZA CONIUGE O SEPARATI GIUDIZIALMENTE O CONSENSUALMENTE CON ATTO OMOLOGATO DAL TRIBUNALE, per ricongiungimento ai genitori o ai figli (in questo caso a scelta)<br />
+            <strong>Punti: 6 </strong></p>
+          '#format': bootstrap_italia_2
+        esigenze_famiglia_si_no_a:
+          '#type': radios
+          '#title': Si/No
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        esigenze_famiglia_punti_a:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.esigenze_famiglia_si_no_a == "no" %}{{ 0 }}{% else %}{{ 6 }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_verifica_ds_a:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_esigenze_famiglia_anno_precedente_b:
+        '#type': webform_table_row
+        '#title': 'B - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+        esigenze_famiglia_dichiarazione_precedente_b:
+          '#type': textfield
+          '#title': 'B - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'B - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        esigenze_famiglia_nfigli_precedente_b:
+          '#type': webform_computed_twig
+          '#title': Figli
+          '#description': 'n&deg; figli'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_b == 1 %}{{ data.esigenze_famiglia_nfigli_b }}{% else %}{{ data.esigenze_famiglia_nfigli_precedente_b }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_punti_precedente_b:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_b == 1 %}{{ data.esigenze_famiglia_punti_b }}{% else %}{{ data.esigenze_famiglia_punti_precedente_b }}{% endif %}'
+          '#store': true
+      riga_esigenze_famiglia_b:
+        '#type': webform_table_row
+        '#title': 'B - ESIGENZE DI FAMIGLIA'
+        esigenze_famiglia_processed_text_02_b:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B)</strong>&nbsp;Per OGNI figlio (anche adottivo o in affidamento preadottivo o in affidamento) di età inferiore a 6 anni da compiere entro il 31/12 dell’a.s. in corso<br />
+            <strong>Punti: 5</strong></p>
+          '#format': bootstrap_italia_2
+        esigenze_famiglia_nfigli_b:
+          '#type': number
+          '#title': Figli
+          '#description': 'n&deg; figli'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        esigenze_famiglia_punti_b:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 5 * data.esigenze_famiglia_nfigli_b|default(0)|float }}'
+          '#store': true
+        esigenze_famiglia_verifica_ds_b:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_esigenze_famiglia_anno_precedente_c:
+        '#type': webform_table_row
+        '#title': 'C - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+        esigenze_famiglia_dichiarazione_precedente_c:
+          '#type': textfield
+          '#title': 'C - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'C - ESIGENZE DI FAMIGLIA: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        esigenze_famiglia_nfigli_precedente_c:
+          '#type': webform_computed_twig
+          '#title': Figli
+          '#description': 'n&deg; figli'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_c == 1 %}{{ data.esigenze_famiglia_nfigli_c }}{% else %}{{ data.esigenze_famiglia_nfigli_precedente_c }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_punti_precedente_c:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_c == 1 %}{{ data.esigenze_famiglia_punti_c }}{% else %}{{ data.esigenze_famiglia_punti_precedente_c }}{% endif %}'
+          '#store': true
+      riga_esigenze_famiglia_c:
+        '#type': webform_table_row
+        '#title': 'C - ESIGENZE DI FAMIGLIA'
+        esigenze_famiglia_processed_text_03_c:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C)</strong>&nbsp;Per OGNI figlio (anche adottivo o in affidamento preadottivo o in affidamento) di età dai 7 ai 18 anni da compiere entro il 31/12 dell’a.s. in corso OVVERO per ogni figlio di età superiore ai 18 che risulti totalmente o permanentemente inabile a proficuo lavoro.<br />
+            <strong>Punti: 4</strong></p>
+          '#format': bootstrap_italia_2
+        esigenze_famiglia_nfigli_c:
+          '#type': number
+          '#title': Figli
+          '#description': 'n&deg; figli'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        esigenze_famiglia_punti_c:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 4 * data.esigenze_famiglia_nfigli_c|default(0)|float }}'
+          '#store': true
+        esigenze_famiglia_verifica_ds_c:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+          - amministratore
+          - capo_redattore
+          - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_esigenze_famiglia_anno_precedente_d:
+        '#type': webform_table_row
+        '#title': ' D - ESIGENZE DI FAMIGLIA: CURA e ASSISTENZA: Dichiarazione Anno Precedente'
+        esigenze_famiglia_anno_precedente_d:
+          '#type': textfield
+          '#title': 'D - ESIGENZE DI FAMIGLIA: CURA e ASSISTENZA: Dichiarazione Anno Precedente'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'D - ESIGENZE DI FAMIGLIA: CURA e ASSISTENZA: Dichiarazione Anno Precedente'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        esigenze_famiglia_si_no_precedente_d:
+          '#type': webform_computed_twig
+          '#title': 'Si/No (Cura e Assist.)'
+          '#description': '<p>si/no</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_d == 1 %}{{ data.esigenze_famiglia_si_no_d }}{% else %}{{ data.esigenze_famiglia_si_no_precedente_d }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_punti_precedente_d:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_d == 1 %}{{ data.esigenze_famiglia_punti_d }}{% else %}{{ data.esigenze_famiglia_punti_precedente_d }}{% endif %}'
+          '#store': true
+      riga_esigenze_famiglia_d:
+        '#type': webform_table_row
+        '#title': 'D - ESIGENZE DI FAMIGLIA: CURA e ASSISTENZA'
+        esigenze_famiglia_processed_text_04_d:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>D)</strong>&nbsp;Cura e assistenza del figlio con minorazione: fisica, psichica, sensoriale ovvero per prestare la cura e l’assistenza del figlio tossico dipendente o del coniuge o del genitore, totalmente e permanentemente inabile al lavoro che può essere assistito soltanto nello stesso comune di titolarità del docente)<br />
+            <strong>Punti: 6</strong></p>
+          '#format': bootstrap_italia_2
+        esigenze_famiglia_si_no_d:
+          '#type': radios
+          '#title': 'Si/No (Cura e Assist.)'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        esigenze_famiglia_punti_d:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.esigenze_famiglia_si_no_d == "no" %}{{ 0 }}{% else %}{{ 6 }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_verifica_ds_d:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_esigenze_famiglia_anno_precedente_e:
+        '#type': webform_table_row
+        '#title': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE: Dichiarazione Anno Precedente"
+        esigenze_famiglia_anno_precedente_e:
+          '#type': textfield
+          '#title': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE: Dichiarazione Anno Precedente"
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE: Dichiarazione Anno Precedente"
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        esigenze_famiglia_si_no_precedente_e:
+          '#type': webform_computed_twig
+          '#title': 'Si/No (Dis. Pers.)'
+          '#description': '<p>si/no</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_e == 1 %}{{ data.esigenze_famiglia_si_no_e }}{% else %}{{ data.esigenze_famiglia_si_no_precedente_e }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_punti_precedente_e:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.esigenze_famiglia_verifica_ds_e == 1 %}{{ data.esigenze_famiglia_punti_e }}{% else %}{{ data.esigenze_famiglia_punti_precedente_e }}{% endif %}'
+          '#store': true
+      riga_esigenze_famiglia_e:
+        '#type': webform_table_row
+        '#title': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE"
+        esigenze_famiglia_processed_text_04_e:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>E)</strong>&nbsp;Disabilità Personale? (Esclusione prevista dall'art. 13/1 C.C.N.I 2528) <br />
+            <strong>Punti: nessuno </strong></p>
+          '#format': bootstrap_italia_2
+        esigenze_famiglia_si_no_e:
+          '#type': radios
+          '#title': 'Si/No (Dis. Pers.)'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        esigenze_famiglia_punti_e:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.esigenze_famiglia_si_no_e == "no" %}{{ 0 }}{% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        esigenze_famiglia_verifica_ds_e:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+  page_titoli_generali:
+    '#type': webform_wizard_page
+    '#title': 'Titoli Generali'
+    '#prev_button_label': 'Esigenze Di Famiglia'
+    '#next_button_label': Totali
+    tabella_titoli_generali_01:
+      '#type': webform_table
+      '#title': 'III - Titoli Generali - [A - F - G - I - L]'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#header':
+        - title: TITOLI
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: 'Si / No'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: Punti
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'Titoli [A - B - C - D - E - F - H - M - N]'
+      '#sticky': true
+      riga_titoli_generali_anno_precedente_a:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( A )'
+        titoli_generali_dichiarazione_precedente_a:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( A )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( A )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_si_no_precedente_a:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_a == 1 %}{{ data.titoli_generali_si_no_a }}{% else %}{{ data.titoli_generali_si_no_precedente_a }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_a:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_a == 1 %}{{ data.titoli_generali_punti_a }}{% else %}{{ data.titoli_generali_punti_precedente_a }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_a:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( A )'
+        titoli_generali_processed_text_09_a:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>A)</strong>&nbsp;Di aver superato un pubblico concorso ordinario per esami e titoli, per l’accesso al ruolo di appartenenza, o a ruoli di livello pari o superiore a quello di appartenenza (può essere valutato un solo concorso) <strong>N.B.: (NON SI VALUTANTO SSIS, TFA, PAS E CONCORSI RISERVATI)</strong></p>
+
+            <p><strong>Punti: 12</strong></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_si_no_a:
+          '#type': radios
+          '#title': 'SI / No'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        titoli_generali_punti_a:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.titoli_generali_si_no_a == "si" %}{{ 12 }}{% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        titoli_generali_verifica_ds_a:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_b:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( B )'
+        titoli_generali_dichiarazione_precedente_b:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( B )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( B )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_quantita_precedente_b:
+          '#type': webform_computed_twig
+          '#title': Quantità
+          '#description': 'N&deg; Diplomi'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_b == 1 %}{{ data.titoli_generali_quantita_b }}{% else %}{{ data.titoli_generali_quantita_precedente_b }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_b:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_b == 1 %}{{ data.titoli_generali_punti_b }}{% else %}{{ data.titoli_generali_punti_precedente_b }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_b:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( B )'
+        titoli_generali_processed_text_09_b:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>B)</strong>&nbsp;Per ogni diploma di specializzazione. <strong>N.B.: (NON SI VALUTANTO SSIS, TFA, PAS E SPECIALIZZAZIONI PER INSEGNARE SOSTEGNO)</strong></p>
+
+            <p>Per ogni diploma <strong>Punti: 5</strong></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_quantita_b:
+          '#type': number
+          '#title': Quantità
+          '#description': 'N&deg; Diplomi'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        titoli_generali_punti_b:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': "{{ webform_token('[webform_submission:values:titoli_generali_quantita_b]', webform_submission) * 5 }}"
+          '#store': true
+        titoli_generali_verifica_ds_b:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_c:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( C )'
+        titoli_generali_dichiarazione_precedente_c:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( C )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( C )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_quantita_precedente_c:
+          '#type': webform_computed_twig
+          '#title': Quantità
+          '#description': 'N&deg; Diplomi'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_c == 1 %}{{ data.titoli_generali_quantita_c }}{% else %}{{ data.titoli_generali_quantita_precedente_c }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_c:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_c == 1 %}{{ data.titoli_generali_punti_c }}{% else %}{{ data.titoli_generali_punti_precedente_c }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_c:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( C )'
+        titoli_generali_processed_text_09_c:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C)</strong>&nbsp;Per ogni diploma diploma/i universitario/i (LAUREA DI I LIVELLO O BREVE/TRIENNALE O DIPLOMA ISEF O DIPLOMA DI ACCADEMIA O CONSERVATORIO DI MUSICA) conseguito oltre il titolo di studio attualmente necessario per l’accesso al ruolo di appartenenza</p>
+
+            <p><strong>Punti: 3</strong></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_quantita_c:
+          '#type': number
+          '#title': Quantità
+          '#description': 'N&deg; Diplomi'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        titoli_generali_punti_c:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.titoli_generali_quantita_c|default(0)|float }}'
+          '#store': true
+        titoli_generali_verifica_ds_c:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_d:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( D )'
+        titoli_generali_dichiarazione_precedente_d:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( D )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( D )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_quantita_precedente_d:
+          '#type': webform_computed_twig
+          '#title': Quantità
+          '#description': 'N&deg; Corsi'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_d == 1 %}{{ data.titoli_generali_quantita_d }}{% else %}{{ data.titoli_generali_quantita_precedente_d }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_d:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_d == 1 %}{{ data.titoli_generali_punti_d }}{% else %}{{ data.titoli_generali_punti_precedente_d }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_d:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( D )'
+        titoli_generali_processed_text_09_d:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p>D) Per ogni diploma/i universitario/i CORSI DI PERFEZ. e/o MASTER I E II LIVELLO NON INFERIORI AD UN ANNO (se conseguiti dal 2005/06 devono essere di 1500 ore e 60 CFU</p>
+
+            <p><strong>Punti: 1 (per ogni diploma e/o master)</strong></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_quantita_d:
+          '#type': number
+          '#title': Quantità
+          '#description': 'N&deg; Corsi'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        titoli_generali_punti_d:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ data.titoli_generali_quantita_d|default(0)|float }}'
+          '#store': true
+        titoli_generali_verifica_ds_d:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_e:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( E )'
+        titoli_generali_dichiarazione_precedente_e:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( E )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( E )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_quantita_precedente_e:
+          '#type': webform_computed_twig
+          '#title': Quantità
+          '#description': 'N&deg; Diplomi'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_e == 1 %}{{ data.titoli_generali_quantita_e }}{% else %}{{ data.titoli_generali_quantita_precedente_e }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_e:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_e == 1 %}{{ data.titoli_generali_punti_e }}{% else %}{{ data.titoli_generali_punti_precedente_e }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_e:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( E )'
+        titoli_generali_processed_text_09_e:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>E)</strong>&nbsp;Per ogni diploma di laurea con corso almeno QUADRIENNALE (LAUREA IN SCIENZE MOTORIE, MAGISTRALE/SPECIALISTICA, ACCADEMIA DI BELLE ARTI, DIPLOMA DI CONSERVATORIO DI MUSICA) conseguito oltre il titolo di studio attualmente necessario per l’accesso al ruolo di appartenenza</p>
+
+            <p><strong>Punti: 5</strong></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_quantita_e:
+          '#type': number
+          '#title': Quantità
+          '#description': 'N&deg; Diplomi'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+        titoli_generali_punti_e:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 5 * data.titoli_generali_quantita_e|default(0)|float }}'
+          '#store': true
+        titoli_generali_verifica_ds_e:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_f:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( F )'
+        titoli_generali_dichiarazione_precedente_f:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( F )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( F )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_si_no_precedente_f:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_f == 1 %}{{ data.titoli_generali_si_no_f }}{% else %}{{ data.titoli_generali_si_no_precedente_f }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_f:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_f == 1 %}{{ data.titoli_generali_punti_f }}{% else %}{{ data.titoli_generali_punti_precedente_f }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_f:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( F )'
+        titoli_generali_processed_text_02_f:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>F)</strong> Per il conseguimento del titolo di "dottorato di ricerca"&nbsp;(si valuta un solo titolo)</p>
+
+            <p><b>Punti: 5</b></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_si_no_f:
+          '#type': radios
+          '#title': 'SI / No'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        titoli_generali_punti_f:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.titoli_generali_si_no_f == "si" %}{{ 5 }} {% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        titoli_generali_verifica_ds_f:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_h:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( H )'
+        titoli_generali_dichiarazione_anno_precedente_h:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( H )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( H )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_quantita_precedente_h:
+          '#type': webform_computed_twig
+          '#title': Quantità
+          '#description': 'N&deg; Partecip.'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_h == 1 %}{{ data.titoli_generali_quantita_h }}{% else %}{{ data.titoli_generali_quantita_precedente_h }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_h:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_h == 1 %}{{ data.titoli_generali_punti_h }}{% else %}{{ data.titoli_generali_punti_precedente_h }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_h:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( H )'
+        titoli_generali_processed_text_h:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>H)</strong> Per ogni partecipazione ai nuovi Esami di Stato conclusivi dei corsi di studio di istruzione secondaria superiore, in qualità di presidente di commissione o di commissario interno o di commissario esterno o come docente di sostegno all’alunno portatore di handicap che svolge l’esame per gli anni 98/99 fino al 00/01</p>
+
+            <p><strong>Punti:&nbsp;</strong><strong>1</strong></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_quantita_h:
+          '#type': number
+          '#title': Quantità
+          '#description': 'N&deg; Partecip.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#format_items': comma
+          '#min': 0
+          '#max': 3
+        titoli_generali_punti_h:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': '<p>Punti</p>'
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ data.titoli_generali_quantita_h|default(0)|float }}'
+          '#store': true
+        titoli_generali_verifica_ds_h:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_m:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( M )'
+        titoli_generali_dichiarazione_precedente_m:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( M )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( M )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_si_no_precedente_m:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_m == 1 %}{{ data.titoli_generali_si_no_m }}{% else %}{{ data.titoli_generali_si_no_precedente_m }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_m:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_m == 1 %}{{ data.titoli_generali_punti_m }}{% else %}{{ data.titoli_generali_punti_precedente_m }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_m:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( M )'
+        titoli_generali_processed_text_04_m:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>M)</strong> Di essere in possesso di certificazione di Livello C1 del QCER, di aver frequentato il corso metodologico sostenuto la prova finale (SOLO SE UNIVERSITARIO)</p>
+
+            <p><b>Punti: 1</b></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_si_no_m:
+          '#type': radios
+          '#title': 'SI / No'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        titoli_generali_punti_m:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.titoli_generali_si_no_m == "si" %}{{ 1 }} {% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        titoli_generali_verifica_ds_m:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_titoli_generali_anno_precedente_n:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( N )'
+        titoli_generali_dichiarazione_precedente_n:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( N )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( N )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_si_no_precedente_n:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_n == 1 %}{{ data.titoli_generali_si_no_n }}{% else %}{{ data.titoli_generali_si_no_precedente_n }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_n:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_n == 1 %}{{ data.titoli_generali_punti_n }}{% else %}{{ data.titoli_generali_punti_precedente_n }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_n:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( N )'
+        titoli_generali_processed_text_05_n:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>N)&nbsp;</strong>CLIL per i docenti NON in possesso di Certificazione di livello C1, ma che avendo svolto la parte metodologica presso le strutture universitarie, sono in possesso di un ATTESTATO di frequenza al corso di perfezionamento.</p>
+
+            <p><b>Punti 0,5</b></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_si_no_n:
+          '#type': radios
+          '#title': 'SI / No'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        titoli_generali_punti_n:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.titoli_generali_si_no_n == "si" %}{{ 0.5 }}{% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        titoli_generali_verifica_ds_n:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      processed_text_10:
+        '#type': processed_text
+        '#display_on': both
+        '#text': |
+          <p><em><strong>N.B.: i titoli relativi ai punti B), C), D), E), F), G), M), N), anche cumulabili tra di loro, sono valutati fino ad un massimo di Punti: 10</strong></em></p>
+        '#format': bootstrap_italia_2
+  riepilogo_totali:
+    '#type': webform_wizard_page
+    '#title': Totali
+    '#prev_button_label': 'Titoli Generali'
+    '#next_button_label': Anteprima
+    horizontal_rule_01:
+      '#type': webform_horizontal_rule
+    totale_anzianita_servizio:
+      '#type': webform_computed_twig
+      '#title': 'Totale Anzianità Di Servizio'
+      '#description': 'Compilato/Aggiornato in automatico e visibile in Anteprima'
+      '#template': |-
+        {% set tot_a     = data.anzianita_servizio_punti_a|render|striptags|trim|default(0)|float %}
+        {% set tot_a_1   = data.anzianita_servizio_punti_a_1|render|striptags|trim|default(0)|float %}
+        {% set tot_a_2   = data.anzianita_servizio_punti_a_2|render|striptags|trim|default(0)|float %}
+        {% set tot_a_3   = data.anzianita_servizio_punti_a_3|render|striptags|trim|default(0)|float %}
+        {% set tot_a_4   = data.anzianita_servizio_punti_a_4|render|striptags|trim|default(0)|float %}
+        {% set tot_b_1   = data.anzianita_servizio_punti_b_1|render|striptags|trim|default(0)|float %}
+        {% set tot_b_1_1 = data.anzianita_servizio_punti_b_1_1|render|striptags|trim|default(0)|float %}
+        {% set tot_b_1_2 = data.anzianita_servizio_punti_b_1_2|render|striptags|trim|default(0)|float %}
+        {% set tot_b_2   = data.anzianita_servizio_punti_b_2|render|striptags|trim|default(0)|float %}
+        {% set tot_b_2_1 = data.anzianita_servizio_punti_b_2_1|render|striptags|trim|default(0)|float %}
+        {% set tot_b_2_2 = data.anzianita_servizio_punti_b_2_2|render|striptags|trim|default(0)|float %}
+        {% set tot_b_3   = data.anzianita_servizio_punti_b_3|render|striptags|trim|default(0)|float %}
+        {% set tot_b_3_1 = data.anzianita_servizio_punti_b_3_1|render|striptags|trim|default(0)|float %}
+        {% set tot_b_3_2 = data.anzianita_servizio_punti_b_3_2|render|striptags|trim|default(0)|float %}
+        {% set tot_c_1   = data.anzianita_servizio_punti_c_1|render|striptags|trim|default(0)|float %}
+        {% set tot_c_1_1 = data.anzianita_servizio_punti_c_1_1|render|striptags|trim|default(0)|float %}
+        {% set tot_c_1_2 = data.anzianita_servizio_punti_c_1_2|render|striptags|trim|default(0)|float %}
+        {% set tot_c_2   = data.anzianita_servizio_punti_c_2|render|striptags|trim|default(0)|float %}
+        {% set tot_c_2_1 = data.anzianita_servizio_punti_c_2_1|render|striptags|trim|default(0)|float %}
+        {% set tot_c_2_2 = data.anzianita_servizio_punti_c_2_2|render|striptags|trim|default(0)|float %}
+        {% set tot_d_1   = data.anzianita_servizio_punti_d_1|render|striptags|trim|default(0)|float %}
+        {% set tot_d_1_1 = data.anzianita_servizio_punti_d_1_1|render|striptags|trim|default(0)|float %}
+        {% set tot_e_1   = data.anzianita_servizio_punti_e_1|render|striptags|trim|default(0)|float %}
+        {{ tot_a + tot_a_1 + tot_a_2 + tot_a_3 + tot_a_4 + tot_b_1 + tot_b_1_1 + tot_b_1_2 + tot_b_2 + tot_b_2_1 + tot_b_2_2 + tot_b_3 + tot_b_3_1 + tot_b_3_2 + tot_c_1 + tot_c_1_1 + tot_c_1_2 + tot_c_2 + tot_c_2_1 + tot_c_2_2 + tot_d_1 + tot_d_1_1 + tot_e_1 }}
+      '#store': true
+    totale_esigenze_famiglia:
+      '#type': webform_computed_twig
+      '#title': 'Totale Esigenze Di Famiglia'
+      '#description': 'Calcolato/Aggiornato in Automatico e visibile in Anteprima'
+      '#template': |-
+        {% set tot_a = data.esigenze_famiglia_punti_a|render|striptags|trim|default(0)|float %}
+        {% set tot_b = data.esigenze_famiglia_punti_b|render|striptags|trim|default(0)|float %}
+        {% set tot_c = data.esigenze_famiglia_punti_c|render|striptags|trim|default(0)|float %}
+        {% set tot_d = data.esigenze_famiglia_punti_d|render|striptags|trim|default(0)|float %}
+        {% set tot_e = data.esigenze_famiglia_punti_e|render|striptags|trim|default(0)|float %}
+        {{ tot_a + tot_b + tot_c + tot_d + tot_e }}
+      '#store': true
+    horizontal_rule:
+      '#type': webform_horizontal_rule
+    flex_titoli_generali:
+      '#type': webform_flexbox
+      '#align_items': center
+      sub_totale_titoli_generali:
+        '#type': webform_computed_twig
+        '#title': 'Sub Totale Titoli Generali (B - C - D - E - F - M - N )'
+        '#description': '(MAX 10 punti) Compilato/Aggiornato in automatico e visibile in Anteprima'
+        '#template': |-
+          {% set tot_b = data.titoli_generali_punti_b|render|striptags|trim|default(0)|float %}
+          {% set tot_c = data.titoli_generali_punti_c|render|striptags|trim|default(0)|float %}
+          {% set tot_d = data.titoli_generali_punti_d|render|striptags|trim|default(0)|float %}
+          {% set tot_e = data.titoli_generali_punti_e|render|striptags|trim|default(0)|float %}
+          {% set tot_f = data.titoli_generali_punti_f|render|striptags|trim|default(0)|float %}
+          {% set tot_m = data.titoli_generali_punti_m|render|striptags|trim|default(0)|float %}
+          {% set tot_n = data.titoli_generali_punti_n|render|striptags|trim|default(0)|float %}
+          {{ tot_b + tot_c + tot_d + tot_e + tot_f + tot_m + tot_n }}
+        '#store': true
+      sub_totale_titoli_generali_a_h_:
+        '#type': webform_computed_twig
+        '#title': 'Sub Totale Titoli Generali ( A - H )'
+        '#description': '(MAX 15 punti) Compilato/Aggiornato in automatico e visibile in Anteprima'
+        '#template': |-
+          {% set tot_a = data.titoli_generali_punti_a|render|striptags|trim|default(0)|float %}
+          {% set tot_h = data.titoli_generali_punti_h|render|striptags|trim|default(0)|float %}
+          {{ tot_a + tot_h }}
+        '#store': true
+      totale_titoli_generali:
+        '#type': webform_computed_twig
+        '#title': 'Totale Titoli Generali'
+        '#description': '(MAX 25 punti) Calcolato/Aggiornato in Automatico e visibile in Anteprima'
+        '#template': |-
+          {% set tot_sub = data.sub_totale_titoli_generali|render|striptags|trim|default(0)|float %}
+          {% set tot_a_h = data.sub_totale_titoli_generali_a_h_|render|striptags|trim|default(0)|float %}
+          {% if tot_sub > 10 %}{{ 10 + tot_a_h }}{% else %}{{ tot_sub + tot_a_h }}{% endif %}
+        '#store': true
+    horizontal_rule_02:
+      '#type': webform_horizontal_rule
+    totale_punteggio:
+      '#type': number
+      '#title': 'Totale Punteggio'
+      '#autocomplete': ''
+      '#readonly': true
+      '#default_value': '0'
+      '#format_items': comma
+      '#min': 0
+    totale_punteggio_graduatoria:
+      '#type': webform_computed_twig
+      '#title': 'Totale Punteggio Graduatoria'
+      '#description': 'Calcolato/Aggiornato in automatico.'
+      '#template': |-
+        {% set tot_anzianita = data.totale_anzianita_servizio|render|striptags|trim|default(0)|float %}
+        {% set tot_famiglia  = data.totale_esigenze_famiglia|render|striptags|trim|default(0)|float %}
+        {% set tot_titoli    = data.totale_titoli_generali|render|striptags|trim|default(0)|float %}
+        {{ tot_anzianita + tot_famiglia + tot_titoli }}
+      '#store': true
+    verifica_graduatoria_ds:
+      '#type': radios
+      '#title': 'Verifica Graduatoria DS'
+      '#options':
+        'Non Verificata': 'Non Verificata'
+        'Verificata Parzialmente': 'Verificata Parzialmente'
+        Verificata: Verificata
+      '#required': true
+      '#default_value': 'Non Verificata'
+      '#private': true
+      '#access_create_roles':
+        - administrator
+        - redatt_segreteria
+        - dirigente
+        - direttore
+      '#access_update_roles':
+        - authenticated
+      '#access_view_roles':
+        - authenticated
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Invia
+css: |-
+  .form-item--error-message.invalid-feedback {
+    display: block;
+  }
+
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: claro
+  form_title: source_entity_webform
+  form_submit_once: true
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: true
+  form_disable_back: true
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: '[webform_submission:submitted-to]: [webform_submission:values:cognome]'
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views:
+    graduatoria-interna-docenti:
+      title: 'Graduatoria Interna Docenti'
+      view: 'webform_submissions:embed_administer'
+      webform_routes:
+        - entity.webform.results_submissions
+      node_routes: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: true
+  autofill_message: "<p><strong>ATTENZIONE: </strong>Tutti i campi sono stati <strong>compilati in automatico con i dati dell'anno scorso</strong>.<br><br><strong>Aggiornare solo i dati necessari...!!!</strong></p>"
+  autofill_excluded_elements:
+    anno_scolastico: anno_scolastico
+    anzianita_servizio_verifica_ds_a: anzianita_servizio_verifica_ds_a
+    anzianita_servizio_verifica_ds_a_1: anzianita_servizio_verifica_ds_a_1
+    anzianita_servizio_verifica_ds_a_2: anzianita_servizio_verifica_ds_a_2
+    anzianita_servizio_verifica_ds_a_3: anzianita_servizio_verifica_ds_a_3
+    anzianita_servizio_verifica_ds_a_4: anzianita_servizio_verifica_ds_a_4
+    anzianita_servizio_verifica_ds_b_1: anzianita_servizio_verifica_ds_b_1
+    anzianita_servizio_verifica_ds_b_1_1: anzianita_servizio_verifica_ds_b_1_1
+    anzianita_servizio_verifica_ds_b_1_2: anzianita_servizio_verifica_ds_b_1_2
+    anzianita_servizio_verifica_ds_b_2: anzianita_servizio_verifica_ds_b_2
+    anzianita_servizio_verifica_ds_b_2_1: anzianita_servizio_verifica_ds_b_2_1
+    anzianita_servizio_verifica_ds_b_2_2: anzianita_servizio_verifica_ds_b_2_2
+    anzianita_servizio_verifica_ds_b_3: anzianita_servizio_verifica_ds_b_3
+    anzianita_servizio_verifica_ds_b_3_1: anzianita_servizio_verifica_ds_b_3_1
+    anzianita_servizio_verifica_ds_b_3_2: anzianita_servizio_verifica_ds_b_3_2
+    anzianita_servizio_verifica_ds_c_1: anzianita_servizio_verifica_ds_c_1
+    anzianita_servizio_verifica_ds_c_1_1: anzianita_servizio_verifica_ds_c_1_1
+    anzianita_servizio_verifica_ds_c_1_2: anzianita_servizio_verifica_ds_c_1_2
+    anzianita_servizio_verifica_ds_c_2: anzianita_servizio_verifica_ds_c_2
+    anzianita_servizio_verifica_ds_c_2_1: anzianita_servizio_verifica_ds_c_2_1
+    anzianita_servizio_verifica_ds_c_2_2: anzianita_servizio_verifica_ds_c_2_2
+    anzianita_servizio_verifica_ds_d_1: anzianita_servizio_verifica_ds_d_1
+    anzianita_servizio_verifica_ds_d_1_1: anzianita_servizio_verifica_ds_d_1_1
+    anzianita_servizio_verifica_ds_e_1: anzianita_servizio_verifica_ds_e_1
+    esigenze_famiglia_verifica_ds_a: esigenze_famiglia_verifica_ds_a
+    esigenze_famiglia_verifica_ds_b: esigenze_famiglia_verifica_ds_b
+    esigenze_famiglia_verifica_ds_c: esigenze_famiglia_verifica_ds_c
+    esigenze_famiglia_verifica_ds_d: esigenze_famiglia_verifica_ds_d
+    esigenze_famiglia_verifica_ds_e: esigenze_famiglia_verifica_ds_e
+    titoli_generali_verifica_ds_a: titoli_generali_verifica_ds_a
+    titoli_generali_verifica_ds_b: titoli_generali_verifica_ds_b
+    titoli_generali_verifica_ds_c: titoli_generali_verifica_ds_c
+    titoli_generali_verifica_ds_d: titoli_generali_verifica_ds_d
+    titoli_generali_verifica_ds_e: titoli_generali_verifica_ds_e
+    titoli_generali_verifica_ds_f: titoli_generali_verifica_ds_f
+    titoli_generali_verifica_ds_h: titoli_generali_verifica_ds_h
+    titoli_generali_verifica_ds_m: titoli_generali_verifica_ds_m
+    titoli_generali_verifica_ds_n: titoli_generali_verifica_ds_n
+    verifica_graduatoria_ds: verifica_graduatoria_ds
+  wizard_progress_bar: true
+  wizard_progress_pages: true
+  wizard_progress_percentage: false
+  wizard_progress_link: true
+  wizard_progress_states: false
+  wizard_start_label: Inizio
+  wizard_preview_link: true
+  wizard_confirmation: true
+  wizard_confirmation_label: Fine
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: Prossimo
+  wizard_toggle: true
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 2
+  preview_label: Anteprima
+  preview_title: '[webform:title]: Anteprima'
+  preview_message: |-
+    <strong>ATTENZIONE</strong>:&nbsp;Ti preghiamo di rivedere la tua richiesta.<br />
+    L&#39;invio <strong>NON E&#39; COMPLETO</strong> finch&eacute; non si preme il pulsante &quot;<strong>INVIA</strong>&quot; in fondo alla pagina!
+  preview_attributes: {  }
+  preview_excluded_elements:
+    processed_text: processed_text
+    markup: markup
+  preview_exclude_empty: false
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: |-
+    La tua graduatoria &egrave; stata inserita nel sistema.<br />
+    A breve ricever&agrave; una mail con i dati da lei inseriti.<br />
+    &nbsp;
+  confirmation_attributes: {  }
+  confirmation_back: false
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - administrator
+      - doc_infanzia
+      - redatt_segreteria
+      - dirigente
+      - direttore
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - administrator
+      - redatt_segreteria
+      - dirigente
+      - direttore
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles:
+      - administrator
+      - redatt_segreteria
+      - dirigente
+      - direttore
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  e_mail:
+    id: email
+    handler_id: e_mail
+    label: E-mail
+    notes: 'Invio Mail al Docente dopo aver compilato la graduatoria'
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:e_mail:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: |
+        <p>Gentile {{ webform_token('[webform_submission:values:cognome]', webform_submission, [], options) }} {{ webform_token('[webform_submission:values:nome]', webform_submission, [], options) }}</p>
+        <p>La sua graduatoria è stata inserita nel sistema informatico in data: {{ webform_token('[webform_submission:created]', webform_submission, [], options) }}.</p>
+        <p>Inviata da: {{ webform_token('[webform_submission:user]', webform_submission, [], options) }}</p>
+        <p>Non appena sarà validata dalla Dirigenza, riceverà un'altra mail con i punteggi verificati.</p>
+
+        <p>I valori da lei inseriti sono i seguenti:</p>
+        {{ webform_token('[webform_submission:values]', webform_submission, [], options) }}
+
+        <p>N.B.: Questo indirizzo mail non è abilitato alla ricezione delle mail.</p>
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: true
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
+  e_mail_graduatoria_confermata:
+    id: email
+    handler_id: e_mail_graduatoria_confermata
+    label: 'E-mail: Graduatoria CONFERMATA'
+    notes: 'Invio Mail al Docente dopo aver CONFERMATO LA GRADUATORIA'
+    status: true
+    conditions:
+      enabled:
+        ':input[name="verifica_graduatoria_ds"]':
+          value: Verificata
+    weight: 2
+    settings:
+      states:
+        - updated
+      to_mail: '[webform_submission:values:e_mail:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Graduatoria Interna Docenti: VALIDATA'
+      body: "<p>Gentile {{ webform_token('[webform_submission:values:cognome]', webform_submission, [], options) }} {{ webform_token('[webform_submission:values:nome]', webform_submission, [], options) }}</p>\r\n<p>Il punteggio a lei attribuito è stato validato dal DS. <strong>Si prega di verificarne la correttezza.</strong></p>\r\n\r\n<p><strong>E' consentito presentare reclamo motivato entro 10 giorni dalla pubblicazione delle graduatorie all'albo. I reclami saranno esaminati entro i 10 giorni successivi.(C.C.N.I. 2022-25)</strong></p>\r\n\r\n<p>Si prega di tenere con cura la presente comunicazione in quanto i valori validati saranno automaticamente pre-caricati per l'aggiornamento delle graduatorie successive.</p>\r\n\r\n<p>I valori validati dal DS sono i seguenti:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n\r\n<p>N.B.: Questo indirizzo mail non è abilitato alla ricezione delle mail.</p>\r\n"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: true
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
+  calcolo_totale_punteggio:
+    id: totale_punteggio_handler
+    handler_id: calcolo_totale_punteggio
+    label: 'Calcolo Totale Punteggio'
+    notes: ''
+    status: true
+    conditions: { }
+    weight: 3
+    settings: { }
+variants: {  }

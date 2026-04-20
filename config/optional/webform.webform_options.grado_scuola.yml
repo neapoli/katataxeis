@@ -1,0 +1,12 @@
+langcode: it
+status: true
+dependencies: {  }
+id: grado_scuola
+label: 'Grado Scuola'
+category: Scuola
+likert: false
+options: |-
+  Infanzia: Infanzia
+  Primaria: Primaria
+  'Secondaria 1° Grado': 'Secondaria 1° Grado'
+  'Secondaria 2° Grado': 'Secondaria 2° Grado'

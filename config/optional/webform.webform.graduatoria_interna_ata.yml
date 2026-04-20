@@ -2296,4 +2296,13 @@ handlers:
       langcode: ''
       parameters: {  }
       debug: false
+  calcolo_totale_punteggio:
+    id: totale_punteggio_handler
+    handler_id: calcolo_totale_punteggio
+    label: 'Calcolo Totale Punteggio'
+    notes: ''
+    status: true
+    conditions: { }
+    weight: 3
+    settings: { }
 variants: {  }

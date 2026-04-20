@@ -21,14 +21,30 @@ use Drupal\webform\WebformSubmissionInterface;
 class TotalePunteggioHandler extends WebformHandlerBase {
 
   /**
+   * Converte un valore di campo webform in float in modo robusto.
+   */
+  private function toFloat(mixed $value): float {
+    if (is_null($value)) {
+      return 0.0;
+    }
+    // Gestisce oggetti Markup, oggetti con __toString, stringhe e numeri
+    $string = strip_tags((string) $value);
+    // Rimuove spazi, sostituisce virgola con punto (formato italiano)
+    $string = trim(str_replace(',', '.', $string));
+    // Rimuove qualsiasi carattere non numerico eccetto punto e segno meno
+    $string = preg_replace('/[^0-9.\-]/', '', $string);
+    return is_numeric($string) ? (float) $string : 0.0;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function preSave(WebformSubmissionInterface $webform_submission) {
     $data = $webform_submission->getData();
 
-    $tot_anzianita = (float) ($data['totale_anzianita_servizio'] ?? 0);
-    $tot_esigenze  = (float) ($data['totale_esigenze_famiglia'] ?? 0);
-    $tot_titoli    = (float) ($data['totale_titoli_generali'] ?? 0);
+    $tot_anzianita = $this->toFloat($data['totale_anzianita_servizio'] ?? NULL);
+    $tot_esigenze  = $this->toFloat($data['totale_esigenze_famiglia'] ?? NULL);
+    $tot_titoli    = $this->toFloat($data['totale_titoli_generali'] ?? NULL);
 
     $totale = $tot_anzianita + $tot_esigenze + $tot_titoli;
 
