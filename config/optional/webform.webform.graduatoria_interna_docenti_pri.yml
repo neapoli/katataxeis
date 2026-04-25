@@ -36,7 +36,7 @@ elements: |-
       processed_text:
         '#type': processed_text
         '#display_on': both
-        '#text': '<p class="text-align-right"><strong>Al dirigente_scolastico SCOLASTICO</strong></p>'
+        '#text': '<p class="text-align-right"><strong>Al DIRIGENTE SCOLASTICO</strong></p>'
         '#format': bootstrap_italia_2
     flex_dati_anagrafici:
       '#type': webform_flexbox
