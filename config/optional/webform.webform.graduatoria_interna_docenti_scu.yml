@@ -2,6 +2,7 @@ langcode: it
 status: open
 dependencies:
   module:
+    - katataxeis
     - webform_entity_print
 third_party_settings:
   webform_entity_print:

@@ -18,8 +18,6 @@ dependencies:
   enforced:
     module:
       - webform
-_core:
-  default_config_hash: 3CGmkw3gzhZmYHFKfYvk3u3QIf20hOINMYcVh4WYXkA
 id: webform_graduatoria_interna_docenti_infanzia
 label: 'Webform: Graduatoria Interna Docenti INFANZIA'
 module: views
@@ -657,7 +655,7 @@ display:
     id: data_export_1
     display_title: 'INFANZIA - COMUNE: Export'
     display_plugin: data_export
-    position: 2
+    position: 3
     display_options:
       title: 'Graduatoria INTERNA Docenti: Infanzia Comune'
       fields:
@@ -7624,7 +7622,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: counter
-          label: Posizione
+          label: Pos.
           exclude: false
           alter:
             alter_text: false
@@ -7810,7 +7808,7 @@ display:
           entity_type: webform_submission
           entity_field: completed
           plugin_id: field
-          label: Inserita
+          label: Data
           exclude: false
           alter:
             alter_text: false
@@ -7854,7 +7852,7 @@ display:
           click_sort_column: value
           type: timestamp
           settings:
-            date_format: medium
+            date_format: bootstrap_italia_short_date
             custom_date_format: ''
             timezone: ''
             tooltip:
@@ -7866,6 +7864,7 @@ display:
               past_format: '@interval ago'
               granularity: 2
               refresh: 60
+              description: ''
           group_column: value
           group_columns: {  }
           group_rows: true

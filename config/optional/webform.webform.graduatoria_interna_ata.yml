@@ -2,6 +2,7 @@ langcode: it
 status: open
 dependencies:
   module:
+    - katataxeis
     - webform_entity_print
 third_party_settings:
   webform_entity_print:
@@ -1979,7 +1980,7 @@ css: |-
   .form-item--error-message.invalid-feedback {
     display: block;
   }
-
+javascript: ''
 settings:
   ajax: false
   ajax_scroll_top: form
@@ -2295,7 +2296,7 @@ handlers:
     label: 'Calcolo Totale Punteggio'
     notes: ''
     status: true
-    conditions: { }
+    conditions: {  }
     weight: 3
-    settings: { }
+    settings: {  }
 variants: {  }

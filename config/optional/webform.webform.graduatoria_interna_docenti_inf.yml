@@ -2,6 +2,7 @@ langcode: it
 status: open
 dependencies:
   module:
+    - katataxeis
     - webform_entity_print
 third_party_settings:
   webform_entity_print:
@@ -35,7 +36,7 @@ elements: |-
       processed_text:
         '#type': processed_text
         '#display_on': both
-        '#text': '<p class="text-align-right"><strong>Al dirigente_scolastico SCOLASTICO</strong></p>'
+        '#text': '<p class="text-align-right"><strong>Al DIRIGENTE SCOLASTICO</strong></p>'
         '#format': bootstrap_italia_2
     flex_dati_anagrafici:
       '#type': webform_flexbox
@@ -4201,7 +4202,7 @@ css: |-
   .form-item--error-message.invalid-feedback {
     display: block;
   }
-
+javascript: ''
 settings:
   ajax: false
   ajax_scroll_top: form
@@ -4541,7 +4542,7 @@ handlers:
     label: 'Calcolo Totale Punteggio'
     notes: ''
     status: true
-    conditions: { }
+    conditions: {  }
     weight: 3
-    settings: { }
+    settings: {  }
 variants: {  }
