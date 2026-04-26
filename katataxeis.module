@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -16,6 +17,51 @@ function katataxeis_form_system_modules_uninstall_confirm_form_alter(&$form, For
   if (isset($modules['katataxeis'])) {
     \Drupal::messenger()->addWarning(t('Attenzione: la disinstallazione di Katatáxeis eliminerà definitivamente tutti i formulari di graduatoria interna (docenti e ATA) e tutti i dati inseriti. Questa operazione è irreversibile.'));
   }
+}
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ */
+function katataxeis_preprocess_views_view_field(&$variables) {
+  $table = $variables['field']->options['table'] ?? '';
+
+  if (!str_contains($table, 'verifica_graduatoria_ds')) {
+    return;
+  }
+
+  $value = trim(strip_tags((string) $variables['output']));
+  $icon_map = [
+    'Non Verificata' => [
+      'name'  => 'it-close-circle',
+      'color' => 'danger',
+      'label' => 'Non Verificata',
+    ],
+    'Verificata Parzialmente' => [
+      'name'  => 'it-warning-circle',
+      'color' => 'warning',
+      'label' => 'Verificata Parzialmente',
+    ],
+    'Verificata' => [
+      'name'  => 'it-check-circle',
+      'color' => 'success',
+      'label' => 'Verificata',
+    ],
+  ];
+
+  if (!isset($icon_map[$value])) {
+    return;
+  }
+
+  $icon = $icon_map[$value];
+  $theme_path = '/' . \Drupal::service('extension.list.theme')->getPath('bootstrap_italia');
+  $href = $theme_path . '/dist/svg/sprites.svg#' . $icon['name'];
+
+  $variables['output'] = Markup::create(
+    '<svg class="icon icon-' . $icon['color'] . '" role="img" aria-label="' . $icon['label'] . '">' .
+    '<title>' . $icon['label'] . '</title>' .
+    '<use href="' . $href . '"></use>' .
+    '</svg>'
+  );
 }
 
 /**
