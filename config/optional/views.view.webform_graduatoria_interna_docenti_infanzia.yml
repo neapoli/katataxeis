@@ -4323,7 +4323,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: 'Graduatoria INTERNA Docenti'
+      title: 'Graduatoria Interna Docenti: Infanzia'
       fields:
         webform_id:
           id: webform_id
@@ -4396,8 +4396,13 @@ display:
           offset: 0
           items_per_page: 1
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            amministratore: amministratore
+            capo_redattore: capo_redattore
+            redattore: redattore
+            dirigente_scolastico: dirigente_scolastico
       filters:
         webform_id:
           id: webform_id
@@ -4479,11 +4484,11 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<h2>Gestione<strong> Graduatorie interne DOCENTI</strong> </h2>\r\n<p>Attraverso questa sezione è possibile gestire le graduatorie interne DOCENTI INFANZIA .</p>\r\n\r\n<p>Le graduatorie sono suddivise per posto COMUNE e SOSTEGNO.</p>"
+            value: "<h5>\r\n<p>Attraverso questa sezione è possibile gestire le graduatorie interne DOCENTI INFANZIA .</p>\r\n<p>Le graduatorie sono suddivise per posto COMUNE e SOSTEGNO.</p>\r\n</h5>"
             format: bootstrap_italia_2
           tokenize: false
       display_extenders: {  }
-      path: admin/graduatoria-interna-docenti
+      path: admin/graduatorie-interne/docenti-infanzia
       menu:
         type: 'default tab'
         title: 'Graduatoria Interna Docenti'
@@ -4505,6 +4510,7 @@ display:
         - 'languages:language_interface'
         - url
         - user
+        - user.roles
       tags: {  }
   page_2:
     id: page_2
@@ -4580,7 +4586,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: counter
-          label: Posizione
+          label: Pos.
           exclude: false
           alter:
             alter_text: false
@@ -4767,7 +4773,7 @@ display:
           entity_field: completed
           plugin_id: field
           label: Inserita
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -4822,6 +4828,7 @@ display:
               past_format: '@interval ago'
               granularity: 2
               refresh: 60
+              description: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -4946,7 +4953,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Docente Di Scuola'
+          label: Scuola
           exclude: false
           alter:
             alter_text: false
@@ -4999,7 +5006,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Su Posto (Infanzia)'
+          label: Posto
           exclude: false
           alter:
             alter_text: false
@@ -5052,7 +5059,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Anzianità Di Servizio'
+          label: Servizio
           exclude: false
           alter:
             alter_text: false
@@ -5105,7 +5112,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Esigenze Di Famiglia'
+          label: Famiglia
           exclude: false
           alter:
             alter_text: false
@@ -5158,7 +5165,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Titoli Generali'
+          label: Titoli
           exclude: false
           alter:
             alter_text: false
@@ -5211,7 +5218,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field_numeric
-          label: 'Totale Punteggio'
+          label: Totale
           exclude: false
           alter:
             alter_text: false
@@ -5265,7 +5272,7 @@ display:
           admin_label: ''
           plugin_id: webform_submission_field
           label: 'Totale Punteggio Graduatoria'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -5317,60 +5324,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Primo anno in Istituto'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_inf_anno_scolastico
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Anno Scolastico'
+          label: 'Primo anno'
           exclude: false
           alter:
             alter_text: false
@@ -5423,7 +5377,60 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Convalida DS'
+          label: 'Verifica DS'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          webform_check_access: 1
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_graduatoria_interna_docenti_inf_anno_scolastico
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field
+          label: A.S.
           exclude: false
           alter:
             alter_text: false
@@ -5530,7 +5537,7 @@ display:
           admin_label: ''
           entity_type: webform_submission
           plugin_id: entity_link_edit
-          label: Operations
+          label: Link
           exclude: false
           alter:
             alter_text: false
@@ -5839,21 +5846,34 @@ display:
           default_row_class: true
           columns:
             webform_submission_bulk_form: webform_submission_bulk_form
+            counter: counter
             sticky: sticky
             locked: locked
             completed: completed
-            webform_submission_value: webform_submission_value
+            webform_submission_value_9: webform_submission_value_9
+            webform_submission_value_11: webform_submission_value_11
+            webform_submission_value_10: webform_submission_value_10
+            webform_submission_value_12: webform_submission_value_12
             webform_submission_value_2: webform_submission_value_2
-            webform_submission_value_1: webform_submission_value_1
-            webform_submission_value_5: webform_submission_value_5
-            webform_submission_value_4: webform_submission_value_4
             webform_submission_value_3: webform_submission_value_3
-            view_webform_submission: view_webform_submission
-            edit_webform_submission: view_webform_submission
-            webform_submission_value_6: webform_submission_value_6
+            webform_submission_value_4: webform_submission_value_4
+            webform_submission_value_5: webform_submission_value_5
+            webform_submission_value_14: webform_submission_value_14
+            webform_submission_value_1: webform_submission_value_1
+            webform_submission_value: webform_submission_value
+            webform_submission_value_15: webform_submission_value_15
+            view_webform_submission: edit_webform_submission
+            edit_webform_submission: edit_webform_submission
           default: '-1'
           info:
             webform_submission_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            counter:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -5879,7 +5899,28 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value:
+            webform_submission_value_9:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_11:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_10:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_12:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -5889,35 +5930,56 @@ display:
             webform_submission_value_2:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_5:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_4:
-              sortable: false
-              default_sort_order: asc
-              align: ''
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
             webform_submission_value_3:
               sortable: false
               default_sort_order: asc
-              align: ''
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_4:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_5:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_14:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_1:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_15:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -5925,21 +5987,14 @@ display:
               sortable: false
               default_sort_order: asc
               align: ''
-              separator: ' '
+              separator: ''
               empty_column: false
               responsive: ''
             edit_webform_submission:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_6:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
+              align: views-align-center
+              separator: '<br />'
               empty_column: false
               responsive: ''
           override: true
@@ -5976,20 +6031,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Stai visualizzando @start - @end di @total'
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: INFANZIA su posto COMUNE</strong> che hanno inviato la graduatoria</h2>'
-            format: bootstrap_italia_2
-          tokenize: false
+          content: 'Stai visualizzando @start - @end di @total <br><br>'
         display_link:
           id: display_link
           table: views
@@ -6002,7 +6044,7 @@ display:
           empty: true
           display_id: data_export_1
       display_extenders: {  }
-      path: admin/graduatoria-interna-docenti/infanzia-comune
+      path: admin/graduatorie-interne/docenti-infanzia/comune
       menu:
         type: tab
         title: 'Docenti: INFANZIA Comune'
@@ -6101,7 +6143,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: counter
-          label: Posizione
+          label: Pos.
           exclude: false
           alter:
             alter_text: false
@@ -6288,7 +6330,7 @@ display:
           entity_field: completed
           plugin_id: field
           label: Inserita
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -6343,6 +6385,7 @@ display:
               past_format: '@interval ago'
               granularity: 2
               refresh: 60
+              description: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -6467,7 +6510,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Docente Di Scuola'
+          label: Scuola
           exclude: false
           alter:
             alter_text: false
@@ -6520,7 +6563,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Su Posto (Infanzia)'
+          label: Posto
           exclude: false
           alter:
             alter_text: false
@@ -6573,7 +6616,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Anzianità Di Servizio'
+          label: Servizio
           exclude: false
           alter:
             alter_text: false
@@ -6626,7 +6669,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Esigenze Di Famiglia'
+          label: Famiglia
           exclude: false
           alter:
             alter_text: false
@@ -6679,7 +6722,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Titoli Generali'
+          label: Titoli
           exclude: false
           alter:
             alter_text: false
@@ -6732,7 +6775,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field_numeric
-          label: 'Totale Punteggio'
+          label: Totale
           exclude: false
           alter:
             alter_text: false
@@ -6786,7 +6829,7 @@ display:
           admin_label: ''
           plugin_id: webform_submission_field
           label: 'Totale Punteggio Graduatoria'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -6838,60 +6881,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Primo anno in Istituto'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_inf_anno_scolastico
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Anno Scolastico'
+          label: 'Primo anno'
           exclude: false
           alter:
             alter_text: false
@@ -6944,7 +6934,60 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Convalida DS'
+          label: 'Verifica DS'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          webform_check_access: 1
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_graduatoria_interna_docenti_inf_anno_scolastico
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field
+          label: A.S.
           exclude: false
           alter:
             alter_text: false
@@ -7051,7 +7094,7 @@ display:
           admin_label: ''
           entity_type: webform_submission
           plugin_id: entity_link_edit
-          label: Operations
+          label: Link
           exclude: false
           alter:
             alter_text: false
@@ -7360,21 +7403,34 @@ display:
           default_row_class: true
           columns:
             webform_submission_bulk_form: webform_submission_bulk_form
+            counter: counter
             sticky: sticky
             locked: locked
             completed: completed
-            webform_submission_value: webform_submission_value
+            webform_submission_value_9: webform_submission_value_9
+            webform_submission_value_11: webform_submission_value_11
+            webform_submission_value_10: webform_submission_value_10
+            webform_submission_value_12: webform_submission_value_12
             webform_submission_value_2: webform_submission_value_2
-            webform_submission_value_1: webform_submission_value_1
-            webform_submission_value_5: webform_submission_value_5
-            webform_submission_value_4: webform_submission_value_4
             webform_submission_value_3: webform_submission_value_3
-            view_webform_submission: view_webform_submission
-            edit_webform_submission: view_webform_submission
-            webform_submission_value_6: webform_submission_value_6
+            webform_submission_value_4: webform_submission_value_4
+            webform_submission_value_5: webform_submission_value_5
+            webform_submission_value_14: webform_submission_value_14
+            webform_submission_value_1: webform_submission_value_1
+            webform_submission_value: webform_submission_value
+            webform_submission_value_15: webform_submission_value_15
+            view_webform_submission: edit_webform_submission
+            edit_webform_submission: edit_webform_submission
           default: '-1'
           info:
             webform_submission_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            counter:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -7400,7 +7456,28 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value:
+            webform_submission_value_9:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_11:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_10:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_12:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -7410,35 +7487,56 @@ display:
             webform_submission_value_2:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_5:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_4:
-              sortable: false
-              default_sort_order: asc
-              align: ''
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
             webform_submission_value_3:
               sortable: false
               default_sort_order: asc
-              align: ''
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_4:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_5:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_14:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_1:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_15:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -7452,15 +7550,8 @@ display:
             edit_webform_submission:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_6:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
+              align: views-align-center
+              separator: '<br />'
               empty_column: false
               responsive: ''
           override: true
@@ -7497,20 +7588,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Stai visualizzando @start - @end di @total'
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: INFANZIA su posto SOSTEGNO</strong> che hanno inviato la graduatoria</h2>'
-            format: bootstrap_italia_2
-          tokenize: false
+          content: 'Stai visualizzando @start - @end di @total <br><br>'
         display_link:
           id: display_link
           table: views
@@ -7523,7 +7601,7 @@ display:
           empty: true
           display_id: data_export_2
       display_extenders: {  }
-      path: admin/graduatoria-interna-docenti/infanzia-sostegno
+      path: admin/graduatorie-interne/docenti-infanzia/sostegno
       menu:
         type: tab
         title: 'Docenti: INFANZIA Sostegno'
@@ -7554,7 +7632,7 @@ display:
     display_plugin: page
     position: 6
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Infanzia Sostegno'
+      title: 'Graduatoria INTERNA Docenti: Infanzia Esclusi'
       fields:
         webform_submission_bulk_form:
           id: webform_submission_bulk_form
@@ -7808,8 +7886,8 @@ display:
           entity_type: webform_submission
           entity_field: completed
           plugin_id: field
-          label: Data
-          exclude: false
+          label: Inserita
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -7989,7 +8067,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Docente Di Scuola'
+          label: Scuola
           exclude: false
           alter:
             alter_text: false
@@ -8042,7 +8120,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Su Posto (Infanzia)'
+          label: Posto
           exclude: false
           alter:
             alter_text: false
@@ -8095,7 +8173,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Anzianità Di Servizio'
+          label: Servizio
           exclude: false
           alter:
             alter_text: false
@@ -8148,7 +8226,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Esigenze Di Famiglia'
+          label: Famiglia
           exclude: false
           alter:
             alter_text: false
@@ -8201,7 +8279,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Totale Titoli Generali'
+          label: Titoli
           exclude: false
           alter:
             alter_text: false
@@ -8254,7 +8332,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field_numeric
-          label: 'Totale Punteggio'
+          label: Totale
           exclude: false
           alter:
             alter_text: false
@@ -8308,7 +8386,7 @@ display:
           admin_label: ''
           plugin_id: webform_submission_field
           label: 'Totale Punteggio Graduatoria'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -8360,60 +8438,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Primo anno in Istituto'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          webform_element_format: value
-          webform_multiple_value: true
-          webform_multiple_delta: 0
-          webform_check_access: 1
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_inf_anno_scolastico
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field
-          label: 'Anno Scolastico'
+          label: 'Primo anno'
           exclude: false
           alter:
             alter_text: false
@@ -8466,7 +8491,60 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Convalida DS'
+          label: 'Verifica DS'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          webform_check_access: 1
+        webform_submission_value:
+          id: webform_submission_value
+          table: webform_submission_field_graduatoria_interna_docenti_inf_anno_scolastico
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field
+          label: A.S.
           exclude: false
           alter:
             alter_text: false
@@ -8573,7 +8651,7 @@ display:
           admin_label: ''
           entity_type: webform_submission
           plugin_id: entity_link_edit
-          label: Operations
+          label: Link
           exclude: false
           alter:
             alter_text: false
@@ -8843,21 +8921,34 @@ display:
           default_row_class: true
           columns:
             webform_submission_bulk_form: webform_submission_bulk_form
+            counter: counter
             sticky: sticky
             locked: locked
             completed: completed
-            webform_submission_value: webform_submission_value
+            webform_submission_value_9: webform_submission_value_9
+            webform_submission_value_11: webform_submission_value_11
+            webform_submission_value_10: webform_submission_value_10
+            webform_submission_value_12: webform_submission_value_12
             webform_submission_value_2: webform_submission_value_2
-            webform_submission_value_1: webform_submission_value_1
-            webform_submission_value_5: webform_submission_value_5
-            webform_submission_value_4: webform_submission_value_4
             webform_submission_value_3: webform_submission_value_3
-            view_webform_submission: view_webform_submission
-            edit_webform_submission: view_webform_submission
-            webform_submission_value_6: webform_submission_value_6
+            webform_submission_value_4: webform_submission_value_4
+            webform_submission_value_5: webform_submission_value_5
+            webform_submission_value_14: webform_submission_value_14
+            webform_submission_value_1: webform_submission_value_1
+            webform_submission_value: webform_submission_value
+            webform_submission_value_15: webform_submission_value_15
+            view_webform_submission: edit_webform_submission
+            edit_webform_submission: edit_webform_submission
           default: '-1'
           info:
             webform_submission_bulk_form:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            counter:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -8883,7 +8974,28 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            webform_submission_value:
+            webform_submission_value_9:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_11:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_10:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_12:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -8893,35 +9005,56 @@ display:
             webform_submission_value_2:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_1:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_5:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_4:
-              sortable: false
-              default_sort_order: asc
-              align: ''
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
             webform_submission_value_3:
               sortable: false
               default_sort_order: asc
-              align: ''
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_4:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_5:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_14:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_1:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            webform_submission_value_15:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -8936,14 +9069,7 @@ display:
               sortable: false
               default_sort_order: asc
               align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            webform_submission_value_6:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
+              separator: '<br />'
               empty_column: false
               responsive: ''
           override: true
@@ -8980,20 +9106,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Stai visualizzando @start - @end di @total'
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: INFANZIA eslcusi per legge 104 oppure disabilità personale</strong> che hanno inviato la graduatoria</h2>'
-            format: bootstrap_italia_2
-          tokenize: false
+          content: 'Stai visualizzando @start - @end di @total <br><br>'
         display_link:
           id: display_link
           table: views
@@ -9006,7 +9119,7 @@ display:
           empty: true
           display_id: data_export_3
       display_extenders: {  }
-      path: admin/graduatoria-interna-docenti/infanzia-esclusi
+      path: admin/graduatorie-interne/docenti-infanzia/esclusi
       menu:
         type: tab
         title: 'Docenti: INFANZIA Esclusi'

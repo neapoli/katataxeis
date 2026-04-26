@@ -10,6 +10,19 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
+ * Implements hook_help().
+ */
+function katataxeis_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.graduatorie_interne':
+      $output = '';
+      $output .= '<p>' . t('This module helps to provide form for managed graduatorie interne docenti e ata for the school.') . '</p>';
+      $output .= '<p>' . t('Create Webform Option too. When uninstall module, all form are deleted') . '</p>';
+      return $output;
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function katataxeis_form_system_modules_uninstall_confirm_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -34,16 +47,19 @@ function katataxeis_preprocess_views_view_field(&$variables) {
     'Non Verificata' => [
       'name'  => 'it-close-circle',
       'color' => 'danger',
+      'hex'   => '#dc3545',
       'label' => 'Non Verificata',
     ],
     'Verificata Parzialmente' => [
       'name'  => 'it-warning-circle',
       'color' => 'warning',
+      'hex'   => '#ffc107',
       'label' => 'Verificata Parzialmente',
     ],
     'Verificata' => [
       'name'  => 'it-check-circle',
       'color' => 'success',
+      'hex'   => '#198754',
       'label' => 'Verificata',
     ],
   ];
@@ -53,11 +69,11 @@ function katataxeis_preprocess_views_view_field(&$variables) {
   }
 
   $icon = $icon_map[$value];
-  $theme_path = '/' . \Drupal::service('extension.list.theme')->getPath('bootstrap_italia');
-  $href = $theme_path . '/dist/svg/sprites.svg#' . $icon['name'];
+  $sprites = theme_get_setting('libraries_cdn_icons') ?: '/libraries/ouitoulia-skenografia/svg/sprites.svg';
+  $href = $sprites . '#' . $icon['name'];
 
   $variables['output'] = Markup::create(
-    '<svg class="icon icon-' . $icon['color'] . '" role="img" aria-label="' . $icon['label'] . '">' .
+    '<svg style="width:1.8em;height:1.8em;color:' . $icon['hex'] . ';fill:currentColor;stroke:currentColor;stroke-width:0.5" class="icon icon-' . $icon['color'] . '" role="img" aria-label="' . $icon['label'] . '">' .
     '<title>' . $icon['label'] . '</title>' .
     '<use href="' . $href . '"></use>' .
     '</svg>'
@@ -65,14 +81,27 @@ function katataxeis_preprocess_views_view_field(&$variables) {
 }
 
 /**
- * Implements hook_help().
+ * Implements hook_menu_local_tasks_alter().
  */
-function katataxeis_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    case 'help.page.graduatorie_interne':
-      $output = '';
-      $output .= '<p>' . t('This module helps to provide form for managed graduatorie interne docenti e ata for the school.') . '</p>';
-      $output .= '<p>' . t('Create Webform Option too. When uninstall module, all form are deleted') . '</p>';
-      return $output;
+function katataxeis_menu_local_tasks_alter(&$data, $route_name) {
+  $routes_to_hide = [
+    'entity.webform.results_export',
+    'entity.webform.results_submissions',
+  ];
+
+  if (isset($data['tabs'])) {
+    foreach ($data['tabs'] as &$tab_group) {
+      foreach ($tab_group as $key => &$tab) {
+        if (isset($tab['#link']['url'])) {
+          $route = $tab['#link']['url']->getRouteName();
+          if (in_array($route, $routes_to_hide)) {
+            $account = \Drupal::currentUser();
+            if (!$account->hasPermission('administer webform')) {
+              unset($tab_group[$key]);
+            }
+          }
+        }
+      }
+    }
   }
 }
