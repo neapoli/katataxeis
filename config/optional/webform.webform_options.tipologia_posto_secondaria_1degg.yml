@@ -1,0 +1,10 @@
+langcode: it
+status: true
+dependencies: {  }
+id: tipologia_posto_secondaria_1degg
+label: 'Tipologia Posto (Secondaria 1°Grado)'
+category: Scuola
+likert: false
+options: |-
+  Comune: Comune
+  Sostegno: Sostegno

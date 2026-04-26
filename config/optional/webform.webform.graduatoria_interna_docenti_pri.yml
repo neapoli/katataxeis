@@ -4534,7 +4534,7 @@ css: |-
   .form-item--error-message.invalid-feedback {
     display: block;
   }
-
+javascript: ''
 settings:
   ajax: false
   ajax_scroll_top: form
@@ -4868,4 +4868,13 @@ handlers:
       langcode: ''
       parameters: {  }
       debug: false
+  calcolo_totale_punteggio:
+    id: totale_punteggio_handler
+    handler_id: calcolo_totale_punteggio
+    label: 'Calcolo Totale Punteggio'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 3
+    settings: {  }
 variants: {  }
