@@ -17,7 +17,7 @@
         "source": "https://github.com/neapoli/katataxeis"
     },
     "require": {
-        "drupal/core": "^10",
+        "drupal/core": "^10 || ^11",
         "ouitoulia/skenografia": "*"
     },
     "minimum-stability": "dev",

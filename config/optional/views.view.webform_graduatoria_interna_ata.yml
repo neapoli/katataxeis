@@ -413,6 +413,19 @@ display:
           content: 'No submissions available.'
           tokenize: false
       sorts:
+        webform_submission_value_3:
+          id: webform_submission_value_3
+          table: webform_submission_field_graduatoria_interna_ata_anno_scolastico
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field_sort
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
         webform_submission_value_2:
           id: webform_submission_value_2
           table: webform_submission_field_graduatoria_interna_ata_verifica_graduatoria_ds

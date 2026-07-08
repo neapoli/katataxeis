@@ -2020,6 +2020,7 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_file_limit_message: ''
   form_attributes: {  }
   form_method: ''
   form_action: ''
@@ -2041,7 +2042,6 @@ settings:
       view: 'webform_submissions:embed_administer'
       webform_routes:
         - entity.webform.results_submissions
-      node_routes: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
   submission_user_duplicate: false
@@ -2059,13 +2059,24 @@ settings:
     anzianita_servizio_verifica_ds_a_1: anzianita_servizio_verifica_ds_a_1
     anzianita_servizio_verifica_ds_b_1: anzianita_servizio_verifica_ds_b_1
     anzianita_servizio_verifica_ds_b_1_1: anzianita_servizio_verifica_ds_b_1_1
+    anzianita_servizio_verifica_ds_c: anzianita_servizio_verifica_ds_c
+    anzianita_servizio_verifica_ds_d: anzianita_servizio_verifica_ds_d
+    anzianita_servizio_verifica_ds_e: anzianita_servizio_verifica_ds_e
+    anzianita_servizio_verifica_ds_f: anzianita_servizio_verifica_ds_f
     esigenze_famiglia_verifica_ds_a: esigenze_famiglia_verifica_ds_a
     esigenze_famiglia_verifica_ds_b: esigenze_famiglia_verifica_ds_b
     esigenze_famiglia_verifica_ds_c: esigenze_famiglia_verifica_ds_c
     esigenze_famiglia_verifica_ds_d: esigenze_famiglia_verifica_ds_d
+    esigenze_famiglia_verifica_ds_d_1: esigenze_famiglia_verifica_ds_d_1
     esigenze_famiglia_verifica_ds_e: esigenze_famiglia_verifica_ds_e
     titoli_generali_verifica_ds_a: titoli_generali_verifica_ds_a
     titoli_generali_verifica_ds_b: titoli_generali_verifica_ds_b
+    totale_anzianita_servizio: totale_anzianita_servizio
+    totale_esigenze_famiglia: totale_esigenze_famiglia
+    sub_totale_titoli_generali_a_h_: sub_totale_titoli_generali_a_h_
+    totale_titoli_generali: totale_titoli_generali
+    totale_punteggio: totale_punteggio
+    totale_punteggio_graduatoria: totale_punteggio_graduatoria
     verifica_graduatoria_ds: verifica_graduatoria_ds
   wizard_progress_bar: true
   wizard_progress_pages: true
@@ -2109,10 +2120,7 @@ settings:
   confirmation_type: page
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: |-
-    La tua graduatoria &egrave; stata inserita nel sistema.<br />
-    A breve ricever&agrave; una mail con i dati da lei inseriti.<br />
-    &nbsp;
+  confirmation_message: '<p>La tua graduatoria è stata inserita nel sistema.<br>A breve riceverai una mail con i dati inseriti.<br>&nbsp;</p>'
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''

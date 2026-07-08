@@ -3364,7 +3364,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': "{{ webform_token('[webform_submission:values:titoli_generali_quantita_b]', webform_submission) * 5 }}"
+          '#template': "{{ 5 * data.titoli_generali_quantita_b|default(0)|float }}"
           '#store': true
         titoli_generali_verifica_ds_b:
           '#type': checkbox
