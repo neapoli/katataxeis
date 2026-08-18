@@ -9,6 +9,72 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
+ * Nome macchina del menù in cui pubblicare le voci delle graduatorie.
+ */
+const KATATAXEIS_MENU_NAME = 'azioni-principali';
+
+/**
+ * URI delle pagine delle graduatorie, nelle varianti salvabili da interfaccia.
+ *
+ * Le voci di menù vere e proprie sono definite in katataxeis.links.menu.yml:
+ * qui servono solo per riconoscere ed eliminare eventuali link creati a mano.
+ */
+const KATATAXEIS_MENU_LINK_URIS = [
+  'internal:/form/graduatoria-interna-ata',
+  'base:form/graduatoria-interna-ata',
+  'entity:webform/graduatoria_interna_ata',
+  'internal:/admin/graduatorie-interne',
+  'base:admin/graduatorie-interne',
+  'route:view.graduatorie_interne.page_1',
+];
+
+/**
+ * Implements hook_install().
+ */
+function katataxeis_install() {
+  _katataxeis_delete_manual_menu_links();
+}
+
+/**
+ * Elimina le voci di menù create a mano verso le pagine delle graduatorie.
+ *
+ * Le voci sono fornite dal modulo (katataxeis.links.menu.yml), quindi ogni
+ * link equivalente creato manualmente nel menù sarebbe un doppione.
+ *
+ * @return int
+ *   Il numero di voci eliminate.
+ */
+function _katataxeis_delete_manual_menu_links() {
+  if (!\Drupal::moduleHandler()->moduleExists('menu_link_content')) {
+    return 0;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  $deleted = 0;
+
+  foreach (KATATAXEIS_MENU_LINK_URIS as $uri) {
+    $links = $storage->loadByProperties([
+      'menu_name' => KATATAXEIS_MENU_NAME,
+      'link.uri' => $uri,
+    ]);
+
+    if ($links) {
+      $storage->delete($links);
+      $deleted += count($links);
+    }
+  }
+
+  if ($deleted) {
+    \Drupal::logger('katataxeis')->notice(
+      'Rimosse @count voci di menù duplicate verso le pagine delle graduatorie: le voci sono ora fornite dal modulo.',
+      ['@count' => $deleted]
+    );
+  }
+
+  return $deleted;
+}
+
+/**
  * Implements hook_uninstall().
  */
 function katataxeis_uninstall() {
@@ -24,4 +90,18 @@ function katataxeis_uninstall() {
       $webform_entity->delete();
     }
   }
+}
+
+/**
+ * Aggiunge le voci delle graduatorie al menù "Azioni principali".
+ */
+function katataxeis_update_10001() {
+  $deleted = _katataxeis_delete_manual_menu_links();
+
+  // Ricostruisce l'albero dei menù per rendere subito visibili le nuove voci.
+  \Drupal::service('plugin.manager.menu.link')->rebuild();
+
+  return $deleted
+    ? t('Voci di menù aggiunte; rimosse @count voci duplicate create manualmente.', ['@count' => $deleted])
+    : t('Voci di menù aggiunte al menù "Azioni principali".');
 }

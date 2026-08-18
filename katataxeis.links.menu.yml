@@ -1,0 +1,16 @@
+# Voci nel menù "Azioni principali" del sito della scuola.
+# Sono definite qui (e non come menu_link_content) perché devono restare
+# allineate su tutte le scuole: titolo e destinazione si aggiornano con il modulo.
+katataxeis.graduatoria_ata_compila:
+  title: 'Graduatoria Ata: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale ATA."
+  url: 'internal:/form/graduatoria-interna-ata'
+  menu_name: azioni-principali
+  weight: 0
+
+katataxeis.graduatorie_interne_controllo:
+  title: 'Graduatorie Interne: controllo'
+  description: "Vista per la segreteria per il controllo delle graduatorie interne."
+  url: 'internal:/admin/graduatorie-interne'
+  menu_name: azioni-principali
+  weight: 0
