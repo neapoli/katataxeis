@@ -2,7 +2,15 @@ langcode: it
 status: true
 dependencies:
   config:
-    - user.role.authenticated
+    - user.role.amministratore
+    - user.role.capo_redattore
+    - user.role.collaboratore
+    - user.role.direttore_amministrativo_dsga_
+    - user.role.dirigente_scolastico
+    - user.role.personale_amministrativo
+    - user.role.personale_non_docente
+    - user.role.personale_tecnico
+    - user.role.redattore
     - webform.webform.graduatoria_interna_ata
     - webform.webform.graduatoria_interna_docenti_inf
     - webform.webform.graduatoria_interna_docenti_pri
@@ -13,7 +21,7 @@ dependencies:
 id: graduatorie_interne_personale
 label: 'Graduatorie Interne: Personale'
 module: views
-description: 'Pagina iniziale con i link per il controllo delle varie graduatorie interne'
+description: 'Pagina iniziale con i link per la visualizzazione delle varie graduatorie interne'
 tag: ''
 base_table: webform_submission
 base_field: sid
@@ -38,7 +46,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h5>\r\n<p>Attraverso questa sezione è possibile visualizzare le graduatorie interne dell'Istituto.</p>\r\n<p>Le graduatorie sono suddivise per ordine e grado.</p>\r\n<ul>\r\n<li><a href=\"/graduatorie-interne/ata\">Graduatoria interna Ata: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/graduatorie-interne/docenti-infanzia\">Graduatoria interna Docenti Infanzia: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/graduatorie-interne/docenti-primaria\">Graduatoria interna Docenti Primaria: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/graduatorie-interne/docenti-secondaria-primo-grado\">Graduatoria interna Docenti Secondaria I° Grado: Visualizza</a></li>\r\n</ul>\r\n</h5>"
+            text: "<h6>\r\n<p>Attraverso questa sezione è possibile visualizzare le graduatorie interne dell'Istituto.</p>\r\n<p>Le graduatorie sono suddivise per ordine e grado.</p>\r\n</h6>\r\n<hr>\r\n<ul>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/ata\">Graduatoria interna Ata: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/docenti-infanzia\">Graduatoria interna Docenti Infanzia: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/docenti-primaria\">Graduatoria interna Docenti Primaria: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/docenti-secondaria-primo-grado\">Graduatoria interna Docenti Secondaria I° Grado: Visualizza</a></li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
@@ -94,7 +102,15 @@ display:
         type: role
         options:
           role:
-            authenticated: authenticated
+            personale_non_docente: personale_non_docente
+            collaboratore: collaboratore
+            direttore_amministrativo_dsga_: direttore_amministrativo_dsga_
+            personale_amministrativo: personale_amministrativo
+            personale_tecnico: personale_tecnico
+            amministratore: amministratore
+            capo_redattore: capo_redattore
+            redattore: redattore
+            dirigente_scolastico: dirigente_scolastico
       cache:
         type: tag
         options: {  }
@@ -177,7 +193,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: graduatorie-interne
+      path: admin/graduatorie-interne-elenco
     cache_metadata:
       max-age: -1
       contexts:

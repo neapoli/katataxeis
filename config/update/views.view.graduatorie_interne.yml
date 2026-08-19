@@ -40,7 +40,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<h5>\r\n<p>Attraverso questa sezione è possibile gestire le graduatorie interne dell'Istituto.</p>\r\n<p>Le graduatorie sono suddivise per ordine e grado.</p>\r\n<ul>\r\n<li><a href=\"/admin/graduatorie-interne/ata\">Graduatoria interna Ata: Controllo</a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne/docenti-infanzia\">Graduatoria interna Docenti Infanzia: Controllo</a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne/docenti-primaria\">Graduatoria interna Docenti Primaria: Controllo</a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne/docenti-secondaria-primo-grado\">Graduatoria interna Docenti Secondaria I° Grado: Controllo</a></li>\r\n</ul>\r\n</h5>"
+            text: "<h6>\r\n<p>Attraverso questa sezione è possibile gestire le graduatorie interne dell'Istituto.</p>\r\n<p>Le graduatorie sono suddivise per ordine e grado.</p>\r\n</h6>\r\n<ul>\r\n<li><a href=\"/admin/graduatorie-interne/ata\">Graduatoria interna Ata: Controllo</a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne/docenti-infanzia\">Graduatoria interna Docenti Infanzia: Controllo</a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne/docenti-primaria\">Graduatoria interna Docenti Primaria: Controllo</a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne/docenti-secondaria-primo-grado\">Graduatoria interna Docenti Secondaria I° Grado: Controllo</a></li>\r\n</ul>"
             make_link: false
             path: ''
             absolute: false
