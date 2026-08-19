@@ -24,7 +24,8 @@ archive: false
 id: graduatoria_interna_ata
 title: '- Graduatoria Interna ATA -'
 description: "<p>Tipo di form da utilizzare per creare la graduatoria interna ATA dell'istituto</p>"
-categories: {  }
+categories:
+  - Ata
 elements: |-
   dati_anagrafici:
     '#type': webform_wizard_page
@@ -43,9 +44,9 @@ elements: |-
       '#align_items': center
       markup:
         '#type': webform_markup
-        '#flex': 2
+        '#flex': 0
         '#display_on': both
-        '#markup': 'Il/La sottoscritto/a'
+        '#markup': '<p>Il/La sottoscritto/a</p>'
       cognome:
         '#type': textfield
         '#title': Cognome
@@ -196,7 +197,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'Anzianità di Servizio:  [A - A1 - B - B1 - C - D - E - F]'
-      '#sticky': true
       riga_anzianita_servizio_anno_precedente_a:
         '#type': webform_table_row
         '#title': 'Anno Precedente ( A )'
@@ -733,6 +733,8 @@ elements: |-
           '#title': Isole
           '#description': '<p>Isole</p>'
           '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
           '#template': '{% if data.anzianita_servizio_verifica_ds_d == 1 %}{{ data.anzianita_servizio_isole_d }}{% else %}{{ data.anzianita_servizio_isole_precedente_d }}{% endif %}'
           '#store': true
         anzianita_servizio_punti_precedente_d:
@@ -780,6 +782,8 @@ elements: |-
             'no': 'no'
           '#required': true
           '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
         anzianita_servizio_punti_d:
           '#type': webform_computed_twig
           '#title': 'Punti (D)'
@@ -1047,7 +1051,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'ESIGENZE DI FAMIGLIA'
-      '#sticky': true
       riga_esigenze_famiglia_anno_precedente_a:
         '#type': webform_table_row
         '#title': 'Dichiarazione Anno Precedente'
@@ -1671,7 +1674,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'Titoli [A - B]'
-      '#sticky': true
       riga_titoli_generali_anno_precedente_a:
         '#type': webform_table_row
         '#title': 'Dichiarazione Anno Precedente ( A )'
@@ -1935,10 +1937,10 @@ elements: |-
     totale_punteggio:
       '#type': number
       '#title': 'Totale Punteggio'
+      '#access': false
       '#autocomplete': ''
       '#readonly': true
       '#default_value': '0'
-      '#format_items': comma
       '#min': 0
     totale_punteggio_graduatoria:
       '#type': webform_computed_twig
@@ -1976,10 +1978,7 @@ elements: |-
     '#type': webform_actions
     '#title': 'Submit button(s)'
     '#submit__label': Invia
-css: |-
-  .form-item--error-message.invalid-feedback {
-    display: block;
-  }
+css: ''
 javascript: ''
 settings:
   ajax: false
@@ -1990,7 +1989,7 @@ settings:
   page: true
   page_submit_path: ''
   page_confirm_path: ''
-  page_theme_name: claro
+  page_theme_name: gin
   form_title: source_entity_webform
   form_submit_once: true
   form_open_message: ''
@@ -2042,6 +2041,7 @@ settings:
       view: 'webform_submissions:embed_administer'
       webform_routes:
         - entity.webform.results_submissions
+      node_routes: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
   submission_user_duplicate: false
@@ -2101,9 +2101,7 @@ settings:
   preview: 2
   preview_label: Anteprima
   preview_title: '[webform:title]: Anteprima'
-  preview_message: |-
-    <strong>ATTENZIONE</strong>:&nbsp;Ti preghiamo di rivedere la tua richiesta.<br />
-    L&#39;invio <strong>NON E&#39; COMPLETO</strong> finch&eacute; non si preme il pulsante &quot;<strong>INVIA</strong>&quot; in fondo alla pagina!
+  preview_message: '<p><strong>ATTENZIONE</strong>:&nbsp;Ti preghiamo di rivedere la tua richiesta.<br>L''invio <strong>NON E'' COMPLETO</strong> finché non si preme il pulsante "<strong>INVIA</strong>" in fondo alla pagina!</p>'
   preview_attributes: {  }
   preview_excluded_elements:
     processed_text: processed_text
@@ -2152,33 +2150,41 @@ settings:
 access:
   create:
     roles:
-      - amministratore
-      - personale_amministrativo
       - collaboratore
+      - direttore_amministrativo_dsga_
+      - personale_amministrativo
+      - personale_tecnico
+      - amministratore
+      - capo_redattore
       - redattore
       - dirigente_scolastico
-      - direttore_amministrativo_dsga_
-      - personale_tecnico
     users: {  }
     permissions: {  }
   view_any:
     roles:
+      - direttore_amministrativo_dsga_
       - amministratore
+      - capo_redattore
       - redattore
       - dirigente_scolastico
-      - direttore_amministrativo_dsga_
     users: {  }
     permissions: {  }
   update_any:
     roles:
+      - direttore_amministrativo_dsga_
       - amministratore
+      - capo_redattore
       - redattore
       - dirigente_scolastico
-      - direttore_amministrativo_dsga_
     users: {  }
     permissions: {  }
   delete_any:
-    roles: {  }
+    roles:
+      - direttore_amministrativo_dsga_
+      - amministratore
+      - capo_redattore
+      - redattore
+      - dirigente_scolastico
     users: {  }
     permissions: {  }
   purge_any:

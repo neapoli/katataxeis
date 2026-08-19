@@ -26,6 +26,9 @@ const KATATAXEIS_MENU_LINK_URIS = [
   'internal:/admin/graduatorie-interne',
   'base:admin/graduatorie-interne',
   'route:view.graduatorie_interne.page_1',
+  'internal:/admin/graduatorie-interne-elenco',
+  'base:admin/graduatorie-interne-elenco',
+  'route:view.graduatorie_interne_personale.page_1',
 ];
 
 /**

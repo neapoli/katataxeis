@@ -14,3 +14,10 @@ katataxeis.graduatorie_interne_controllo:
   url: 'internal:/admin/graduatorie-interne'
   menu_name: azioni-principali
   weight: 0
+
+katataxeis.graduatorie_interne_visualizza:
+  title: 'Graduatorie Interne: visualizza'
+  description: "Vista per il personale della scuola."
+  url: 'internal:/admin/graduatorie-interne-elenco'
+  menu_name: azioni-principali
+  weight: 0
