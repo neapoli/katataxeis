@@ -5,6 +5,7 @@
  * Install, update and uninstall functions for the Comment module.
  */
 
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\field\Entity\FieldStorageConfig;
 
@@ -35,7 +36,28 @@ const KATATAXEIS_MENU_LINK_URIS = [
  * Implements hook_install().
  */
 function katataxeis_install() {
+  _katataxeis_install_config_update();
   _katataxeis_delete_manual_menu_links();
+}
+
+/**
+ * Crea, alla prima installazione, le configurazioni di config/update.
+ *
+ * A regime quella cartella viene riallineata a ogni "drush updb" (vedi
+ * src/Drush/Commands/KatataxeisCommands.php), ma su un sito nuovo
+ * l'aggiornamento non e' ancora passato: senza questo passaggio il formulario
+ * della graduatoria ATA e le sue viste, che risiedono solo in config/update,
+ * non esisterebbero fino al primo updb. Le configurazioni gia' presenti non
+ * vengono toccate.
+ */
+function _katataxeis_install_config_update() {
+  $source = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath('katataxeis') . '/config/update';
+
+  if (!is_dir($source)) {
+    return;
+  }
+
+  \Drupal::service('config.installer')->installOptionalConfig(new FileStorage($source));
 }
 
 /**
