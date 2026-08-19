@@ -15,9 +15,9 @@ third_party_settings:
         enabled: true
         link_text: ''
         link_attributes: {  }
-weight: 0
 open: null
 close: null
+weight: 0
 uid: 1
 template: false
 archive: false
@@ -1355,6 +1355,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3:
           '#type': checkbox
@@ -1460,6 +1461,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3_1:
           '#type': checkbox
@@ -1560,6 +1562,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3_2:
           '#type': checkbox
@@ -1976,6 +1979,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2:
           '#type': checkbox
@@ -2081,6 +2085,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2_1:
           '#type': checkbox
@@ -2182,6 +2187,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2_2:
           '#type': checkbox
@@ -2357,6 +2363,7 @@ elements: |-
               {% set punti = punti * 2 %}
             {% endif %}
             {{ punti }}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_d_1:
           '#type': checkbox
@@ -4105,6 +4112,7 @@ elements: |-
         {% set tot_d_1_1 = data.anzianita_servizio_punti_d_1_1|render|striptags|trim|default(0)|float %}
         {% set tot_e_1   = data.anzianita_servizio_punti_e_1|render|striptags|trim|default(0)|float %}
         {{ tot_a + tot_a_1 + tot_a_2 + tot_a_3 + tot_a_4 + tot_b_1 + tot_b_1_1 + tot_b_1_2 + tot_b_2 + tot_b_2_1 + tot_b_2_2 + tot_b_3 + tot_b_3_1 + tot_b_3_2 + tot_c_1 + tot_c_1_1 + tot_c_1_2 + tot_c_2 + tot_c_2_1 + tot_c_2_2 + tot_d_1 + tot_d_1_1 + tot_e_1 }}
+      '#whitespace': trim
       '#store': true
     totale_esigenze_famiglia:
       '#type': webform_computed_twig
@@ -4117,6 +4125,7 @@ elements: |-
         {% set tot_d = data.esigenze_famiglia_punti_d|render|striptags|trim|default(0)|float %}
         {% set tot_e = data.esigenze_famiglia_punti_e|render|striptags|trim|default(0)|float %}
         {{ tot_a + tot_b + tot_c + tot_d + tot_e }}
+      '#whitespace': trim
       '#store': true
     horizontal_rule:
       '#type': webform_horizontal_rule
@@ -4136,6 +4145,7 @@ elements: |-
           {% set tot_m = data.titoli_generali_punti_m|render|striptags|trim|default(0)|float %}
           {% set tot_n = data.titoli_generali_punti_n|render|striptags|trim|default(0)|float %}
           {{ tot_b + tot_c + tot_d + tot_e + tot_f + tot_m + tot_n }}
+        '#whitespace': trim
         '#store': true
       sub_totale_titoli_generali_a_h_:
         '#type': webform_computed_twig
@@ -4145,6 +4155,7 @@ elements: |-
           {% set tot_a = data.titoli_generali_punti_a|render|striptags|trim|default(0)|float %}
           {% set tot_h = data.titoli_generali_punti_h|render|striptags|trim|default(0)|float %}
           {{ tot_a + tot_h }}
+        '#whitespace': trim
         '#store': true
       totale_titoli_generali:
         '#type': webform_computed_twig
@@ -4154,16 +4165,17 @@ elements: |-
           {% set tot_sub = data.sub_totale_titoli_generali|render|striptags|trim|default(0)|float %}
           {% set tot_a_h = data.sub_totale_titoli_generali_a_h_|render|striptags|trim|default(0)|float %}
           {% if tot_sub > 10 %}{{ 10 + tot_a_h }}{% else %}{{ tot_sub + tot_a_h }}{% endif %}
+        '#whitespace': trim
         '#store': true
     horizontal_rule_02:
       '#type': webform_horizontal_rule
     totale_punteggio:
       '#type': number
       '#title': 'Totale Punteggio'
+      '#access': false
       '#autocomplete': ''
       '#readonly': true
       '#default_value': '0'
-      '#format_items': comma
       '#min': 0
     totale_punteggio_graduatoria:
       '#type': webform_computed_twig
@@ -4174,6 +4186,7 @@ elements: |-
         {% set tot_famiglia  = data.totale_esigenze_famiglia|render|striptags|trim|default(0)|float %}
         {% set tot_titoli    = data.totale_titoli_generali|render|striptags|trim|default(0)|float %}
         {{ tot_anzianita + tot_famiglia + tot_titoli }}
+      '#whitespace': trim
       '#store': true
     verifica_graduatoria_ds:
       '#type': radios
@@ -4450,9 +4463,9 @@ access:
 handlers:
   e_mail:
     id: email
-    handler_id: e_mail
     label: E-mail
     notes: 'Invio Mail al Docente dopo aver compilato la graduatoria'
+    handler_id: e_mail
     status: true
     conditions: {  }
     weight: 0
@@ -4497,9 +4510,9 @@ handlers:
       debug: false
   e_mail_graduatoria_confermata:
     id: email
-    handler_id: e_mail_graduatoria_confermata
     label: 'E-mail: Graduatoria CONFERMATA'
     notes: 'Invio Mail al Docente dopo aver CONFERMATO LA GRADUATORIA'
+    handler_id: e_mail_graduatoria_confermata
     status: true
     conditions:
       enabled:
@@ -4538,9 +4551,9 @@ handlers:
       debug: false
   calcolo_totale_punteggio:
     id: totale_punteggio_handler
-    handler_id: calcolo_totale_punteggio
     label: 'Calcolo Totale Punteggio'
     notes: ''
+    handler_id: calcolo_totale_punteggio
     status: true
     conditions: {  }
     weight: 3
