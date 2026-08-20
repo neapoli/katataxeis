@@ -15,14 +15,14 @@ third_party_settings:
         enabled: true
         link_text: ''
         link_attributes: {  }
-weight: 0
 open: null
 close: null
+weight: 0
 uid: 1
 template: false
 archive: false
-id: graduatoria_interna_docenti_scu
-title: '- Graduatoria Interna Docenti Scuola Secondaria I Grado -'
+id: graduatoria_interna_docenti_pri
+title: '- Graduatoria Interna Docenti Primaria -'
 description: "<p>Tipo di form da utilizzare per creare la graduatoria interna DOCENTI dell'istituto</p>"
 categories: {  }
 elements: |-
@@ -105,32 +105,27 @@ elements: |-
         '#disabled': true
         '#options': grado_scuola
         '#required': true
-        '#default_value': 'Secondaria 1° Grado'
+        '#default_value': Primaria
     flex_datianagrafici3:
       '#type': webform_flexbox
-      posto_secondaria:
+      posto_primaria:
         '#type': select
-        '#title': 'Su Posto (Secondaria I Grado)'
+        '#title': 'Su Posto (Primaria)'
         '#description': 'Selezionare tipologia di posto'
-        '#options': tipologia_posto_secondaria_1degg
+        '#options': tipologia_posto_primaria
         '#states':
           visible:
             ':input[name="grado_scuola"]':
-              value: 'Secondaria 1° Grado'
+              value: Primaria
           required:
             ':input[name="grado_scuola"]':
-              value: 'Secondaria 1° Grado'
+              value: Primaria
         '#access_create_roles':
           - authenticated
         '#access_update_roles':
           - authenticated
         '#access_view_roles':
           - authenticated
-      classe_di_concorso:
-        '#type': select
-        '#title': 'Classe di Concorso'
-        '#options': classi_di_concorso
-        '#required': true
     e_mail:
       '#type': email
       '#title': E-mail
@@ -212,14 +207,14 @@ elements: |-
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_a:
           '#type': textfield
-          '#title': 'A - I GRADO RUOLO: Dichiarazione Anno Precedente ( A )'
+          '#title': 'A - PRIMARIA RUOLO: Dichiarazione Anno Precedente ( A )'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A - I GRADO RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'A - PRIMARIA RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -253,11 +248,11 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a:
         '#type': webform_table_row
-        '#title': 'A - I GRADO RUOLO: Anzianità di Servizio'
+        '#title': 'A - PRIMARIA RUOLO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_a:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>A)</strong> Per ogni anno di servizio di ruolo nella I GRADO (compresi gli anni di servizio prestati con la sola nomina giuridica coperti da una supplenza di almeno 180 gg. nel grado di appartenenza) COMPLESSIVAMENTE svolti su posto comune e/o sostegno (escluso l’a.s. in corso)</p><p><strong>Punti: 6</strong> (Comune)</p>'
+          '#text': '<p><strong>A)</strong> Per ogni anno di servizio di ruolo NELLA PRIMARIA (compresi gli anni di servizio prestati con la sola nomina giuridica coperti da una supplenza di almeno 180 gg. nel grado di appartenenza) COMPLESSIVAMENTE svolti su posto comune e/o sostegno (escluso l’a.s. in corso)</p><p><strong>Punti: 6</strong> (Comune)</p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a:
           '#type': number
@@ -300,20 +295,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_1:
         '#type': webform_table_row
-        '#title': 'A 1 - I GRADO RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'A 1 - PRIMARIA RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_a_1:
           '#type': textfield
-          '#title': 'A 1 - I GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'A 1 - PRIMARIA RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 1 - I GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'A 1 - PRIMARIA RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -347,15 +342,15 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_1:
         '#type': webform_table_row
-        '#title': 'A 1 - I GRADO RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'A 1 - PRIMARIA RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_a_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>A 1)</strong> Per ogni anno di servizio di ruolo nella SECONDARIA di I GRADO prestati ESCLUSIVAMENTE su posto di sostegno (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio) </p><p><strong>Punti: 6</strong> (Sostegno)</p>'
+          '#text': '<p><strong>A 1)</strong> Per ogni anno di servizio di ruolo NELLA PRIMARIA prestati ESCLUSIVAMENTE su posto di sostegno (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio) </p><p><strong>Punti: 6</strong> (Sostegno)</p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a_1:
           '#type': number
@@ -398,17 +393,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_2:
         '#type': webform_table_row
-        '#title': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
+        '#title': 'A 2 - PRIMARIA RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA'
         anzianita_servizio_dichiarazione_precedente_a_2:
           '#type': textfield
-          '#title': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'A 2 - PRIMARIA RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'A 2 - PRIMARIA RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -442,14 +437,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_2:
         '#type': webform_table_row
-        '#title': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anzianità di Servizio'
+        '#title': 'A 2 - PRIMARIA RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_a_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A 2)</strong>&nbsp;Per ogni anno di servizio di RUOLO nella I GRADO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>A 2)</strong>&nbsp;Per ogni anno di servizio di RUOLO nella PRIMARIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna ai fine del raddoppio del punteggio</strong>)</strong></p>
 
-            <p><strong>Punti: 6&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 6&nbsp;</strong>(isole/scuola di montagna)</strong></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a_2:
           '#type': number
@@ -490,17 +485,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_3:
         '#type': webform_table_row
-        '#title': 'A 3 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
+        '#title': 'A 3 - PRIMARIA RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_a_3:
           '#type': textfield
-          '#title': 'A 3 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#title': 'A 3 - PRIMARIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 3 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#default_value': 'A 3 - PRIMARIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -534,12 +529,12 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_3:
         '#type': webform_table_row
-        '#title': 'A 3 - I GRADO RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
+        '#title': 'A 3 - PRIMARIA RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_a_3:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A 3)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>NON COPERTI</strong> da alcuna supplenza (o inferiore ai 180 gg.) o <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta in altro ruolo/grado rispetto a quello della SECONDARIA di I GRADO</p>
+            <p><strong>A 3)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>NON COPERTI</strong> da alcuna supplenza (o inferiore ai 180 gg.) o <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta in altro ruolo/grado rispetto a quello della PRIMARIA</p>
 
             <p><strong>Punti: 3&nbsp;</strong></p>
           '#format': bootstrap_italia_2
@@ -582,17 +577,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_4:
         '#type': webform_table_row
-        '#title': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
+        '#title': 'A 4 - PRIMARIA RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_a_4:
           '#type': textfield
-          '#title': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#title': 'A 4 - INFANZIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#default_value': 'A 4 - PRIMARIA RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -626,16 +621,16 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_4:
         '#type': webform_table_row
-        '#title': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
+        '#title': 'A 4 - PRIMARIA RUOLO: RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_a_4:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A 4)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta su SOSTEGNO e in altro ruolo/grado rispetto a quello della SECONDARIA di I GRADO(ai fini del radoppio del punteggio)</p>
+            <p><strong>A 4)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta su SOSTEGNO e in altro ruolo/grado rispetto a quello della PRIMARIA(ai fini del radoppio del punteggio)</p>
 
             <p><strong>Punti: 3&nbsp;</strong></p>
           '#format': bootstrap_italia_2
@@ -709,20 +704,20 @@ elements: |-
       '#sticky': true
       riga_anzianita_servizio_anno_precedente_b_1:
         '#type': webform_table_row
-        '#title': 'B 1 - I GRADO PRE-RUOLO: Anno Precedente'
+        '#title': 'B 1 - PRIMARIA PRE-RUOLO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_1:
           '#type': textfield
-          '#title': 'B 1 - I GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'B 1 - PRIMARIA PRE-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 1 - I GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 1 - PRIMARIA PRE-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -756,15 +751,15 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_1:
         '#type': webform_table_row
-        '#title': 'B 1 - I GRADO PRE-RUOLO : Anzianità di Servizio'
+        '#title': 'B 1 - PRIMARIA PRE-RUOLO : Anzianità di Servizio'
         anzianita_servizio_processed_text_02_b_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 1)</strong> Per ogni anno di servizio di PRE-RUOLO nella I GRADO svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 5</strong></p>'
+          '#text': '<p><strong>B 1)</strong> Per ogni anno di servizio PRE-RUOLO nella PRIMARIA svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 5</strong></p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_1:
           '#type': number
-          '#title': 'Anni ( B 1 - I GRADO PRE-RUOLO )'
+          '#title': 'Anni ( B 1 - PRIMARIA PRE-RUOLO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -803,20 +798,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_1_1:
         '#type': webform_table_row
-        '#title': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'B 1.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_1_1:
           '#type': textfield
-          '#title': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'B 1.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 1.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -850,19 +845,19 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_1_1:
         '#type': webform_table_row
-        '#title': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'B 1.1 - PRIMARIA PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_b_1_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 1.1)</strong> Per ogni anno di servizio PRE-RUOLO nella I GRADO prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 5</strong></p>'
+          '#text': '<p><strong>B 1.1)</strong> Per ogni anno di servizio PRE-RUOLO nella PRIMARIA prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 5</strong></p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_1_1:
           '#type': number
-          '#title': 'Anni ( B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO )'
+          '#title': 'Anni ( B 1.1 - PRIMARIA PRE-RUOLO: SOSTEGNO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -901,17 +896,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_1_2:
         '#type': webform_table_row
-        '#title': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'B 1.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_1_2:
           '#type': textfield
-          '#title': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'B 1.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 1.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -945,14 +940,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_1_2:
         '#type': webform_table_row
-        '#title': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
+        '#title': 'B 1.2 - PRIMARIA PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA'
         anzianita_servizio_processed_text_02_b_1_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 1.2)</strong> Per ogni anno di servizio PRE-RUOLO nella I GRADO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>B 1.2)</strong> Per ogni anno di servizio di PRE-RUOLO nella PRIMARIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna ai fine del raddoppio del punteggio</strong>)</strong></p>
 
-            <p><strong>Punti: 5&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 5&nbsp;</strong>(isole/scuola di montagna)</strong></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_1_2:
           '#type': number
@@ -993,20 +988,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_2:
         '#type': webform_table_row
-        '#title': 'B 2 - II GRADO PRE-RUOLO: Anno Precedente'
+        '#title': 'B 2 - INFANZIA RUOLO e PRE-RUOLO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_2:
           '#type': textfield
-          '#title': 'B 2 - II GRADO RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'B 2 - INFANZIA RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 2 - II GRADO RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 2 - INFANZIA RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1040,15 +1035,15 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_2:
         '#type': webform_table_row
-        '#title': 'B 2 - II GRADO RUOLO e PRE-RUOLO: Anzianità di Servizio'
+        '#title': 'B 2 - INFANZIA RUOLO e PRE-RUOLO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_b_2:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 2)</strong> Indicare gli anni di servizio di RUOLO e PRE-RUOLO nella II GRADO svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 3</strong></p>'
+          '#text': '<p><strong>B 2)</strong> Indicare gli anni di servizio di RUOLO e PRE-RUOLO nella INFANZIA svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 3</strong></p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_2:
           '#type': number
-          '#title': 'Anni ( B 2 - II GRADO RUOLO e PRE-RUOLO )'
+          '#title': 'Anni ( B 2 - INFANZIA RUOLO e PRE-RUOLO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1087,20 +1082,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_2_1:
         '#type': webform_table_row
-        '#title': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'B 2.1 - INFANZIA RUOLO e PRE-RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_2_1:
           '#type': textfield
-          '#title': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'B 2.1 - INFANZIA RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 2.1 - INFANZIA RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1134,19 +1129,19 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_2_1:
         '#type': webform_table_row
-        '#title': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'B 2.1 - INFANZIA RUOLO e PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_b_2_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 2.1)</strong> Indicare gli anni di servizio di RUOLO e PRE-RUOLO nella II GRADO prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 3</strong></p>'
+          '#text': '<p><strong>B 2.1)</strong> Indicare gli anni di servizio RUOLO e PRE-RUOLO nella INFANZIA prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 3</strong></p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_2_1:
           '#type': number
-          '#title': 'Anni ( B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO )'
+          '#title': 'Anni ( B 2.1 - INFANZIA RUOLO e PRE-RUOLO: SOSTEGNO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1185,17 +1180,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_2_2:
         '#type': webform_table_row
-        '#title': 'B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'B 2.2 - INFANZIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_2_2:
           '#type': textfield
-          '#title': 'B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'B 2.2 - INFANZIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 2.2 - INFANZIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1229,14 +1224,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_2_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio ( B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO )'
+        '#title': 'Anzianità di Servizio ( B 2.2 - INFANZIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA )'
         anzianita_servizio_processed_text_02_b_2_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 2.2)</strong>&nbsp;Indicare gli anni di servizio di RUOLO e PRE-RUOLO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>B 2.2)</strong>&nbsp;Indicare gli anni di servizio RUOLO e PRE-RUOLO nella INFANZIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna ai fine del raddoppio del punteggio</strong>)</strong></p>
 
-            <p><strong>Punti: 3&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 3&nbsp;</strong>(isole/scuola di montagna)</strong></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_2_2:
           '#type': number
@@ -1277,17 +1272,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_3:
         '#type': webform_table_row
-        '#title': 'B 3 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: Anno Precedente'
+        '#title': 'B 3 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_3:
           '#type': textfield
-          '#title': 'B 3 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'B 3 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 3 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 3 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1321,12 +1316,12 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_3:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (B 3 - INFANZIA/PRIMARIA)'
+        '#title': 'Anzianità di Servizio (B 3 - SCUOLA SECONDARIA I/II GRADO)'
         anzianita_servizio_processed_text_02_b_3:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 3) </strong>Per ogni anno di servizio di RUOLO e PRE-RUOLO nella INFANZIA/PRIMARIA svolti COMPLESSIVAMENTE su posto comune e/o sostegno.</p>
+            <p><strong>B 3) </strong>Per ogni anno di servizio di RUOLO e PRE-RUOLO nella SCUOLA SECONDARIA I/II GRADO svolti COMPLESSIVAMENTE su posto comune e/o sostegno.</p>
 
             <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
             <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
@@ -1360,6 +1355,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3:
           '#type': checkbox
@@ -1378,17 +1374,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_3_1:
         '#type': webform_table_row
-        '#title': 'B 3.1 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'B 3.1 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_3_1:
           '#type': textfield
-          '#title': 'B 3.1 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'B 3.1 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 3.1 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 3.1 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1422,16 +1418,16 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_3_1:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (B 3.1 - INFANZIA/PRIMARIA: SOSTEGNO)'
+        '#title': 'Anzianità di Servizio (B 3.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO)'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_b_3_1:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 3.1) </strong>Per ogni anno di servizio RUOLO e PRE-RUOLO nella INFANZIA/PRIMARIA prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
+            <p><strong>B 3.1) </strong>Per ogni anno di servizio RUOLO e PRE-RUOLO nella SCUOLA SECONDARIA I/II GRADO prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
 
             <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
             <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
@@ -1465,6 +1461,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3_1:
           '#type': checkbox
@@ -1483,17 +1480,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_3_2:
         '#type': webform_table_row
-        '#title': 'B 3.2 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'B 3.2 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_3_2:
           '#type': textfield
-          '#title': 'B 3.2 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'B 3.2 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 3.2 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 3.2 - SCUOLA SECONDARIA I/II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1527,12 +1524,12 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_3_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (B 3.2 - INFANZIA/PRIMARIA: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO)'
+        '#title': 'Anzianità di Servizio (B 3.2 - SCUOLA SECONDARIA I/II GRADO: PICCOLE ISOLE/SCUOLA DI MONTAGNA)'
         anzianita_servizio_processed_text_02_b_3_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 3.2)</strong>&nbsp;Per ogni anno di servizio di RUOLO e PRE-RUOLO nella INFANZIA/PRIMARIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</p>
+            <p><strong>B 3.2)</strong>&nbsp;Per ogni anno di servizio di RUOLO e PRE-RUOLO nella SCUOLA SECONDARIA I/II GRADO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna ai fine del raddoppio del punteggio</strong>)</p>
             <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
             <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
           '#format': bootstrap_italia_2
@@ -1565,6 +1562,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3_2:
           '#type': checkbox
@@ -1614,20 +1612,20 @@ elements: |-
       '#sticky': true
       riga_anzianita_servizio_anno_precedente_c_1:
         '#type': webform_table_row
-        '#title': 'C 1 - II GRADO ALTRO-RUOLO: Anno Precedente'
+        '#title': 'C 1 - INFANZIA ALTRO-RUOLO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_c_1:
           '#type': textfield
-          '#title': 'C 1 - II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'C 1 - INFANZIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 1 - II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 1 - INFANZIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1661,15 +1659,15 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_1:
         '#type': webform_table_row
-        '#title': 'C 1 - II GRADO ALTRO-RUOLO: Anzianità di Servizio'
+        '#title': 'C 1 - INFANZIA ALTRO-RUOLO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_c_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>C 1)</strong> Per ogni anno di servizio svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella Scuola Secondaria di II GRADO. </p><p><strong>Punti: 3</strong></p>'
+          '#text': '<p><strong>C 1)</strong> Per ogni anno di servizio svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella INFANZIA. </p><p><strong>Punti: 3</strong></p>'
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_1:
           '#type': number
-          '#title': 'Anni ( C 1 - II GRADO ALTRO-RUOLO )'
+          '#title': 'Anni ( C 1 - INFANZIA ALTRO-RUOLO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1708,20 +1706,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_1_1:
         '#type': webform_table_row
-        '#title': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'C 1.1 - INFANZIA ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_c_1_1:
           '#type': textfield
-          '#title': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'C 1.1 - INFANZIA ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 1.1 - INFANZIA ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1755,10 +1753,10 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_1_1:
         '#type': webform_table_row
-        '#title': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'C 1.1 - INFANZIA ALTRO-RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_c_1_1:
           '#type': processed_text
@@ -1767,7 +1765,7 @@ elements: |-
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_1_1:
           '#type': number
-          '#title': 'Anni ( C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO )'
+          '#title': 'Anni ( C 1.1 - INFANZIA ALTRO-RUOLO: SOSTEGNO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1806,17 +1804,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_1_2:
         '#type': webform_table_row
-        '#title': 'C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'C 1.2 - INFANZIA ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_1_2:
           '#type': textfield
-          '#title': 'C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'C 1.2 - INFANZIA ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 1.2 - INFANZIA ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1850,14 +1848,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_1_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio ( C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO )'
+        '#title': 'Anzianità di Servizio ( C 1.2 - INFANZIA ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA )'
         anzianita_servizio_processed_text_02_c_1_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 1.2)</strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>C 1.2)</strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna ai fine del raddoppio del punteggio</strong>)</strong></p>
 
-            <p><strong>Punti: 3&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 3&nbsp;</strong>(isole/scuola di montagna)</strong></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_1_2:
           '#type': number
@@ -1898,17 +1896,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_2:
         '#type': webform_table_row
-        '#title': 'C 2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: Anno Precedente'
+        '#title': 'C 2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_2:
           '#type': textfield
-          '#title': 'C 2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'C 2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1942,12 +1940,12 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (C 2 - INFANZIA/ PRIMARIA)'
+        '#title': 'Anzianità di Servizio (C 2 - SCUOLA SECONDARIA I/II GRADO)'
         anzianita_servizio_processed_text_02_c_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 2) </strong>Per ogni anno di servizio ALTRO-RUOLO svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella INFANZIA/ PRIMARIA.</p>
+            <p><strong>C 2) </strong>Per ogni anno di servizio ALTRO-RUOLO svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella SCUOLA SECONDARIA I/II GRADO.</p>
 
             <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
             <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
@@ -1981,6 +1979,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2:
           '#type': checkbox
@@ -1999,17 +1998,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_2_1:
         '#type': webform_table_row
-        '#title': 'C 2.1 - INFANZIA/ PRIMARIA ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'C 2.1 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_2_1:
           '#type': textfield
-          '#title': 'C 2.1 - INFANZIA/ PRIMARIA ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'C 2.1 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 2.1 - INFANZIA/ PRIMARIA: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 2.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -2043,16 +2042,16 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_2_1:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (C 2.1 - INFANZIA/ PRIMARIA: SOSTEGNO)'
+        '#title': 'Anzianità di Servizio (C 2.1 - SCUOLA SECONDARIA I/II GRADO: SOSTEGNO)'
         '#states':
           enabled:
-            ':input[name="posto_secondaria"]':
+            ':input[name="posto_primaria"]':
               value: Sostegno
         anzianita_servizio_processed_text_02_c_2_1:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 2.1) </strong>Per ogni anno di servizio ALTRO-RUOLO prestati ESCLUSIVAMENTE su posto di sostegno nella INFANZIA/ PRIMARIA in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
+            <p><strong>C 2.1) </strong>Per ogni anno di servizio ALTRO-RUOLO prestati ESCLUSIVAMENTE su posto di sostegno nella SCUOLA SECONDARIA I/II GRADO in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
 
             <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
             <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
@@ -2086,6 +2085,7 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2_1:
           '#type': checkbox
@@ -2104,17 +2104,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_2_2:
         '#type': webform_table_row
-        '#title': 'C 2.2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'C 2.2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_2_2:
           '#type': textfield
-          '#title': 'C 2.2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'C 2.2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 2.2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 2.2 - SCUOLA SECONDARIA I/II GRADO ALTRO-RUOLO: PICCOLE ISOLE/SCUOLA DI MONTAGNA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -2148,12 +2148,12 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_2_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (C 2.2 - INFANZIA/ PRIMARIA: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO)'
+        '#title': 'Anzianità di Servizio (C 2.2 - SCUOLA SECONDARIA I/II GRADO: PICCOLE ISOLE/SCUOLA DI MONTAGNA)'
         anzianita_servizio_processed_text_02_c_2_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 2.2) </strong></strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</p>
+            <p><strong>C 2.2) </strong></strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole/scuola di montagna ai fine del raddoppio del punteggio</strong>)</p>
 
             <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
             <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
@@ -2187,8 +2187,240 @@ elements: |-
             {% else %}
                {{ 12 + (anni - 4) * 2 }}
             {% endif %}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+    tabella_anzianita_di_servizio_k_1:
+      '#type': webform_table
+      '#title': 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO/SPECIALISTA'
+      '#title_display': invisible
+      '#wrapper_attributes':
+        class:
+          - 'container-inline clearfix'
+      '#attributes':
+        class:
+          - 'container-inline clearfix'
+      '#header':
+        - title: 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO/SPECIALISTA'
+          attributes:
+            style: 'vertical-align: inherit'
+        - title: Si/No
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: Punti
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+        - title: 'Verifica D.S.'
+          attributes:
+            style: 'vertical-align: inherit; text-align: center'
+      '#caption': 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO/SPECIALISTA'
+      '#sticky': true
+      riga_anzianita_servizio_anno_precedente_k_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO'
+        anzianita_servizio_anno_precedente_k_1:
+          '#type': textfield
+          '#title': 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_si_no_precedente_k_1:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_k_1 == 1 %}{{ data.anzianita_servizio_si_no_k_1 }}{% else %}{{ data.anzianita_servizio_si_no_precedente_k_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_k_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_k_1 == 1 %}{{ data.anzianita_servizio_punti_k_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_k_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_k_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità Di Servizio: DOCENTE SPECIALIZZATO'
+        processed_text_100:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p>Per il servizio di ruolo effettivamente prestato per un solo triennio senza soluzione di continuità, a partire dall’anno scolastico 92/93 fino all’anno scolastico 97/98, come docente "specializzato" per l'insegnamento della lingua straniera</p>
+
+            <p><strong>Punti: 1,5</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_si_no_k_1:
+          '#type': radios
+          '#title': Si/No
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#states':
+            disabled:
+              ':input[name="anzianita_servizio_verifica_ds_k_1"]':
+                checked: true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        anzianita_servizio_punti_k_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.anzianita_servizio_si_no_k_1 == "si" %}{{ 1.5 }}{% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_verifica_ds_k_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_anno_precedente_j_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità Di Servizio: DOCENTE SPECIALISTA'
+        anzianita_servizio_anno_precedente_j_1:
+          '#type': textfield
+          '#title': 'Anzianità Di Servizio: DOCENTE PSECIALIZZATO/SPECIALISTA'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Anzianità Di Servizio: DOCENTE SPECIALISTA'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        anzianita_servizio_si_no_precedente_j_1:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_j_1 == 1 %}{{ data.anzianita_servizio_si_no_j_1 }}{% else %}{{ data.anzianita_servizio_si_no_precedente_j_1 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_punti_precedente_j_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.anzianita_servizio_verifica_ds_j_1 == 1 %}{{ data.anzianita_servizio_punti_j_1 }}{% else %}{{ data.anzianita_servizio_punti_precedente_j_1 }}{% endif %}'
+          '#store': true
+      riga_anzianita_servizio_j_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità Di Servizio: DOCENTE SPECIALISTA'
+        processed_text_200:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p>Per il servizio di ruolo effettivamente prestato per un solo triennio senza soluzione di continuità, a partire dall’anno scolastico 92/93 fino all’anno scolastico 97/98, come docente "specialista" per l'insegnamento della lingua straniera</p>
+
+            <p><strong>Punti: 3</strong></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_si_no_j_1:
+          '#type': radios
+          '#title': Si/No
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#required': true
+          '#states':
+            disabled:
+              ':input[name="anzianita_servizio_verifica_ds_j_1"]':
+                checked: true
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        anzianita_servizio_punti_j_1:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.anzianita_servizio_si_no_j_1 == "si" %}{{ 3 }}{% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        anzianita_servizio_verifica_ds_j_1:
           '#type': checkbox
           '#title': 'Verifica DS'
           '#title_display': invisible
@@ -2362,6 +2594,7 @@ elements: |-
               {% set punti = punti * 2 %}
             {% endif %}
             {{ punti }}
+          '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_d_1:
           '#type': checkbox
@@ -2756,9 +2989,9 @@ elements: |-
           '#title_display': invisible
           '#private': true
           '#access_create_roles':
-          - amministratore
-          - capo_redattore
-          - dirigente_scolastico
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
           '#access_update_roles':
             - amministratore
             - capo_redattore
@@ -3183,7 +3416,7 @@ elements: |-
         - title: 'Verifica D.S.'
           attributes:
             style: 'vertical-align: inherit; text-align: center'
-      '#caption': 'Titoli [A - B - C - D - E - F - H - M - N]'
+      '#caption': 'Titoli [A - B - C - D - E - F - G - H - M - N]'
       '#sticky': true
       riga_titoli_generali_anno_precedente_a:
         '#type': webform_table_row
@@ -3364,7 +3597,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': "{{ 5 * data.titoli_generali_quantita_b|default(0)|float }}"
+          '#template': '{{ data.titoli_generali_quantita_b|render|striptags|trim|default(0)|float * 5 }}'
           '#store': true
         titoli_generali_verifica_ds_b:
           '#type': checkbox
@@ -3773,6 +4006,104 @@ elements: |-
             - dirigente_scolastico
           '#access_view_roles':
             - authenticated
+      riga_titoli_generali_anno_precedente_g:
+        '#type': webform_table_row
+        '#title': 'Dichiarazione Anno Precedente ( G )'
+        titoli_generali_dichiarazione_precedente_g:
+          '#type': textfield
+          '#title': 'Dichiarazione Anno Precedente ( G )'
+          '#description': 'Compilato in automatico dopo la verifica del D.S.'
+          '#help_title': Altro
+          '#help': 'Compilato in automatico dopo la verifica del D.S.'
+          '#title_display': none
+          '#autocomplete': ''
+          '#readonly': true
+          '#default_value': 'Dichiarazione Anno Precedente ( G )'
+          '#format_items': comma
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+        titoli_generali_si_no_precedente_g:
+          '#type': webform_computed_twig
+          '#title': Si/No
+          '#description': si/no
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_g == 1 %}{{ data.titoli_generali_si_no_g }}{% else %}{{ data.titoli_generali_si_no_precedente_g }}{% endif %}'
+          '#store': true
+        titoli_generali_punti_precedente_g:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'vertical-align:inherit; text-align:center'
+          '#access_create_roles':
+            - authenticated
+          '#access_update_roles':
+            - authenticated
+          '#access_view_roles':
+            - authenticated
+          '#template': '{% if data.titoli_generali_verifica_ds_g == 1 %}{{ data.titoli_generali_punti_g }}{% else %}{{ data.titoli_generali_punti_precedente_g }}{% endif %}'
+          '#store': true
+      riga_titoli_generali_g:
+        '#type': webform_table_row
+        '#title': 'Titoli Generali ( G )'
+        titoli_generali_processed_text_02_g:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>G)</strong> Per la frequenza del corso di aggiornamento-formazione linguistica e glottodidattica compreso nei piani attuati dal ministero, con la collaborazione degli Uffici scolastici territorialmente competenti, delle istituzioni scolastiche, degli istituti di Ricerca (ex IRRSAE-IRRE, CEDE, BDP oggi, rispettivamente, INVALSI, INDIRE) e dell'università</p>
+
+            <p><b>Punti: 1</b></p>
+          '#format': bootstrap_italia_2
+        titoli_generali_si_no_g:
+          '#type': radios
+          '#title': 'SI / No'
+          '#title_display': none
+          '#options':
+            si: si
+            'no': 'no'
+          '#options_display': side_by_side
+          '#default_value': 'no'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+        titoli_generali_punti_g:
+          '#type': webform_computed_twig
+          '#title': Punti
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.titoli_generali_si_no_g == "si" %}{{ 1 }} {% else %}{{ 0 }}{% endif %}'
+          '#store': true
+        titoli_generali_verifica_ds_g:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
       riga_titoli_generali_anno_precedente_h:
         '#type': webform_table_row
         '#title': 'Dichiarazione Anno Precedente ( H )'
@@ -4106,10 +4437,13 @@ elements: |-
         {% set tot_c_2   = data.anzianita_servizio_punti_c_2|render|striptags|trim|default(0)|float %}
         {% set tot_c_2_1 = data.anzianita_servizio_punti_c_2_1|render|striptags|trim|default(0)|float %}
         {% set tot_c_2_2 = data.anzianita_servizio_punti_c_2_2|render|striptags|trim|default(0)|float %}
+        {% set tot_k_1   = data.anzianita_servizio_punti_k_1|render|striptags|trim|default(0)|float %}
+        {% set tot_j_1   = data.anzianita_servizio_punti_j_1|render|striptags|trim|default(0)|float %}
         {% set tot_d_1   = data.anzianita_servizio_punti_d_1|render|striptags|trim|default(0)|float %}
         {% set tot_d_1_1 = data.anzianita_servizio_punti_d_1_1|render|striptags|trim|default(0)|float %}
         {% set tot_e_1   = data.anzianita_servizio_punti_e_1|render|striptags|trim|default(0)|float %}
-        {{ tot_a + tot_a_1 + tot_a_2 + tot_a_3 + tot_a_4 + tot_b_1 + tot_b_1_1 + tot_b_1_2 + tot_b_2 + tot_b_2_1 + tot_b_2_2 + tot_b_3 + tot_b_3_1 + tot_b_3_2 + tot_c_1 + tot_c_1_1 + tot_c_1_2 + tot_c_2 + tot_c_2_1 + tot_c_2_2 + tot_d_1 + tot_d_1_1 + tot_e_1 }}
+        {{ tot_a + tot_a_1 + tot_a_2 + tot_a_3 + tot_a_4 + tot_b_1 + tot_b_1_1 + tot_b_1_2 + tot_b_2 + tot_b_2_1 + tot_b_2_2 + tot_b_3 + tot_b_3_1 + tot_b_3_2 + tot_c_1 + tot_c_1_1 + tot_c_1_2 + tot_c_2 + tot_c_2_1 + tot_c_2_2 + tot_k_1 + tot_j_1 + tot_d_1 + tot_d_1_1 + tot_e_1 }}
+      '#whitespace': trim
       '#store': true
     totale_esigenze_famiglia:
       '#type': webform_computed_twig
@@ -4122,6 +4456,7 @@ elements: |-
         {% set tot_d = data.esigenze_famiglia_punti_d|render|striptags|trim|default(0)|float %}
         {% set tot_e = data.esigenze_famiglia_punti_e|render|striptags|trim|default(0)|float %}
         {{ tot_a + tot_b + tot_c + tot_d + tot_e }}
+      '#whitespace': trim
       '#store': true
     horizontal_rule:
       '#type': webform_horizontal_rule
@@ -4130,7 +4465,7 @@ elements: |-
       '#align_items': center
       sub_totale_titoli_generali:
         '#type': webform_computed_twig
-        '#title': 'Sub Totale Titoli Generali (B - C - D - E - F - M - N )'
+        '#title': 'Sub Totale Titoli Generali (B - C - D - E - F - G - M - N )'
         '#description': '(MAX 10 punti) Compilato/Aggiornato in automatico e visibile in Anteprima'
         '#template': |-
           {% set tot_b = data.titoli_generali_punti_b|render|striptags|trim|default(0)|float %}
@@ -4138,9 +4473,11 @@ elements: |-
           {% set tot_d = data.titoli_generali_punti_d|render|striptags|trim|default(0)|float %}
           {% set tot_e = data.titoli_generali_punti_e|render|striptags|trim|default(0)|float %}
           {% set tot_f = data.titoli_generali_punti_f|render|striptags|trim|default(0)|float %}
+          {% set tot_g = data.titoli_generali_punti_g|render|striptags|trim|default(0)|float %}
           {% set tot_m = data.titoli_generali_punti_m|render|striptags|trim|default(0)|float %}
           {% set tot_n = data.titoli_generali_punti_n|render|striptags|trim|default(0)|float %}
-          {{ tot_b + tot_c + tot_d + tot_e + tot_f + tot_m + tot_n }}
+          {{ tot_b + tot_c + tot_d + tot_e + tot_f + tot_g + tot_m + tot_n }}
+        '#whitespace': trim
         '#store': true
       sub_totale_titoli_generali_a_h_:
         '#type': webform_computed_twig
@@ -4150,6 +4487,7 @@ elements: |-
           {% set tot_a = data.titoli_generali_punti_a|render|striptags|trim|default(0)|float %}
           {% set tot_h = data.titoli_generali_punti_h|render|striptags|trim|default(0)|float %}
           {{ tot_a + tot_h }}
+        '#whitespace': trim
         '#store': true
       totale_titoli_generali:
         '#type': webform_computed_twig
@@ -4159,16 +4497,17 @@ elements: |-
           {% set tot_sub = data.sub_totale_titoli_generali|render|striptags|trim|default(0)|float %}
           {% set tot_a_h = data.sub_totale_titoli_generali_a_h_|render|striptags|trim|default(0)|float %}
           {% if tot_sub > 10 %}{{ 10 + tot_a_h }}{% else %}{{ tot_sub + tot_a_h }}{% endif %}
+        '#whitespace': trim
         '#store': true
     horizontal_rule_02:
       '#type': webform_horizontal_rule
     totale_punteggio:
       '#type': number
       '#title': 'Totale Punteggio'
+      '#access': false
       '#autocomplete': ''
       '#readonly': true
       '#default_value': '0'
-      '#format_items': comma
       '#min': 0
     totale_punteggio_graduatoria:
       '#type': webform_computed_twig
@@ -4179,6 +4518,7 @@ elements: |-
         {% set tot_famiglia  = data.totale_esigenze_famiglia|render|striptags|trim|default(0)|float %}
         {% set tot_titoli    = data.totale_titoli_generali|render|striptags|trim|default(0)|float %}
         {{ tot_anzianita + tot_famiglia + tot_titoli }}
+      '#whitespace': trim
       '#store': true
     verifica_graduatoria_ds:
       '#type': radios
@@ -4192,12 +4532,11 @@ elements: |-
       '#private': true
       '#access_create_roles':
         - amministratore
-        - capo_redattore
+        - redattore
         - dirigente_scolastico
+        - direttore_amministrativo_dsga_
       '#access_update_roles':
-        - amministratore
-        - capo_redattore
-        - dirigente_scolastico
+        - authenticated
       '#access_view_roles':
         - authenticated
   actions:
@@ -4399,7 +4738,7 @@ access:
   create:
     roles:
       - amministratore
-      - doc_secondaria
+      - doc_primaria
       - redattore
       - dirigente_scolastico
       - direttore_amministrativo_dsga_
@@ -4456,9 +4795,9 @@ access:
 handlers:
   e_mail:
     id: email
-    handler_id: e_mail
     label: E-mail
     notes: 'Invio Mail al Docente dopo aver compilato la graduatoria'
+    handler_id: e_mail
     status: true
     conditions: {  }
     weight: 0
@@ -4503,9 +4842,9 @@ handlers:
       debug: false
   e_mail_graduatoria_confermata:
     id: email
-    handler_id: e_mail_graduatoria_confermata
     label: 'E-mail: Graduatoria CONFERMATA'
     notes: 'Invio Mail al Docente dopo aver CONFERMATO LA GRADUATORIA'
+    handler_id: e_mail_graduatoria_confermata
     status: true
     conditions:
       enabled:
@@ -4544,9 +4883,9 @@ handlers:
       debug: false
   calcolo_totale_punteggio:
     id: totale_punteggio_handler
-    handler_id: calcolo_totale_punteggio
     label: 'Calcolo Totale Punteggio'
     notes: ''
+    handler_id: calcolo_totale_punteggio
     status: true
     conditions: {  }
     weight: 3
