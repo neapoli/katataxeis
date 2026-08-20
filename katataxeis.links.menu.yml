@@ -8,6 +8,27 @@ katataxeis.graduatoria_ata_compila:
   menu_name: azioni-principali
   weight: 0
 
+katataxeis.graduatoria_primaria_compila:
+  title: 'Graduatoria Primaria: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Infanzia."
+  url: 'internal:/form/graduatoria-interna-docenti-inf'
+  menu_name: azioni-principali
+  weight: 0
+
+katataxeis.graduatoria_infanzia_compila:
+  title: 'Graduatoria Infanzia: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Primara."
+  url: 'internal:/form/graduatoria-interna-docenti-pri'
+  menu_name: azioni-principali
+  weight: 0
+
+katataxeis.graduatoria_sec_primogrado_compila:
+  title: 'Graduatoria Secondaria I° Grado: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Sec. primo grado."
+  url: 'internal:/form/graduatoria-interna-docenti-scu'
+  menu_name: azioni-principali
+  weight: 0
+
 katataxeis.graduatorie_interne_controllo:
   title: 'Graduatorie Interne: controllo'
   description: "Vista per la segreteria per il controllo delle graduatorie interne."

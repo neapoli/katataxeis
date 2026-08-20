@@ -120,7 +120,7 @@ function katataxeis_uninstall() {
 /**
  * Aggiunge le voci delle graduatorie al menù "Azioni principali".
  */
-function katataxeis_update_10001() {
+function katataxeis_update_10002() {
   $deleted = _katataxeis_delete_manual_menu_links();
 
   // Ricostruisce l'albero dei menù per rendere subito visibili le nuove voci.
