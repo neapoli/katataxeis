@@ -9,6 +9,7 @@ dependencies:
     - webform.webform.graduatoria_interna_ata
     - webform.webform.graduatoria_interna_docenti_inf
     - webform.webform.graduatoria_interna_docenti_pri
+    - webform.webform.graduatoria_interna_docenti_scu
   module:
     - user
     - webform
@@ -122,6 +123,7 @@ display:
             graduatoria_interna_ata: graduatoria_interna_ata
             graduatoria_interna_docenti_inf: graduatoria_interna_docenti_inf
             graduatoria_interna_docenti_pri: graduatoria_interna_docenti_pri
+            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
           group: 1
           exposed: false
           expose:

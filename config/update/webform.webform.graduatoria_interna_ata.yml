@@ -795,19 +795,17 @@ elements: |-
             style: 'text-align:center'
           '#template': |-
             {% set anni = data.anzianita_servizio_anni_d|default(0)|float %}
-            {% if data.anzianita_servizio_isole_d == "no" %}
-              {% if anni <= 5 %}
-                 {{ anni * 8 }}
-              {% else %}
-                 {{ 40 + (anni - 5) * 12 }}
-              {% endif %}
+            {# Punteggio base: 8 punti l'anno entro il quinquennio, 12 oltre #}
+            {% if anni <= 5 %}
+              {% set punti = anni * 8 %}
             {% else %}
-              {% if anni <= 5 %}
-                 {{ anni * 16 }}
-              {% else %}
-                 {{ 80 + (anni - 5) * 24 }}
-              {% endif %}
+              {% set punti = 40 + (anni - 5) * 12 %}
             {% endif %}
+            {# Per il servizio prestato nelle piccole isole il punteggio raddoppia #}
+            {% if data.anzianita_servizio_isole_d == "si" %}
+              {% set punti = punti * 2 %}
+            {% endif %}
+            {{ punti }}
           '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_d:
@@ -1135,7 +1133,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.esigenze_famiglia_si_no_a == "no" %}{{ 0 }}{% else %}{{ 24 }}{% endif %}'
+          '#template': '{% if data.esigenze_famiglia_si_no_a == "si" %}{{ 24 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         esigenze_famiglia_verifica_ds_a:
           '#type': checkbox
@@ -1431,7 +1429,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.esigenze_famiglia_si_no_d == "no" %}{{ 0 }}{% else %}{{ 24 }}{% endif %}'
+          '#template': '{% if data.esigenze_famiglia_si_no_d == "si" %}{{ 24 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         esigenze_famiglia_verifica_ds_d:
           '#type': checkbox

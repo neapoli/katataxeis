@@ -2755,7 +2755,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.esigenze_famiglia_si_no_a == "no" %}{{ 0 }}{% else %}{{ 6 }}{% endif %}'
+          '#template': '{% if data.esigenze_famiglia_si_no_a == "si" %}{{ 6 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         esigenze_famiglia_verifica_ds_a:
           '#type': checkbox
@@ -3047,7 +3047,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.esigenze_famiglia_si_no_d == "no" %}{{ 0 }}{% else %}{{ 6 }}{% endif %}'
+          '#template': '{% if data.esigenze_famiglia_si_no_d == "si" %}{{ 6 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         esigenze_famiglia_verifica_ds_d:
           '#type': checkbox
