@@ -4,6 +4,9 @@ dependencies:
   module:
     - katataxeis
     - webform_entity_print
+  enforced:
+    module:
+      - katataxeis_secondo_grado
 third_party_settings:
   webform_entity_print:
     template:
@@ -21,8 +24,8 @@ weight: 0
 uid: 1
 template: false
 archive: false
-id: graduatoria_interna_docenti_scu
-title: '- Graduatoria Interna Docenti Scuola Secondaria I Grado -'
+id: graduatoria_interna_docenti_sc2
+title: '- Graduatoria Interna Docenti Scuola Secondaria II Grado -'
 description: "<p>Tipo di form da utilizzare per creare la graduatoria interna DOCENTI dell'istituto</p>"
 categories: {  }
 elements: |-
@@ -105,21 +108,15 @@ elements: |-
         '#disabled': true
         '#options': grado_scuola
         '#required': true
-        '#default_value': 'Secondaria 1° Grado'
+        '#default_value': 'Secondaria 2° Grado'
     flex_datianagrafici3:
       '#type': webform_flexbox
       posto_secondaria:
         '#type': select
-        '#title': 'Su Posto (Secondaria I Grado)'
+        '#title': 'Su Posto (Secondaria II Grado)'
         '#description': 'Selezionare tipologia di posto'
-        '#options': tipologia_posto_secondaria_1degg
-        '#states':
-          visible:
-            ':input[name="grado_scuola"]':
-              value: 'Secondaria 1° Grado'
-          required:
-            ':input[name="grado_scuola"]':
-              value: 'Secondaria 1° Grado'
+        '#options': tipologia_posto_secondaria_2degg
+        '#required': true
         '#access_create_roles':
           - authenticated
         '#access_update_roles':
@@ -129,7 +126,7 @@ elements: |-
       classe_di_concorso:
         '#type': select
         '#title': 'Classe di Concorso'
-        '#options': classi_di_concorso
+        '#options': materie_miur
         '#required': true
     e_mail:
       '#type': email
@@ -144,7 +141,7 @@ elements: |-
       '#type': processed_text
       '#display_on': both
       '#text': |
-        <p class="text-align-center">ai fini della <strong>compilazione della graduatoria d’istituto</strong> prevista dal CCNL vigente</p>
+        <p class="text-align-center">ai fini della <strong>compilazione della graduatoria d’istituto</strong> prevista dal CCNI vigente</p>
       '#format': bootstrap_italia_2
     anno_scolastico:
       '#type': select
@@ -155,7 +152,6 @@ elements: |-
       '#unique': true
       '#unique_user': true
       '#unique_error': "Graduatoria già inserita per l'Anno Scolastico selezionato"
-      '#default_value': 2025/2026
     dichiara:
       '#type': checkbox
       '#title': 'Dichiara di essere consapevole delle responsabilità civili e penali cui va incontro in caso di dichiarazione non corrispondente al vero, ai sensi del DPR 28.12.2000 n. 445, così come modificato ed integrato dall’art. 15 della legge 16.1.2003'
@@ -203,7 +199,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'Anzianità di Servizio: RUOLO [A - A1 - A2 - A3 - A4]'
-      '#sticky': true
       riga_anzianita_servizio_anno_precedente_a:
         '#type': webform_table_row
         '#title': 'Anno Precedente ( A )'
@@ -212,14 +207,14 @@ elements: |-
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_a:
           '#type': textfield
-          '#title': 'A - I GRADO RUOLO: Dichiarazione Anno Precedente ( A )'
+          '#title': 'A - II GRADO RUOLO: Dichiarazione Anno Precedente ( A )'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A - I GRADO RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'A - II GRADO RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -253,11 +248,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a:
         '#type': webform_table_row
-        '#title': 'A - I GRADO RUOLO: Anzianità di Servizio'
+        '#title': 'A - II GRADO RUOLO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_a:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>A)</strong> Per ogni anno di servizio di ruolo nella I GRADO (compresi gli anni di servizio prestati con la sola nomina giuridica coperti da una supplenza di almeno 180 gg. nel grado di appartenenza) COMPLESSIVAMENTE svolti su posto comune e/o sostegno (escluso l’a.s. in corso)</p><p><strong>Punti: 6</strong> (Comune)</p>'
+          '#text': |
+            <p><strong>A)</strong> Per ogni anno di servizio di ruolo NELLA SECONDARIA DI II GRADO (compresi gli anni di servizio prestati con la sola nomina giuridica coperti da una supplenza di almeno 180 gg. nel grado di appartenenza) COMPLESSIVAMENTE svolti su posto comune e/o sostegno (escluso l'a.s. in corso)</p>
+
+            <p><strong>Punti: 6</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a:
           '#type': number
@@ -300,20 +298,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_1:
         '#type': webform_table_row
-        '#title': 'A 1 - I GRADO RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'A 1 - II GRADO RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_a_1:
           '#type': textfield
-          '#title': 'A 1 - I GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'A 1 - II GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 1 - I GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'A 1 - II GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -347,7 +345,7 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_1:
         '#type': webform_table_row
-        '#title': 'A 1 - I GRADO RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'A 1 - II GRADO RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
             ':input[name="posto_secondaria"]':
@@ -355,7 +353,10 @@ elements: |-
         anzianita_servizio_processed_text_02_a_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>A 1)</strong> Per ogni anno di servizio di ruolo nella SECONDARIA di I GRADO prestati ESCLUSIVAMENTE su posto di sostegno (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio) </p><p><strong>Punti: 6</strong> (Sostegno)</p>'
+          '#text': |
+            <p><strong>A 1)</strong> Per ogni anno di servizio di ruolo NELLA SECONDARIA DI II GRADO prestato ESCLUSIVAMENTE su posto di sostegno (ripetere quegli anni, ai fini del raddoppio del punteggio).</p>
+
+            <p><strong>Punti: 6</strong> per ogni anno, solo per i docenti titolari su posto di sostegno in possesso del titolo di specializzazione (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=93" target="_blank" rel="noopener">nota 1</a> del CCNI)</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a_1:
           '#type': number
@@ -379,7 +380,7 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': '{{ 6 * data.anzianita_servizio_anni_a_1|default(0)|float }}'
+          '#template': '{% if data.posto_secondaria == "Sostegno" %}{{ 6 * data.anzianita_servizio_anni_a_1|default(0)|float }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         anzianita_servizio_verifica_ds_a_1:
           '#type': checkbox
@@ -398,17 +399,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_2:
         '#type': webform_table_row
-        '#title': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
+        '#title': 'A 2 - II GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
         anzianita_servizio_dichiarazione_precedente_a_2:
           '#type': textfield
-          '#title': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'A 2 - II GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'A 2 - II GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -442,14 +443,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_2:
         '#type': webform_table_row
-        '#title': 'A 2 - I GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anzianità di Servizio'
+        '#title': 'A 2 - II GRADO RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_a_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A 2)</strong>&nbsp;Per ogni anno di servizio di RUOLO nella I GRADO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>A 2)</strong> Per ogni anno di servizio di ruolo NELLA SECONDARIA DI II GRADO <strong>effettivamente prestato</strong> in scuole o istituti situati nelle <strong>piccole isole</strong> o nei <strong>paesi in via di sviluppo</strong> (ripetere quegli anni, una sola volta, ai fini del raddoppio del punteggio).<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=93" target="_blank" rel="noopener">1</a>, <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2 e 3</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 6&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 6</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a_2:
           '#type': number
@@ -490,17 +491,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_3:
         '#type': webform_table_row
-        '#title': 'A 3 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
+        '#title': 'A 3 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_a_3:
           '#type': textfield
-          '#title': 'A 3 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#title': 'A 3 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 3 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#default_value': 'A 3 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -534,14 +535,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_3:
         '#type': webform_table_row
-        '#title': 'A 3 - I GRADO RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
+        '#title': 'A 3 - II GRADO RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_a_3:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A 3)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>NON COPERTI</strong> da alcuna supplenza (o inferiore ai 180 gg.) o <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta in altro ruolo/grado rispetto a quello della SECONDARIA di I GRADO</p>
+            <p><strong>A 3)</strong> Per ogni anno di servizio derivante dalla sola nomina giuridica <strong>NON COPERTO</strong> da alcuna supplenza (o inferiore ai 180 gg.) o <strong>COPERTO</strong> da una supplenza di almeno 180 gg. ma svolta in altro ruolo/grado rispetto a quello della SECONDARIA DI II GRADO (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
 
-            <p><strong>Punti: 3&nbsp;</strong></p>
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a_3:
           '#type': number
@@ -582,17 +583,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_a_4:
         '#type': webform_table_row
-        '#title': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
+        '#title': 'A 4 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_a_4:
           '#type': textfield
-          '#title': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#title': 'A 4 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
+          '#default_value': 'A 4 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -626,7 +627,7 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_a_4:
         '#type': webform_table_row
-        '#title': 'A 4 - I GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
+        '#title': 'A 4 - II GRADO RUOLO: RETROATTIVITÀ GIURIDICA: Anzianità di Servizio'
         '#states':
           enabled:
             ':input[name="posto_secondaria"]':
@@ -635,9 +636,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A 4)</strong> Per ogni anno di servizio derivanti dalla sola nomina giuridica <strong>COPERTI</strong> da una supplenza di almeno 180 gg. ma svolta su SOSTEGNO e in altro ruolo/grado rispetto a quello della SECONDARIA di I GRADO(ai fini del radoppio del punteggio)</p>
+            <p><strong>A 4)</strong> Per ogni anno di servizio derivante dalla sola nomina giuridica <strong>coperto da una supplenza di almeno 180 gg. svolta su SOSTEGNO</strong> in altro ruolo/grado rispetto a quello della SECONDARIA DI II GRADO, con il titolo di specializzazione (ripetere quegli anni, ai fini del raddoppio del punteggio). Solo per i docenti titolari su posto di sostegno (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
 
-            <p><strong>Punti: 3&nbsp;</strong></p>
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_a_4:
           '#type': number
@@ -659,7 +660,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{{ 3 * data.anzianita_servizio_anni_a_4|default(0)|float }}'
+          '#template': '{% if data.posto_secondaria == "Sostegno" %}{{ 3 * data.anzianita_servizio_anni_a_4|default(0)|float }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         anzianita_servizio_verifica_ds_a_4:
           '#type': checkbox
@@ -706,23 +707,22 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'Anzianità di Servizio: PRE-RUOLO [B1 - B1.1 - B1.2 - B2 - B2.1 - B2.2 - B3 - B3.1 - B3.2]'
-      '#sticky': true
       riga_anzianita_servizio_anno_precedente_b_1:
         '#type': webform_table_row
-        '#title': 'B 1 - I GRADO PRE-RUOLO: Anno Precedente'
+        '#title': 'B 1 - II GRADO PRE-RUOLO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_1:
           '#type': textfield
-          '#title': 'B 1 - I GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'B 1 - II GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 1 - I GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 1 - II GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -756,15 +756,18 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_1:
         '#type': webform_table_row
-        '#title': 'B 1 - I GRADO PRE-RUOLO : Anzianità di Servizio'
+        '#title': 'B 1 - II GRADO PRE-RUOLO : Anzianità di Servizio'
         anzianita_servizio_processed_text_02_b_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 1)</strong> Per ogni anno di servizio di PRE-RUOLO nella I GRADO svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 5</strong></p>'
+          '#text': |
+            <p><strong>B 1)</strong> Per ogni anno di servizio di pre-ruolo NELLA SECONDARIA DI II GRADO <strong>nel proprio ruolo</strong> (laureati o diplomati), svolto COMPLESSIVAMENTE su posto comune e/o sostegno (almeno 180 giorni, oppure dal 1° febbraio fino al termine delle operazioni di scrutinio finale). Il servizio nell'altro ruolo (per esempio da insegnante tecnico-pratico per chi ora è nel ruolo dei laureati) va nella voce C 3.</p>
+
+            <p><strong>Punti per ogni anno:</strong> 4 per l'a.s. 2025/26, 5 per il 2026/27, 6 per il 2027/28: il calcolo usa l'anno scolastico scelto in cima alla scheda (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_1:
           '#type': number
-          '#title': 'Anni ( B 1 - I GRADO PRE-RUOLO )'
+          '#title': 'Anni ( B 1 - II GRADO PRE-RUOLO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -784,7 +787,7 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': '{{ 5 * data.anzianita_servizio_anni_b_1|default(0)|float }}'
+          '#template': '{% set per_anno = {"2025/2026": 4, "2026/2027": 5, "2027/2028": 6} %}{% set anno = data.anno_scolastico|default("") %}{% set molt = per_anno[anno] is defined ? per_anno[anno] : (anno < "2025/2026" ? 4 : 6) %}{{ molt * data.anzianita_servizio_anni_b_1|default(0)|float }}'
           '#store': true
         anzianita_servizio_verifica_ds_b_1:
           '#type': checkbox
@@ -803,20 +806,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_1_1:
         '#type': webform_table_row
-        '#title': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'B 1.1 - II GRADO PRE-RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_1_1:
           '#type': textfield
-          '#title': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'B 1.1 - II GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 1.1 - II GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -850,7 +853,7 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_1_1:
         '#type': webform_table_row
-        '#title': 'B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'B 1.1 - II GRADO PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
             ':input[name="posto_secondaria"]':
@@ -858,11 +861,14 @@ elements: |-
         anzianita_servizio_processed_text_02_b_1_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 1.1)</strong> Per ogni anno di servizio PRE-RUOLO nella I GRADO prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 5</strong></p>'
+          '#text': |
+            <p><strong>B 1.1)</strong> Per ogni anno di servizio di pre-ruolo NELLA SECONDARIA DI II GRADO prestato ESCLUSIVAMENTE su posto di sostegno <strong>con il titolo di specializzazione</strong> (ripetere quegli anni, ai fini del raddoppio del punteggio). Solo per i docenti titolari su posto di sostegno.</p>
+
+            <p><strong>Punti per ogni anno:</strong> 4 per l'a.s. 2025/26, 5 per il 2026/27, 6 per il 2027/28: il calcolo usa l'anno scolastico scelto in cima alla scheda (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_1_1:
           '#type': number
-          '#title': 'Anni ( B 1.1 - I GRADO PRE-RUOLO: SOSTEGNO )'
+          '#title': 'Anni ( B 1.1 - II GRADO PRE-RUOLO: SOSTEGNO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -882,7 +888,7 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': '{{ 5 * data.anzianita_servizio_anni_b_1_1|default(0)|float }}'
+          '#template': '{% set per_anno = {"2025/2026": 4, "2026/2027": 5, "2027/2028": 6} %}{% set anno = data.anno_scolastico|default("") %}{% set molt = per_anno[anno] is defined ? per_anno[anno] : (anno < "2025/2026" ? 4 : 6) %}{% if data.posto_secondaria == "Sostegno" %}{{ molt * data.anzianita_servizio_anni_b_1_1|default(0)|float }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         anzianita_servizio_verifica_ds_b_1_1:
           '#type': checkbox
@@ -901,17 +907,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_1_2:
         '#type': webform_table_row
-        '#title': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'B 1.2 - II GRADO PRE-RUOLO: PICCOLE ISOLE: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_1_2:
           '#type': textfield
-          '#title': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'B 1.2 - II GRADO PRE-RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 1.2 - II GRADO PRE-RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -945,14 +951,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_1_2:
         '#type': webform_table_row
-        '#title': 'B 1.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO'
+        '#title': 'B 1.2 - II GRADO PRE-RUOLO: PICCOLE ISOLE'
         anzianita_servizio_processed_text_02_b_1_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 1.2)</strong> Per ogni anno di servizio PRE-RUOLO nella I GRADO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>B 1.2)</strong> Per ogni anno di servizio di pre-ruolo NELLA SECONDARIA DI II GRADO <strong>effettivamente prestato</strong> in scuole o istituti situati nelle <strong>piccole isole</strong> (ripetere quegli anni, ai fini del raddoppio del punteggio). Gli anni di ruolo vanno nella voce A 2.<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2, 3 e 4</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 5&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti per ogni anno:</strong> 4 per l'a.s. 2025/26, 5 per il 2026/27, 6 per il 2027/28: il calcolo usa l'anno scolastico scelto in cima alla scheda (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a>).</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_1_2:
           '#type': number
@@ -974,7 +980,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{{ 5 * data.anzianita_servizio_anni_b_1_2|default(0)|float }}'
+          '#template': '{% set per_anno = {"2025/2026": 4, "2026/2027": 5, "2027/2028": 6} %}{% set anno = data.anno_scolastico|default("") %}{% set molt = per_anno[anno] is defined ? per_anno[anno] : (anno < "2025/2026" ? 4 : 6) %}{{ molt * data.anzianita_servizio_anni_b_1_2|default(0)|float }}'
           '#store': true
         anzianita_servizio_verifica_ds_b_1_2:
           '#type': checkbox
@@ -993,20 +999,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_2:
         '#type': webform_table_row
-        '#title': 'B 2 - II GRADO PRE-RUOLO: Anno Precedente'
+        '#title': 'B 2 - I GRADO PRE-RUOLO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_2:
           '#type': textfield
-          '#title': 'B 2 - II GRADO RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'B 2 - I GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 2 - II GRADO RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 2 - I GRADO PRE-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1040,15 +1046,18 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_2:
         '#type': webform_table_row
-        '#title': 'B 2 - II GRADO RUOLO e PRE-RUOLO: Anzianità di Servizio'
+        '#title': 'B 2 - I GRADO PRE-RUOLO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_b_2:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 2)</strong> Indicare gli anni di servizio di RUOLO e PRE-RUOLO nella II GRADO svolti COMPLESSIVAMENTE su posto comune e/o sostegno. </p><p><strong>Punti: 3</strong></p>'
+          '#text': |
+            <p><strong>B 2)</strong> Anni di servizio di <strong>pre-ruolo</strong> nella SECONDARIA DI I GRADO, su posto comune e/o sostegno (almeno 180 giorni, oppure dal 1° febbraio fino al termine delle operazioni di scrutinio finale). Gli anni di ruolo nella secondaria di I grado vanno nella voce C 1.</p>
+
+            <p><strong>Punti: 3</strong> per ogni anno (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI)</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_2:
           '#type': number
-          '#title': 'Anni ( B 2 - II GRADO RUOLO e PRE-RUOLO )'
+          '#title': 'Anni ( B 2 - I GRADO PRE-RUOLO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1087,20 +1096,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_2_1:
         '#type': webform_table_row
-        '#title': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'B 2.1 - I GRADO PRE-RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_b_2_1:
           '#type': textfield
-          '#title': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'B 2.1 - I GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 2.1 - I GRADO PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1134,7 +1143,7 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_2_1:
         '#type': webform_table_row
-        '#title': 'B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'B 2.1 - I GRADO PRE-RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
             ':input[name="posto_secondaria"]':
@@ -1142,11 +1151,14 @@ elements: |-
         anzianita_servizio_processed_text_02_b_2_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>B 2.1)</strong> Indicare gli anni di servizio di RUOLO e PRE-RUOLO nella II GRADO prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 3</strong></p>'
+          '#text': |
+            <p><strong>B 2.1)</strong> Anni di servizio di <strong>pre-ruolo</strong> nella SECONDARIA DI I GRADO prestati <strong>su posto di sostegno con il titolo di specializzazione</strong>: vanno indicati anche nella voce B 2, qui si ripetono per il raddoppio del punteggio. Gli anni di ruolo su sostegno vanno nella voce C 1.1. Vale <strong>solo per i docenti titolari su posto di sostegno</strong> (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
+
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_2_1:
           '#type': number
-          '#title': 'Anni ( B 2.1 - II GRADO RUOLO e PRE-RUOLO: SOSTEGNO )'
+          '#title': 'Anni ( B 2.1 - I GRADO PRE-RUOLO: SOSTEGNO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1166,7 +1178,7 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': '{{ 3 * data.anzianita_servizio_anni_b_2_1|default(0)|float }}'
+          '#template': '{% if data.posto_secondaria == "Sostegno" %}{{ 3 * data.anzianita_servizio_anni_b_2_1|default(0)|float }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         anzianita_servizio_verifica_ds_b_2_1:
           '#type': checkbox
@@ -1185,17 +1197,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_2_2:
         '#type': webform_table_row
-        '#title': 'B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'B 2.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_2_2:
           '#type': textfield
-          '#title': 'B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'B 2.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 2.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1229,14 +1241,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_2_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio ( B 2.2 - II GRADO RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO )'
+        '#title': 'Anzianità di Servizio ( B 2.2 - I GRADO PRE-RUOLO: PICCOLE ISOLE )'
         anzianita_servizio_processed_text_02_b_2_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 2.2)</strong>&nbsp;Indicare gli anni di servizio di RUOLO e PRE-RUOLO prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>B 2.2)</strong> Anni di servizio di <strong>pre-ruolo</strong> nella SECONDARIA DI I GRADO <strong>effettivamente prestato</strong> in scuole o istituti situati nelle <strong>piccole isole</strong>: vanno indicati anche nella voce B 2, qui si ripetono per il raddoppio del punteggio. Gli anni di ruolo vanno nella voce C 1.2.<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2, 3 e 4</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 3&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_2_2:
           '#type': number
@@ -1277,17 +1289,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_3:
         '#type': webform_table_row
-        '#title': 'B 3 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: Anno Precedente'
+        '#title': 'B 3 - INFANZIA/PRIMARIA PRE-RUOLO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_3:
           '#type': textfield
-          '#title': 'B 3 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'B 3 - INFANZIA/PRIMARIA PRE-RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 3 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 3 - INFANZIA/PRIMARIA PRE-RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1326,10 +1338,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 3) </strong>Per ogni anno di servizio di RUOLO e PRE-RUOLO nella INFANZIA/PRIMARIA svolti COMPLESSIVAMENTE su posto comune e/o sostegno.</p>
+            <p><strong>B 3)</strong> Anni di servizio di <strong>pre-ruolo</strong> nella SCUOLA DELL'INFANZIA e/o PRIMARIA, su posto comune e/o di sostegno (almeno 180 giorni, oppure dal 1° febbraio fino al termine delle operazioni di scrutinio finale o, per l'infanzia, delle attività educative). Gli anni di ruolo nell'infanzia e nella primaria vanno nella voce C 2.</p>
 
-            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
-            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+            <p><strong>Punti: 3</strong> per ciascuno dei primi 4 anni, <strong>2</strong> per ogni anno successivo.<br><small>I primi 4 anni si contano insieme a quelli di ruolo della voce C 2 (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</small></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_3:
           '#type': number
@@ -1379,17 +1390,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_3_1:
         '#type': webform_table_row
-        '#title': 'B 3.1 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'B 3.1 - INFANZIA/PRIMARIA PRE-RUOLO: SOSTEGNO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_3_1:
           '#type': textfield
-          '#title': 'B 3.1 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'B 3.1 - INFANZIA/PRIMARIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 3.1 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 3.1 - INFANZIA/PRIMARIA PRE-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1432,10 +1443,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 3.1) </strong>Per ogni anno di servizio RUOLO e PRE-RUOLO nella INFANZIA/PRIMARIA prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
+            <p><strong>B 3.1)</strong> Anni di servizio di pre-ruolo nella SCUOLA DELL'INFANZIA e/o PRIMARIA prestati <strong>su posto di sostegno con il titolo di specializzazione</strong>: vanno indicati anche nella voce B 3, qui si ripetono per il raddoppio del punteggio. Vale <strong>solo per i docenti titolari su posto di sostegno</strong> (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
 
-            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
-            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+            <p><strong>Punti: 3</strong> per ciascuno dei primi 4 anni, <strong>2</strong> per ogni anno successivo. I primi 4 anni si contano insieme a quelli di ruolo della voce C 2.1.<br><small>Se gli anni di servizio nell'infanzia e nella primaria (B 3 e C 2) sono più di 4, rispondere alla domanda dopo la voce C 2.1: quanti anni di sostegno rientrano nei primi 4.</small></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_3_1:
           '#type': number
@@ -1460,11 +1470,16 @@ elements: |-
           '#label_attributes':
             style: 'text-align:center'
           '#template': |-
-            {% set anni = data.anzianita_servizio_anni_b_3_1|default(0)|float %}
-            {% if anni <= 4 %}
-               {{ anni * 3 }}
+            {# Raddoppio per il sostegno: 3 punti per gli anni fra i primi 4 nell'infanzia e nella primaria (B 3 + C 2), 2 per gli altri. #}
+            {% set b31 = data.anzianita_servizio_anni_b_3_1|default(0)|float %}
+            {% set c21 = data.anzianita_servizio_anni_c_2_1|default(0)|float %}
+            {% set altro = data.anzianita_servizio_anni_b_3|default(0)|float + data.anzianita_servizio_anni_c_2|default(0)|float %}
+            {% set primi = altro <= 4 ? b31 + c21 : min(data.anzianita_servizio_sostegno_primi_4_anni|default(0)|float, 4, b31 + c21) %}
+            {% if data.posto_secondaria != "Sostegno" %}
+               {{ 0 }}
             {% else %}
-               {{ 12 + (anni - 4) * 2 }}
+            {% set k = min(primi, b31) %}
+            {{ 3 * k + 2 * (b31 - k) }}
             {% endif %}
           '#whitespace': trim
           '#store': true
@@ -1485,17 +1500,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_b_3_2:
         '#type': webform_table_row
-        '#title': 'B 3.2 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'B 3.2 - INFANZIA/PRIMARIA PRE-RUOLO: PICCOLE ISOLE: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_b_3_2:
           '#type': textfield
-          '#title': 'B 3.2 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'B 3.2 - INFANZIA/PRIMARIA PRE-RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'B 3.2 - INFANZIA/PRIMARIA RUOLO e PRE-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'B 3.2 - INFANZIA/PRIMARIA PRE-RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1529,14 +1544,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_b_3_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (B 3.2 - INFANZIA/PRIMARIA: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO)'
+        '#title': 'Anzianità di Servizio (B 3.2 - INFANZIA/PRIMARIA: PICCOLE ISOLE)'
         anzianita_servizio_processed_text_02_b_3_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B 3.2)</strong>&nbsp;Per ogni anno di servizio di RUOLO e PRE-RUOLO nella INFANZIA/PRIMARIA prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</p>
-            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
-            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+            <p><strong>B 3.2)</strong> Anni di servizio di pre-ruolo nella SCUOLA DELL'INFANZIA e/o PRIMARIA <strong>effettivamente prestato</strong> in scuole o istituti situati nelle <strong>piccole isole</strong>: vanno indicati anche nella voce B 3, qui si ripetono per il raddoppio del punteggio. Gli anni di ruolo vanno nella voce C 2.2.<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2, 3 e 4</a> del CCNI).</small></p>
+
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_b_3_2:
           '#type': number
@@ -1560,13 +1575,7 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': |-
-            {% set anni = data.anzianita_servizio_anni_b_3_2|default(0)|float %}
-            {% if anni <= 4 %}
-               {{ anni * 3 }}
-            {% else %}
-               {{ 12 + (anni - 4) * 2 }}
-            {% endif %}
+          '#template': '{{ 3 * data.anzianita_servizio_anni_b_3_2|default(0)|float }}'
           '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_b_3_2:
@@ -1613,24 +1622,23 @@ elements: |-
         - title: 'Verifica D.S.'
           attributes:
             style: 'vertical-align: inherit; text-align: center'
-      '#caption': 'Anzianità di Servizio: ALTRO-RUOLO [C1 - C1.1 - C1.2 - C2 - C2.1 - C2.2]'
-      '#sticky': true
+      '#caption': 'Anzianità di Servizio: ALTRO-RUOLO [C1 - C1.1 - C1.2 - C2 - C2.1 - C2.2 - C3 - C3.1 - C3.2]'
       riga_anzianita_servizio_anno_precedente_c_1:
         '#type': webform_table_row
-        '#title': 'C 1 - II GRADO ALTRO-RUOLO: Anno Precedente'
+        '#title': 'C 1 - I GRADO RUOLO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_c_1:
           '#type': textfield
-          '#title': 'C 1 - II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'C 1 - I GRADO RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 1 - II GRADO ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 1 - I GRADO RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1664,15 +1672,18 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_1:
         '#type': webform_table_row
-        '#title': 'C 1 - II GRADO ALTRO-RUOLO: Anzianità di Servizio'
+        '#title': 'C 1 - I GRADO RUOLO: Anzianità di Servizio'
         anzianita_servizio_processed_text_02_c_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>C 1)</strong> Per ogni anno di servizio svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella Scuola Secondaria di II GRADO. </p><p><strong>Punti: 3</strong></p>'
+          '#text': |
+            <p><strong>C 1)</strong> Anni di servizio <strong>di ruolo</strong> nella SECONDARIA DI I GRADO, su posto comune e/o di sostegno. Gli anni di pre-ruolo nella secondaria di I grado vanno nella voce B 2.</p>
+
+            <p><strong>Punti: 3</strong> per ogni anno (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI)</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_1:
           '#type': number
-          '#title': 'Anni ( C 1 - II GRADO ALTRO-RUOLO )'
+          '#title': 'Anni ( C 1 - I GRADO RUOLO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1711,20 +1722,20 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_1_1:
         '#type': webform_table_row
-        '#title': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'C 1.1 - I GRADO RUOLO: SOSTEGNO: Anno Precedente'
         '#attributes':
           class:
             - 'container-inline clearfix'
         anzianita_servizio_dichiarazione_precedente_c_1_1:
           '#type': textfield
-          '#title': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'C 1.1 - I GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 1.1 - I GRADO RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1758,7 +1769,7 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_1_1:
         '#type': webform_table_row
-        '#title': 'C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO: Anzianità di Servizio'
+        '#title': 'C 1.1 - I GRADO RUOLO: SOSTEGNO: Anzianità di Servizio'
         '#states':
           enabled:
             ':input[name="posto_secondaria"]':
@@ -1766,11 +1777,14 @@ elements: |-
         anzianita_servizio_processed_text_02_c_1_1:
           '#type': processed_text
           '#display_on': both
-          '#text': '<p><strong>C 1.1)</strong> Per ogni anno di servizio prestati ESCLUSIVAMENTE su posto di sostegno in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p><p><strong>Punti: 3</strong></p>'
+          '#text': |
+            <p><strong>C 1.1)</strong> Anni di servizio <strong>di ruolo</strong> nella SECONDARIA DI I GRADO prestati <strong>su posto di sostegno con il titolo di specializzazione</strong>: vanno indicati anche nella voce C 1, qui si ripetono per il raddoppio del punteggio. Gli anni di pre-ruolo su sostegno vanno nella voce B 2.1. Vale <strong>solo per i docenti titolari su posto di sostegno</strong> (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
+
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_1_1:
           '#type': number
-          '#title': 'Anni ( C 1.1 - II GRADO ALTRO-RUOLO: SOSTEGNO )'
+          '#title': 'Anni ( C 1.1 - I GRADO RUOLO: SOSTEGNO )'
           '#description': Anni
           '#title_display': invisible
           '#autocomplete': ''
@@ -1790,7 +1804,7 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': '{{ 3 * data.anzianita_servizio_anni_c_1_1|default(0)|float }}'
+          '#template': '{% if data.posto_secondaria == "Sostegno" %}{{ 3 * data.anzianita_servizio_anni_c_1_1|default(0)|float }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         anzianita_servizio_verifica_ds_c_1_1:
           '#type': checkbox
@@ -1809,17 +1823,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_1_2:
         '#type': webform_table_row
-        '#title': 'C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'C 1.2 - I GRADO RUOLO: PICCOLE ISOLE: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_1_2:
           '#type': textfield
-          '#title': 'C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'C 1.2 - I GRADO RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 1.2 - I GRADO RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1853,14 +1867,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_1_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio ( C 1.2 - II GRADO ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO )'
+        '#title': 'Anzianità di Servizio ( C 1.2 - I GRADO RUOLO: PICCOLE ISOLE )'
         anzianita_servizio_processed_text_02_c_1_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 1.2)</strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</strong></p>
+            <p><strong>C 1.2)</strong> Anni di servizio <strong>di ruolo</strong> nella SECONDARIA DI I GRADO <strong>effettivamente prestato</strong> in scuole o istituti situati nelle <strong>piccole isole</strong>: vanno indicati anche nella voce C 1, qui si ripetono per il raddoppio del punteggio. Gli anni di pre-ruolo vanno nella voce B 2.2.<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2, 3 e 4</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 3&nbsp;</strong>(isole e/o paesi in via di sviluppo)</strong></p>
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_1_2:
           '#type': number
@@ -1901,17 +1915,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_2:
         '#type': webform_table_row
-        '#title': 'C 2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: Anno Precedente'
+        '#title': 'C 2 - INFANZIA/PRIMARIA RUOLO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_2:
           '#type': textfield
-          '#title': 'C 2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#title': 'C 2 - INFANZIA/PRIMARIA RUOLO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 2 - INFANZIA/PRIMARIA RUOLO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -1945,15 +1959,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (C 2 - INFANZIA/ PRIMARIA)'
+        '#title': 'Anzianità di Servizio (C 2 - INFANZIA/PRIMARIA)'
         anzianita_servizio_processed_text_02_c_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 2) </strong>Per ogni anno di servizio ALTRO-RUOLO svolti COMPLESSIVAMENTE su posto comune e/o sostegno nella INFANZIA/ PRIMARIA.</p>
+            <p><strong>C 2)</strong> Anni di servizio <strong>di ruolo</strong> nella SCUOLA DELL'INFANZIA e/o PRIMARIA, su posto comune e/o di sostegno. Gli anni di pre-ruolo nell'infanzia e nella primaria vanno nella voce B 3.</p>
 
-            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
-            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+            <p><strong>Punti: 3</strong> per ciascuno dei primi 4 anni, <strong>2</strong> per ogni anno successivo.<br><small>I primi 4 anni si contano insieme a quelli di pre-ruolo della voce B 3: il calcolo lo fa da solo (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</small></p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_2:
           '#type': number
@@ -1978,12 +1991,12 @@ elements: |-
           '#label_attributes':
             style: 'text-align:center'
           '#template': |-
-            {% set anni = data.anzianita_servizio_anni_c_2|default(0)|float %}
-            {% if anni <= 4 %}
-               {{ anni * 3 }}
-            {% else %}
-               {{ 12 + (anni - 4) * 2 }}
-            {% endif %}
+            {# I primi 4 anni sono uno solo per pre-ruolo (B 3) e ruolo (C 2): punti del totale meno quelli già dati in B 3. #}
+            {% set pre = data.anzianita_servizio_anni_b_3|default(0)|float %}
+            {% set tot = pre + data.anzianita_servizio_anni_c_2|default(0)|float %}
+            {% set punti_tot = tot <= 4 ? tot * 3 : 12 + (tot - 4) * 2 %}
+            {% set punti_pre = pre <= 4 ? pre * 3 : 12 + (pre - 4) * 2 %}
+            {{ punti_tot - punti_pre }}
           '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2:
@@ -2003,17 +2016,17 @@ elements: |-
             - authenticated
       riga_anzianita_servizio_anno_precedente_c_2_1:
         '#type': webform_table_row
-        '#title': 'C 2.1 - INFANZIA/ PRIMARIA ALTRO-RUOLO: SOSTEGNO: Anno Precedente'
+        '#title': 'C 2.1 - INFANZIA/PRIMARIA RUOLO: SOSTEGNO: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_2_1:
           '#type': textfield
-          '#title': 'C 2.1 - INFANZIA/ PRIMARIA ALTRO-RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#title': 'C 2.1 - INFANZIA/PRIMARIA RUOLO: SOSTEGNO: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 2.1 - INFANZIA/ PRIMARIA: SOSTEGNO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 2.1 - INFANZIA/PRIMARIA: SOSTEGNO: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -2047,7 +2060,7 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_2_1:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (C 2.1 - INFANZIA/ PRIMARIA: SOSTEGNO)'
+        '#title': 'Anzianità di Servizio (C 2.1 - INFANZIA/PRIMARIA: SOSTEGNO)'
         '#states':
           enabled:
             ':input[name="posto_secondaria"]':
@@ -2056,10 +2069,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 2.1) </strong>Per ogni anno di servizio ALTRO-RUOLO prestati ESCLUSIVAMENTE su posto di sostegno nella INFANZIA/ PRIMARIA in possesso di specializzazione (ripetere solo gli anni svolti sul sostegno ai fini del raddoppio del punteggio)</p>
+            <p><strong>C 2.1)</strong> Anni di servizio <strong>di ruolo</strong> nella SCUOLA DELL'INFANZIA e/o PRIMARIA prestati <strong>su posto di sostegno con il titolo di specializzazione</strong>: vanno indicati anche nella voce C 2, qui si ripetono per il raddoppio del punteggio. Gli anni di pre-ruolo su sostegno vanno nella voce B 3.1. Vale <strong>solo per i docenti titolari su posto di sostegno</strong> (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
 
-            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
-            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+            <p><strong>Punti: 3</strong> per ogni anno che rientra nei primi 4 anni di servizio nell'infanzia e nella primaria (ruolo e pre-ruolo insieme), <strong>2</strong> per gli altri.</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_2_1:
           '#type': number
@@ -2084,11 +2096,16 @@ elements: |-
           '#label_attributes':
             style: 'text-align:center'
           '#template': |-
-            {% set anni = data.anzianita_servizio_anni_c_2_1|default(0)|float %}
-            {% if anni <= 4 %}
-               {{ anni * 3 }}
+            {# Raddoppio per il sostegno: 3 punti per gli anni fra i primi 4 nell'infanzia e nella primaria (B 3 + C 2), 2 per gli altri. #}
+            {% set b31 = data.anzianita_servizio_anni_b_3_1|default(0)|float %}
+            {% set c21 = data.anzianita_servizio_anni_c_2_1|default(0)|float %}
+            {% set altro = data.anzianita_servizio_anni_b_3|default(0)|float + data.anzianita_servizio_anni_c_2|default(0)|float %}
+            {% set primi = altro <= 4 ? b31 + c21 : min(data.anzianita_servizio_sostegno_primi_4_anni|default(0)|float, 4, b31 + c21) %}
+            {% if data.posto_secondaria != "Sostegno" %}
+               {{ 0 }}
             {% else %}
-               {{ 12 + (anni - 4) * 2 }}
+            {% set k = min(primi - min(primi, b31), c21) %}
+            {{ 3 * k + 2 * (c21 - k) }}
             {% endif %}
           '#whitespace': trim
           '#store': true
@@ -2107,19 +2124,65 @@ elements: |-
             - dirigente_scolastico
           '#access_view_roles':
             - authenticated
+      riga_anzianita_servizio_sostegno_primi_4_anni:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (SOSTEGNO NELL''INFANZIA E NELLA PRIMARIA: ANNI FRA I PRIMI 4)'
+        '#states':
+          enabled:
+            ':input[name="posto_secondaria"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_sostegno_primi_4_anni:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>Solo se gli anni di servizio nell'infanzia e nella primaria (voci B 3 e C 2 insieme) sono più di 4:</strong> quanti degli anni di sostegno indicati nelle voci B 3.1 e C 2.1 rientrano nei primi 4 anni di quel servizio? Valgono 3 punti ciascuno, gli altri 2 (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
+
+            <p><small>Con 4 anni o meno il calcolo è automatico e la risposta non serve.</small></p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_sostegno_primi_4_anni:
+          '#type': number
+          '#title': 'Anni di sostegno fra i primi 4 nell''infanzia e nella primaria'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#min': 0
+          '#max': 4
+        anzianita_servizio_sostegno_primi_4_anni_punti:
+          '#type': webform_markup
+          '#markup': ''
+        anzianita_servizio_verifica_ds_sostegno_primi_4_anni:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
       riga_anzianita_servizio_anno_precedente_c_2_2:
         '#type': webform_table_row
-        '#title': 'C 2.2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Anno Precedente'
+        '#title': 'C 2.2 - INFANZIA/PRIMARIA RUOLO: PICCOLE ISOLE: Anno Precedente'
         anzianita_servizio_dichiarazione_precedente_c_2_2:
           '#type': textfield
-          '#title': 'C 2.2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#title': 'C 2.2 - INFANZIA/PRIMARIA RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': 'C 2.2 - INFANZIA/ PRIMARIA ALTRO-RUOLO: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO: Dichiarazione Anno Precedente'
+          '#default_value': 'C 2.2 - INFANZIA/PRIMARIA RUOLO: PICCOLE ISOLE: Dichiarazione Anno Precedente'
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -2153,15 +2216,14 @@ elements: |-
           '#store': true
       riga_anzianita_servizio_c_2_2:
         '#type': webform_table_row
-        '#title': 'Anzianità di Servizio (C 2.2 - INFANZIA/ PRIMARIA: PICCOLE ISOLE/PAESI IN VIA DI SVILUPPO)'
+        '#title': 'Anzianità di Servizio (C 2.2 - INFANZIA/PRIMARIA: PICCOLE ISOLE)'
         anzianita_servizio_processed_text_02_c_2_2:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C 2.2) </strong></strong>&nbsp;Per ogni anno di servizio prestati ESCLUSIVAMENTE in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo</strong> (ripetere solo gli anni svolti in scuole o istituti situati nelle <strong>piccole isole e/o paesi in via di sviluppo ai fine del raddoppio del punteggio</strong>)</p>
+            <p><strong>C 2.2)</strong> Anni di servizio <strong>di ruolo</strong> nella SCUOLA DELL'INFANZIA e/o PRIMARIA <strong>effettivamente prestato</strong> in scuole o istituti situati nelle <strong>piccole isole</strong>: vanno indicati anche nella voce C 2, qui si ripetono per il raddoppio del punteggio. Gli anni di pre-ruolo vanno nella voce B 3.2.<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2, 3 e 4</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 3</strong> &nbsp;per i primi 4 anni<br />
-            <strong>Punti: 2</strong> per gli anni successivi al 4 anno</p>
+            <p><strong>Punti: 3</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_c_2_2:
           '#type': number
@@ -2185,16 +2247,158 @@ elements: |-
             style: 'text-align:center'
           '#label_attributes':
             style: 'text-align:center'
-          '#template': |-
-            {% set anni = data.anzianita_servizio_anni_c_2_2|default(0)|float %}
-            {% if anni <= 4 %}
-               {{ anni * 3 }}
-            {% else %}
-               {{ 12 + (anni - 4) * 2 }}
-            {% endif %}
+          '#template': '{{ 3 * data.anzianita_servizio_anni_c_2_2|default(0)|float }}'
           '#whitespace': trim
           '#store': true
         anzianita_servizio_verifica_ds_c_2_2:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_c_3:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (C 3 - II GRADO: ALTRO RUOLO LAUREATI/DIPLOMATI)'
+        anzianita_servizio_processed_text_02_c_3:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 3)</strong> Anni di servizio di ruolo e di pre-ruolo nella SECONDARIA DI II GRADO prestati <strong>nell'altro ruolo</strong>: nel ruolo dei <strong>diplomati</strong> (insegnante tecnico-pratico, assistente nei licei artistici) per chi ora è nel ruolo dei <strong>laureati</strong>, o viceversa. Questi anni non vanno indicati anche nelle voci A e B 1 (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
+
+            <p><strong>Punti: 3</strong> per ogni anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_3:
+          '#type': number
+          '#title': 'Anni (C 3 - altro ruolo laureati/diplomati)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#min': 0
+        anzianita_servizio_punti_c_3:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 3)'
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_c_3|default(0)|float }}'
+          '#whitespace': trim
+          '#store': true
+        anzianita_servizio_verifica_ds_c_3:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_c_3_1:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (C 3.1 - II GRADO: ALTRO RUOLO LAUREATI/DIPLOMATI: SOSTEGNO)'
+        '#states':
+          enabled:
+            ':input[name="posto_secondaria"]':
+              value: Sostegno
+        anzianita_servizio_processed_text_02_c_3_1:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 3.1)</strong> Anni della voce C 3 prestati <strong>su posto di sostegno con il titolo di specializzazione</strong>: vanno indicati anche nella voce C 3, qui si ripetono per il raddoppio del punteggio. Vale <strong>solo per i docenti titolari su posto di sostegno</strong> (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">nota 4</a> del CCNI).</p>
+
+            <p><strong>Punti: 3</strong> per ogni anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_3_1:
+          '#type': number
+          '#title': 'Anni (C 3.1 - II GRADO: ALTRO RUOLO LAUREATI/DIPLOMATI: SOSTEGNO)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#min': 0
+        anzianita_servizio_punti_c_3_1:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 3.1)'
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{% if data.posto_secondaria == "Sostegno" %}{{ 3 * data.anzianita_servizio_anni_c_3_1|default(0)|float }}{% else %}{{ 0 }}{% endif %}'
+          '#whitespace': trim
+          '#store': true
+        anzianita_servizio_verifica_ds_c_3_1:
+          '#type': checkbox
+          '#title': 'Verifica DS'
+          '#title_display': invisible
+          '#private': true
+          '#access_create_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_update_roles':
+            - amministratore
+            - capo_redattore
+            - dirigente_scolastico
+          '#access_view_roles':
+            - authenticated
+      riga_anzianita_servizio_c_3_2:
+        '#type': webform_table_row
+        '#title': 'Anzianità di Servizio (C 3.2 - II GRADO: ALTRO RUOLO LAUREATI/DIPLOMATI: PICCOLE ISOLE)'
+        anzianita_servizio_processed_text_02_c_3_2:
+          '#type': processed_text
+          '#display_on': both
+          '#text': |
+            <p><strong>C 3.2)</strong> Anni della voce C 3 <strong>effettivamente prestati</strong> in scuole o istituti situati nelle <strong>piccole isole</strong>: vanno indicati anche nella voce C 3, qui si ripetono per il raddoppio del punteggio.<br><small>Piccole isole: tutte le isole italiane <strong>tranne Sicilia e Sardegna</strong> (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">2, 3 e 4</a> del CCNI).</small></p>
+
+            <p><strong>Punti: 3</strong> per ogni anno</p>
+          '#format': bootstrap_italia_2
+        anzianita_servizio_anni_c_3_2:
+          '#type': number
+          '#title': 'Anni (C 3.2 - II GRADO: ALTRO RUOLO LAUREATI/DIPLOMATI: PICCOLE ISOLE)'
+          '#description': Anni
+          '#title_display': invisible
+          '#autocomplete': ''
+          '#default_value': '0'
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#attributes':
+            style: 'text-align:center'
+          '#min': 0
+        anzianita_servizio_punti_c_3_2:
+          '#type': webform_computed_twig
+          '#title': 'Punti (C 3.2)'
+          '#description': Punti
+          '#title_display': none
+          '#wrapper_attributes':
+            style: 'text-align:center'
+          '#template': '{{ 3 * data.anzianita_servizio_anni_c_3_2|default(0)|float }}'
+          '#whitespace': trim
+          '#store': true
+        anzianita_servizio_verifica_ds_c_3_2:
           '#type': checkbox
           '#title': 'Verifica DS'
           '#title_display': invisible
@@ -2236,7 +2440,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': "Anzianità di Servizio: CONTINUITA' [D1 - D1.1]"
-      '#sticky': true
       riga_anzianita_servizio_anno_precedente_d_1:
         '#type': webform_table_row
         '#title': 'Anno Precedente ( D 1 )'
@@ -2311,12 +2514,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>D 1)</strong>&nbsp;Per ogni anno di servizio di ruolo prestato <strong>nella scuola di attuale titolarità senza soluzione di continuità</strong> (fin dal primo anno escluso l’a.s. in corso)</strong></p>
+            <p><strong>D 1)</strong> Anni di servizio <strong>di ruolo</strong> prestati nella scuola di attuale titolarità <strong>senza soluzione di continuità</strong>, nello stesso tipo di posto (comune o sostegno) e <strong>nella classe di concorso di attuale titolarità</strong>. Non si valuta l'anno scolastico in corso; non contano il pre-ruolo e gli anni di sola decorrenza giuridica.<br><small>Non interrompono la continuità le assenze riconosciute dalla nota 5 (malattia, maternità e congedi, utilizzazioni, esoneri, assenze sotto i 6 mesi nell'anno…); per i docenti dei corsi serali conta solo il servizio sullo stesso tipo di organico (diurno o serale), salvo per i docenti trasferiti d'ufficio nell'ultimo decennio (art. 13, punto II); per gli ex titolari di DOS la continuità si conta dal 2003/04; il passaggio dalla classe A075 alla A076 non la interrompe se l'istituto è lo stesso. La interrompe il passaggio da sostegno a posto comune o viceversa (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=94" target="_blank" rel="noopener">5</a> e <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=95" target="_blank" rel="noopener">5 bis</a> del CCNI).</small></p>
 
-            <p><b>Per i primi 3 anni: (punti 4 x ciascun anno)
-            <b>Per il quarto e quinto anno (punti 5 x ciascun anno)<br />
-            <b>Oltre il quinto anno (punti 6 x ciascun anno)<br />
-            per il servizio prestato nelle piccole isole il punteggio si raddoppia</b></p>
+            <p><strong>Punti: 5</strong> per ogni anno entro il quinto, <strong>6</strong> per ogni anno oltre il quinto.<br>Se la scuola è in una <strong>piccola isola</strong> (tutte tranne Sicilia e Sardegna) il punteggio si raddoppia.</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_d_1:
           '#type': number
@@ -2355,13 +2555,11 @@ elements: |-
           '#template': |-
             {% set punti = 0 %}
             {% set anni = data.anzianita_servizio_anni_d_1|default(0)|float %}
-            {# Calcolo dei punti in base agli anni #}
-            {% if anni <= 3 %}
-              {% set punti = anni * 4 %}
-            {% elseif anni <= 5 %}
-              {% set punti = 3 * 4 + (anni - 3) * 5 %}
+            {# Nota 5 bis del CCNI: 5 punti per anno entro il quinquennio, 6 oltre. #}
+            {% if anni <= 5 %}
+              {% set punti = anni * 5 %}
             {% else %}
-              {% set punti = 3 * 4 + 2 * 5 + (anni - 5) * 6 %}
+              {% set punti = 5 * 5 + (anni - 5) * 6 %}
             {% endif %}
             {# Se il servizio è stato prestato nelle piccole isole, i punti si raddoppiano #}
             {% if data.anzianita_servizio_isole_d_1 == "si" %}
@@ -2423,20 +2621,8 @@ elements: |-
           '#template': '{% if data.anzianita_servizio_verifica_ds_d_1_1 == 1 %}{{ data.anzianita_servizio_anni_d_1_1 }}{% else %}{{ data.anzianita_servizio_anni_precedente_d_1_1 }}{% endif %}'
           '#store': true
         anzianita_servizio_isole_precedente_d_1_1:
-          '#type': webform_computed_twig
-          '#title': Si/No
-          '#description': si/no
-          '#title_display': none
-          '#wrapper_attributes':
-            style: 'vertical-align:inherit; text-align:center'
-          '#access_create_roles':
-            - authenticated
-          '#access_update_roles':
-            - authenticated
-          '#access_view_roles':
-            - authenticated
-          '#template': '{% if data.anzianita_servizio_verifica_ds_d_1_1 == 1 %}{{ data.anzianita_servizio_isole_d_1_1 }}{% else %}{{ data.anzianita_servizio_isole_precedente_d_1_1 }}{% endif %}'
-          '#store': true
+          '#type': webform_markup
+          '#markup': ''
         anzianita_servizio_punti_precedente_d_1_1:
           '#type': webform_computed_twig
           '#title': Punti
@@ -2459,9 +2645,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>D 1.1)</strong> Per ogni anno di servizio di ruolo prestato <strong>nel stesso comune di attuale titolarità (gli anni della continuità di scuola non possono coincidere con gli anni prestati nello stesso comune)</strong></p>
+            <p><strong>D 1.1)</strong> Anni di servizio <strong>di ruolo</strong> prestati <strong>senza soluzione di continuità nel comune</strong> di attuale titolarità, nello stesso tipo di posto (comune o sostegno) e nella stessa classe di concorso, <strong>esclusi gli anni già indicati nella voce D 1</strong>: per lo stesso anno non si possono avere tutti e due i punteggi. Non si valuta l'anno scolastico in corso (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=95" target="_blank" rel="noopener">5 bis</a> del CCNI).<br><small>Esempio: 8 anni di ruolo nel comune, di cui gli ultimi 5 nella scuola attuale → D 1 = 5, D 1.1 = 3.</small></p>
 
-            <p><strong>Punti: 1&nbsp;</strong></p>
+            <p><strong>Punti: 1</strong> per ogni anno</p>
           '#format': bootstrap_italia_2
         anzianita_servizio_anni_d_1_1:
           '#type': number
@@ -2477,19 +2663,8 @@ elements: |-
           '#format_items': comma
           '#min': 0
         anzianita_servizio_isole_d_1_1:
-          '#type': radios
-          '#title': 'Isole (D 1.1)'
-          '#title_display': none
-          '#options':
-            si: si
-            'no': 'no'
-          '#options_display': side_by_side
-          '#required': true
-          '#default_value': 'no'
-          '#wrapper_attributes':
-            style: 'text-align:center'
-          '#attributes':
-            style: 'text-align:center'
+          '#type': webform_markup
+          '#markup': ''
         anzianita_servizio_punti_d_1_1:
           '#type': webform_computed_twig
           '#title': 'Punti (D 1.1)'
@@ -2540,7 +2715,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'Anzianità di Servizio: BONUS UNA TANTUM [E 1]'
-      '#sticky': true
       riga_anzianita_servizio_anno_precedente_e_1:
         '#type': webform_table_row
         '#title': 'BONUS UNA TANTUM: Dichiarazione Anno Precedente'
@@ -2598,7 +2772,7 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>E 1)</strong>&nbsp;A coloro che, <strong>per un triennio</strong>, a decorrere dalle operazioni di mobilità per l'a.s. 2000/2001 e fino all'a.s. 2007/2008, non abbiano presentato domanda di trasferimento provinciale o passaggio provinciale o, pur avendo presentato domanda, l'abbiano revocata nei termini previsti, è riconosciuto, per il predetto triennio, una tantum, un punteggio aggiuntivo</p>
+            <p><strong>E 1)</strong> A coloro che, <strong>per un triennio</strong> compreso fra le operazioni di mobilità per l'a.s. 2000/2001 e quelle per il 2007/2008, non abbiano presentato domanda di trasferimento o di passaggio in ambito provinciale, o l'abbiano revocata nei termini, è riconosciuto una tantum un punteggio aggiuntivo.<br><small>Il triennio c'è se nella stessa scuola si è prestato servizio per almeno 4 anni consecutivi: l'anno di arrivo più i 3 successivi senza domanda volontaria in provincia. Non contano come domanda quella condizionata da soprannumerario e quella di rientro nella scuola di precedente titolarità. Il punteggio <strong>si perde solo</strong> se in seguito si è <strong>ottenuto</strong>, con domanda volontaria in provincia, un trasferimento, un passaggio o un'assegnazione provvisoria: la sola domanda non lo fa perdere (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=96" target="_blank" rel="noopener">5 ter</a> del CCNI).</small></p>
 
             <p><strong>Punti: 10</strong></p>
           '#format': bootstrap_italia_2
@@ -2673,7 +2847,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'ESIGENZE DI FAMIGLIA'
-      '#sticky': true
       riga_esigenze_famiglia_anno_precedente_a:
         '#type': webform_table_row
         '#title': 'Dichiarazione Anno Precedente'
@@ -2731,8 +2904,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A)</strong>&nbsp;per NON ALLONTANAMENTO dal coniuge (o parte dell’unione civile/convivente di fatto) OVVERO SOLO NEL CASO DI DOCENTI SENZA CONIUGE O SEPARATI GIUDIZIALMENTE O CONSENSUALMENTE CON ATTO OMOLOGATO DAL TRIBUNALE, per ricongiungimento ai genitori o ai figli (in questo caso a scelta)<br />
-            <strong>Punti: 6 </strong></p>
+            <p><strong>A)</strong> Per <strong>non allontanamento</strong> dal coniuge, dalla parte dell'unione civile o dal convivente di fatto (L. 76/2016, art. 1, commi 36-37); solo per i docenti senza coniuge o separati giudizialmente o consensualmente con atto omologato dal tribunale, dai genitori o dai figli, a scelta.<br><strong>Il familiare deve risiedere nel comune di titolarità del docente</strong>, con iscrizione anagrafica da almeno tre mesi alla data di pubblicazione dell'ordinanza sulla mobilità, attestata con dichiarazione personale che ne indichi la decorrenza.<br><small>Vale anche se il familiare risiede in un comune vicino senza scuole richiedibili, o in un comune dove la scuola ha un plesso (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=96" target="_blank" rel="noopener">6 e 7</a> del CCNI).</small></p>
+
+            <p><strong>Punti: 6</strong></p>
           '#format': bootstrap_italia_2
         esigenze_famiglia_si_no_a:
           '#type': radios
@@ -2829,8 +3003,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B)</strong>&nbsp;Per OGNI figlio (anche adottivo o in affidamento preadottivo o in affidamento) di età inferiore a 6 anni da compiere entro il 31/12 dell’a.s. in corso<br />
-            <strong>Punti: 5</strong></p>
+            <p><strong>B)</strong> Per <strong>ogni figlio</strong>, anche adottivo, <strong>di età inferiore a 6 anni</strong>. Valgono anche i figli che <strong>compiono 6 anni entro il 31 dicembre dell'anno in cui si fanno i trasferimenti</strong> (per la mobilità 2026/27, entro il 31/12/2026). Non importa dove risieda il figlio. Chi è contato qui non va ripetuto nella voce C (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=96" target="_blank" rel="noopener">7</a> e <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">8</a> del CCNI).</p>
+
+            <p><strong>Punti: 5</strong> per ogni figlio</p>
           '#format': bootstrap_italia_2
         esigenze_famiglia_nfigli_b:
           '#type': number
@@ -2926,8 +3101,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C)</strong>&nbsp;Per OGNI figlio (anche adottivo o in affidamento preadottivo o in affidamento) di età dai 7 ai 18 anni da compiere entro il 31/12 dell’a.s. in corso OVVERO per ogni figlio di età superiore ai 18 che risulti totalmente o permanentemente inabile a proficuo lavoro.<br />
-            <strong>Punti: 4</strong></p>
+            <p><strong>C)</strong> Per <strong>ogni figlio</strong>, anche adottivo, che al <strong>31 dicembre dell'anno in cui si fanno i trasferimenti</strong> ha <strong>da 7 a 18 anni</strong> (per la mobilità 2026/27, i nati dal 2008 al 2019; i figli più piccoli vanno nella voce B), oppure per <strong>ogni figlio maggiorenne totalmente o permanentemente inabile a proficuo lavoro</strong>. Non importa dove risieda il figlio (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=96" target="_blank" rel="noopener">7</a> e <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">8</a> del CCNI).</p>
+
+            <p><strong>Punti: 4</strong> per ogni figlio</p>
           '#format': bootstrap_italia_2
         esigenze_famiglia_nfigli_c:
           '#type': number
@@ -3023,8 +3199,15 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>D)</strong>&nbsp;Cura e assistenza del figlio con minorazione: fisica, psichica, sensoriale ovvero per prestare la cura e l’assistenza del figlio tossico dipendente o del coniuge o del genitore, totalmente e permanentemente inabile al lavoro che può essere assistito soltanto nello stesso comune di titolarità del docente)<br />
-            <strong>Punti: 6</strong></p>
+            <p><strong>D)</strong> Per la <strong>cura e l'assistenza</strong> del figlio con disabilità fisica, psichica o sensoriale, del figlio tossicodipendente, oppure del coniuge (o parte dell'unione civile) o del genitore totalmente e permanentemente inabili al lavoro, che possono essere assistiti <strong>soltanto nel comune di titolarità</strong> del docente (o in un comune vicino, se lì non ci sono scuole richiedibili).</p>
+
+            <p><strong>Solo in uno di questi tre casi</strong> (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">9</a> del CCNI):<br>
+            a) il familiare è <strong>ricoverato permanentemente in un istituto di cura</strong>;<br>
+            b) il familiare ha bisogno di <strong>cure continuative presso un istituto di cura</strong> che obbligano a risiedere nella sede dell'istituto;<br>
+            c) il figlio tossicodipendente segue un <strong>programma terapeutico e socio-riabilitativo</strong> (DPR 309/1990) con domicilio nella struttura, oppure a casa con l'assistenza del medico di fiducia.<br>
+            <small>L'assistenza a un familiare con disabilità grave (legge 104/92) non si dichiara qui: può dare diritto alla precedenza dell'art. 13, che si dichiara nella voce E (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">7 e 9</a> del CCNI).</small></p>
+
+            <p><strong>Punti: 6</strong></p>
           '#format': bootstrap_italia_2
         esigenze_famiglia_si_no_d:
           '#type': radios
@@ -3066,17 +3249,17 @@ elements: |-
             - authenticated
       riga_esigenze_famiglia_anno_precedente_e:
         '#type': webform_table_row
-        '#title': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE: Dichiarazione Anno Precedente"
+        '#title': "E - ESCLUSIONE DALLA GRADUATORIA: Dichiarazione Anno Precedente"
         esigenze_famiglia_anno_precedente_e:
           '#type': textfield
-          '#title': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE: Dichiarazione Anno Precedente"
+          '#title': "E - ESCLUSIONE DALLA GRADUATORIA: Dichiarazione Anno Precedente"
           '#description': 'Compilato in automatico dopo la verifica del D.S.'
           '#help_title': Altro
           '#help': 'Compilato in automatico dopo la verifica del D.S.'
           '#title_display': none
           '#autocomplete': ''
           '#readonly': true
-          '#default_value': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE: Dichiarazione Anno Precedente"
+          '#default_value': "E - ESCLUSIONE DALLA GRADUATORIA: Dichiarazione Anno Precedente"
           '#format_items': comma
           '#access_create_roles':
             - authenticated
@@ -3086,7 +3269,7 @@ elements: |-
             - authenticated
         esigenze_famiglia_si_no_precedente_e:
           '#type': webform_computed_twig
-          '#title': 'Si/No (Dis. Pers.)'
+          '#title': 'Si/No (Esclusione)'
           '#description': '<p>si/no</p>'
           '#title_display': none
           '#wrapper_attributes':
@@ -3116,17 +3299,17 @@ elements: |-
           '#store': true
       riga_esigenze_famiglia_e:
         '#type': webform_table_row
-        '#title': "E - ESIGENZE DI FAMIGLIA: DISABILITA' PERSONALE"
+        '#title': "E - ESCLUSIONE DALLA GRADUATORIA"
         esigenze_famiglia_processed_text_04_e:
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>E)</strong>&nbsp;Disabilità Personale? (Esclusione prevista dall'art. 13/1 C.C.N.I 2528) <br />
-            <strong>Punti: nessuno </strong></p>
+            <p><strong>E)</strong>&nbsp;Rientri in uno dei casi di <strong>esclusione dalla graduatoria</strong> previsti dall'<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=28" target="_blank" rel="noopener">art. 13, comma 2</a>, del CCNI mobilità 2025-28 (disabilità personale, gravi patologie, assistenza a un familiare con disabilità grave secondo la legge 104, cariche pubbliche)? Se rispondi sì, indica il caso sotto la tabella.<br />
+            <strong>Punti: nessuno</strong> (chi è escluso non è inserito nella graduatoria)</p>
           '#format': bootstrap_italia_2
         esigenze_famiglia_si_no_e:
           '#type': radios
-          '#title': 'Si/No (Dis. Pers.)'
+          '#title': 'Si/No (Esclusione)'
           '#title_display': none
           '#options':
             si: si
@@ -3145,7 +3328,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.esigenze_famiglia_si_no_e == "no" %}{{ 0 }}{% else %}{{ 0 }}{% endif %}'
+          '#template': '{{ 0 }}'
           '#store': true
         esigenze_famiglia_verifica_ds_e:
           '#type': checkbox
@@ -3162,6 +3345,39 @@ elements: |-
             - dirigente_scolastico
           '#access_view_roles':
             - authenticated
+    esclusione_graduatoria:
+      '#type': fieldset
+      '#title': 'E - Esclusione dalla graduatoria: indica il caso'
+      '#states':
+        visible:
+          ':input[name="esigenze_famiglia_si_no_e"]':
+            value: si
+      esclusione_graduatoria_caso:
+        '#type': radios
+        '#title': 'Caso di esclusione (art. 13, comma 2, del CCNI mobilità 2025-28)'
+        '#options':
+          I: 'I) Personale non vedente o emodializzato'
+          III-1: 'III.1) Disabilità con grado di invalidità superiore ai due terzi o con minorazioni iscritte alle categorie I, II o III della tabella A della legge 648/1950'
+          III-2: 'III.2) Gravi patologie che richiedono particolari cure a carattere continuativo (per esempio chemioterapia)'
+          III-3: 'III.3) Disabilità in situazione di gravità (legge 104/1992, art. 33, comma 6)'
+          IV: 'IV) Assistenza al coniuge (o parte dell''unione civile/convivente di fatto) o al figlio con disabilità in situazione di gravità, assistenza da parte del figlio al genitore con disabilità in situazione di gravità, tutela legale, fratello o sorella nei casi previsti (legge 104/1992, art. 33, commi 5 e 7)'
+          VII: 'VII) Carica pubblica nelle amministrazioni degli enti locali, durante il mandato'
+        '#states':
+          required:
+            ':input[name="esigenze_famiglia_si_no_e"]':
+              value: si
+      esclusione_graduatoria_condizioni:
+        '#type': processed_text
+        '#display_on': form
+        '#text': |
+          <p><strong>Condizioni (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=28" target="_blank" rel="noopener">art. 13, comma 2</a>, del CCNI mobilità 2025-28)</strong></p>
+          <ul>
+          <li>Chi rientra in questi casi non è inserito nella graduatoria interna, a meno che la riduzione dei posti non renda strettamente necessario il suo coinvolgimento (per esempio la soppressione della scuola): in quel caso è graduato nell'ordine I, III, IV, VII.</li>
+          <li><strong>Caso IV</strong> (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=25" target="_blank" rel="noopener">art. 13, punto IV</a>): l'esclusione si applica solo se la scuola di titolarità è nella stessa provincia del domicilio dell'assistito. Se la scuola è in un comune (o distretto) diverso da quello dell'assistito, occorre aver presentato, per l'anno scolastico di riferimento, domanda volontaria di trasferimento alle condizioni del punto IV, salvo che la scuola abbia sedi o plessi nel comune del domicilio dell'assistito. Il figlio che assiste il genitore e il fratello o la sorella devono avere diritto, nell'anno scolastico, ai permessi mensili dell'art. 33, comma 3, della legge 104/1992 o al congedo straordinario (art. 42, comma 5, D.Lgs. 151/2001). Per l'assistenza al coniuge e ai figli vale anche la disabilità «rivedibile», se il riconoscimento dura oltre la scadenza delle domande di mobilità.</li>
+          <li><strong>Caso VII</strong>: solo durante il mandato e se si è titolari nella stessa provincia in cui lo si esercita.</li>
+          <li>La condizione va documentata. Chi è escluso deve comunicare, entro i 10 giorni precedenti il termine di comunicazione al SIDI delle domande di trasferimento, il venir meno delle condizioni.</li>
+          </ul>
+        '#format': bootstrap_italia_2
   page_titoli_generali:
     '#type': webform_wizard_page
     '#title': 'Titoli Generali'
@@ -3169,7 +3385,7 @@ elements: |-
     '#next_button_label': Totali
     tabella_titoli_generali_01:
       '#type': webform_table
-      '#title': 'III - Titoli Generali - [A - F - G - I - L]'
+      '#title': 'III - Titoli Generali - [A - B - C - D - E - F - H - M - N]'
       '#title_display': invisible
       '#wrapper_attributes':
         class:
@@ -3181,7 +3397,7 @@ elements: |-
         - title: TITOLI
           attributes:
             style: 'vertical-align: inherit'
-        - title: 'Si / No'
+        - title: 'Si / No o numero'
           attributes:
             style: 'vertical-align: inherit; text-align: center'
         - title: Punti
@@ -3191,7 +3407,6 @@ elements: |-
           attributes:
             style: 'vertical-align: inherit; text-align: center'
       '#caption': 'Titoli [A - B - C - D - E - F - H - M - N]'
-      '#sticky': true
       riga_titoli_generali_anno_precedente_a:
         '#type': webform_table_row
         '#title': 'Dichiarazione Anno Precedente ( A )'
@@ -3249,7 +3464,7 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>A)</strong>&nbsp;Di aver superato un pubblico concorso ordinario per esami e titoli, per l’accesso al ruolo di appartenenza, o a ruoli di livello pari o superiore a quello di appartenenza (può essere valutato un solo concorso) <strong>N.B.: (NON SI VALUTANTO SSIS, TFA, PAS E CONCORSI RISERVATI)</strong></p>
+            <p><strong>A)</strong> Superamento di un <strong>pubblico concorso ordinario per esami e titoli</strong> per l'accesso al ruolo di appartenenza, o a ruoli di livello pari o superiore: per la secondaria di II grado valgono anche i concorsi a dirigente scolastico o ispettore; <strong>non valgono i concorsi della secondaria di I grado, della primaria e dell'infanzia</strong>. Il concorso per <strong>insegnanti diplomati</strong> vale solo per chi è nel ruolo dei diplomati. È equiparata l'inclusione nelle terne dei concorsi a cattedre negli istituti di istruzione artistica. <strong>Si valuta un solo concorso.</strong> Il punteggio vale anche per tutte le classi di concorso dello stesso ambito disciplinare dell'idoneità conseguita in un concorso ordinario bandito con la legge 124/1999.<br><small>Non valgono: i concorsi riservati o straordinari per l'abilitazione o l'idoneità, la partecipazione a un concorso ordinario ai soli fini dell'abilitazione, e i concorsi del D.D.G. 85/2018, D.M. 631/2018, <strong>D.D.G. 1546/2018</strong> (straordinario infanzia e primaria), D.D.G. 510/2020, D.D.G. 1081/2022, D.D.G. 1327/2024 e <strong>D.D.G. 1328/2024</strong>; per i concorsi banditi prima della legge 270/1982, la sola abilitazione conseguita con meno di 52,50/75 (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">10</a> del CCNI).</small></p>
 
             <p><strong>Punti: 12</strong></p>
           '#format': bootstrap_italia_2
@@ -3261,6 +3476,7 @@ elements: |-
             si: si
             'no': 'no'
           '#options_display': side_by_side
+          '#required': true
           '#default_value': 'no'
           '#wrapper_attributes':
             style: 'text-align:center'
@@ -3347,9 +3563,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>B)</strong>&nbsp;Per ogni diploma di specializzazione. <strong>N.B.: (NON SI VALUTANTO SSIS, TFA, PAS E SPECIALIZZAZIONI PER INSEGNARE SOSTEGNO)</strong></p>
+            <p><strong>B)</strong> Per ogni <strong>diploma di specializzazione post-laurea</strong> (serve la laurea) rilasciato da università statali o libere o da istituti universitari statali o pareggiati, o da enti pubblici con titolo riconosciuto equipollente, <strong>nell'ambito delle scienze dell'educazione o delle discipline insegnate</strong>. Valgono anche i vecchi diplomi di perfezionamento post-laurea di almeno due anni, con esami annuali ed esame finale. <strong>Si valuta un solo diploma per lo stesso o gli stessi anni accademici.</strong><br><small>Non valgono: la specializzazione per il sostegno, i titoli SSIS, TFA e PAS, perché servono per l'accesso al ruolo. Master e corsi di perfezionamento annuali vanno nella voce D (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">11 e 11 bis</a> del CCNI).</small></p>
 
-            <p>Per ogni diploma <strong>Punti: 5</strong></p>
+            <p><strong>Punti: 5</strong> per ogni diploma (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_quantita_b:
           '#type': number
@@ -3445,9 +3661,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>C)</strong>&nbsp;Per ogni diploma diploma/i universitario/i (LAUREA DI I LIVELLO O BREVE/TRIENNALE O DIPLOMA ISEF O DIPLOMA DI ACCADEMIA O CONSERVATORIO DI MUSICA) conseguito oltre il titolo di studio attualmente necessario per l’accesso al ruolo di appartenenza</p>
+            <p><strong>C)</strong> Per ogni <strong>laurea di primo livello</strong> (triennale o breve), <strong>diploma accademico di primo livello</strong> (accademia o conservatorio, nuovo ordinamento) o <strong>diploma ISEF</strong>, conseguito <strong>oltre il titolo necessario per l'accesso al ruolo</strong>.<br><small>Non si conta la laurea triennale (o il diploma accademico di primo livello) che ha dato accesso a una laurea magistrale (o a un diploma di secondo livello) già dichiarata nella voce E. La laurea in scienze motorie non dà punti in più dell'ISEF. I diplomi di accademia e di conservatorio del vecchio ordinamento vanno nella voce E (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">12</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 3</strong></p>
+            <p><strong>Punti: 3</strong> per ogni titolo (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_quantita_c:
           '#type': number
@@ -3543,9 +3759,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p>D) Per ogni diploma/i universitario/i CORSI DI PERFEZ. e/o MASTER I E II LIVELLO NON INFERIORI AD UN ANNO (se conseguiti dal 2005/06 devono essere di 1500 ore e 60 CFU</p>
+            <p><strong>D)</strong> Per ogni <strong>corso di perfezionamento di durata almeno annuale</strong> o <strong>master di I o II livello</strong> rilasciato da università statali o libere o da istituti universitari statali o pareggiati, <strong>nell'ambito delle scienze dell'educazione o delle discipline insegnate</strong>. Vale anche per chi non è laureato. Se tenuti dall'anno accademico 2005/06, devono essere <strong>annuali, di 1500 ore, con 60 CFU ed esame finale</strong>.<br><small><strong>Si valuta un solo corso per lo stesso o gli stessi anni accademici</strong>: due master nello stesso anno contano come uno (note <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">13 e 14</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 1 (per ogni diploma e/o master)</strong></p>
+            <p><strong>Punti: 1</strong> per ogni corso (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_quantita_d:
           '#type': number
@@ -3641,9 +3857,10 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>E)</strong>&nbsp;Per ogni diploma di laurea con corso almeno QUADRIENNALE (LAUREA IN SCIENZE MOTORIE, MAGISTRALE/SPECIALISTICA, ACCADEMIA DI BELLE ARTI, DIPLOMA DI CONSERVATORIO DI MUSICA) conseguito oltre il titolo di studio attualmente necessario per l’accesso al ruolo di appartenenza</p>
+            <p><strong>E)</strong> Per ogni <strong>laurea di durata almeno quadriennale</strong> (compresa scienze motorie), <strong>laurea magistrale o specialistica</strong>, <strong>diploma accademico di secondo livello</strong>, o diploma di <strong>accademia di belle arti o conservatorio del vecchio ordinamento conseguito entro il 31/12/2017</strong>, conseguito <strong>oltre il titolo necessario per l'accesso al ruolo</strong>: non si conta la laurea (o il diploma) che ha dato accesso alla classe di concorso di titolarità.<br>
+            <strong>Didattica della musica:</strong> non si valuta per i docenti di musica negli istituti di II grado (A-29), per i quali è titolo di accesso.<br><strong>Scienze della formazione primaria:</strong> per i docenti di secondaria è un titolo in più e vale 5 punti.<br><small>La triennale da cui si è arrivati alla magistrale non va dichiarata nella voce C. La laurea in scienze motorie non si somma all'ISEF (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">12</a> del CCNI).</small></p>
 
-            <p><strong>Punti: 5</strong></p>
+            <p><strong>Punti: 5</strong> per ogni titolo (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_quantita_e:
           '#type': number
@@ -3739,9 +3956,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>F)</strong> Per il conseguimento del titolo di "dottorato di ricerca"&nbsp;(si valuta un solo titolo)</p>
+            <p><strong>F)</strong> Per il conseguimento del titolo di <strong>dottorato di ricerca</strong> (si valuta un solo titolo).</p>
 
-            <p><b>Punti: 5</b></p>
+            <p><strong>Punti: 5</strong> (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_si_no_f:
           '#type': radios
@@ -3751,6 +3968,7 @@ elements: |-
             si: si
             'no': 'no'
           '#options_display': side_by_side
+          '#required': true
           '#default_value': 'no'
           '#wrapper_attributes':
             style: 'text-align:center'
@@ -3763,7 +3981,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.titoli_generali_si_no_f == "si" %}{{ 5 }} {% else %}{{ 0 }}{% endif %}'
+          '#template': '{% if data.titoli_generali_si_no_f == "si" %}{{ 5 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         titoli_generali_verifica_ds_f:
           '#type': checkbox
@@ -3837,9 +4055,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>H)</strong> Per ogni partecipazione ai nuovi Esami di Stato conclusivi dei corsi di studio di istruzione secondaria superiore, in qualità di presidente di commissione o di commissario interno o di commissario esterno o come docente di sostegno all’alunno portatore di handicap che svolge l’esame per gli anni 98/99 fino al 00/01</p>
+            <p><strong>H)</strong> Per ogni partecipazione agli <strong>esami di Stato</strong> conclusivi della scuola secondaria superiore (legge 425/1997) negli anni scolastici <strong>1998/99, 1999/2000 e 2000/01</strong>, come presidente di commissione, commissario esterno o interno, o come docente di sostegno dell'alunno con disabilità che sosteneva l'esame.</p>
 
-            <p><strong>Punti:&nbsp;</strong><strong>1</strong></p>
+            <p><strong>Punti: 1</strong> per ogni partecipazione, al massimo 3 (questa voce non rientra nel tetto dei 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_quantita_h:
           '#type': number
@@ -3936,9 +4154,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>M)</strong> Di essere in possesso di certificazione di Livello C1 del QCER, di aver frequentato il corso metodologico sostenuto la prova finale (SOLO SE UNIVERSITARIO)</p>
+            <p><strong>M)</strong> Possesso del <strong>certificato del corso di perfezionamento CLIL</strong> per l'insegnamento di una disciplina non linguistica in lingua straniera (D.D. n. 6 del 16/04/2012), <strong>rilasciato da un'università</strong> con i requisiti del D.M. 30/09/2011, art. 3, comma 3.<br><small>Il certificato si ottiene solo con la <strong>certificazione di livello C1</strong> del QCER, la frequenza del corso metodologico e il superamento della prova finale. Chi dichiara questa voce non dichiara la voce N.</small></p>
 
-            <p><b>Punti: 1</b></p>
+            <p><strong>Punti: 1</strong> (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_si_no_m:
           '#type': radios
@@ -3948,6 +4166,7 @@ elements: |-
             si: si
             'no': 'no'
           '#options_display': side_by_side
+          '#required': true
           '#default_value': 'no'
           '#wrapper_attributes':
             style: 'text-align:center'
@@ -3960,7 +4179,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.titoli_generali_si_no_m == "si" %}{{ 1 }} {% else %}{{ 0 }}{% endif %}'
+          '#template': '{% if data.titoli_generali_si_no_m == "si" %}{{ 1 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         titoli_generali_verifica_ds_m:
           '#type': checkbox
@@ -4034,9 +4253,9 @@ elements: |-
           '#type': processed_text
           '#display_on': both
           '#text': |
-            <p><strong>N)&nbsp;</strong>CLIL per i docenti NON in possesso di Certificazione di livello C1, ma che avendo svolto la parte metodologica presso le strutture universitarie, sono in possesso di un ATTESTATO di frequenza al corso di perfezionamento.</p>
+            <p><strong>N)</strong> <strong>Attestato di frequenza</strong> del corso di perfezionamento CLIL, per i docenti <strong>senza certificazione di livello C1</strong> che hanno svolto la parte metodologica <strong>esclusivamente presso un'università</strong>, con competenza linguistica B2 non certificata, frequentando il corso e <strong>superando l'esame finale</strong>.<br><small>Chi ha il certificato della voce M non dichiara questa voce: se lo fa, il calcolo non la conta.</small></p>
 
-            <p><b>Punti 0,5</b></p>
+            <p><strong>Punti: 0,5</strong> (le voci B, C, D, E, F, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2
         titoli_generali_si_no_n:
           '#type': radios
@@ -4046,6 +4265,7 @@ elements: |-
             si: si
             'no': 'no'
           '#options_display': side_by_side
+          '#required': true
           '#default_value': 'no'
           '#wrapper_attributes':
             style: 'text-align:center'
@@ -4058,7 +4278,7 @@ elements: |-
           '#title_display': none
           '#wrapper_attributes':
             style: 'text-align:center'
-          '#template': '{% if data.titoli_generali_si_no_n == "si" %}{{ 0.5 }}{% else %}{{ 0 }}{% endif %}'
+          '#template': '{% if data.titoli_generali_si_no_n == "si" and data.titoli_generali_si_no_m != "si" %}{{ 0.5 }}{% else %}{{ 0 }}{% endif %}'
           '#store': true
         titoli_generali_verifica_ds_n:
           '#type': checkbox
@@ -4091,7 +4311,7 @@ elements: |-
     totale_anzianita_servizio:
       '#type': webform_computed_twig
       '#title': 'Totale Anzianità Di Servizio'
-      '#description': 'Compilato/Aggiornato in automatico e visibile in Anteprima'
+      '#description': 'Somma delle voci A-E1. Calcolato in automatico, visibile anche in anteprima.'
       '#template': |-
         {% set tot_a     = data.anzianita_servizio_punti_a|render|striptags|trim|default(0)|float %}
         {% set tot_a_1   = data.anzianita_servizio_punti_a_1|render|striptags|trim|default(0)|float %}
@@ -4116,13 +4336,16 @@ elements: |-
         {% set tot_d_1   = data.anzianita_servizio_punti_d_1|render|striptags|trim|default(0)|float %}
         {% set tot_d_1_1 = data.anzianita_servizio_punti_d_1_1|render|striptags|trim|default(0)|float %}
         {% set tot_e_1   = data.anzianita_servizio_punti_e_1|render|striptags|trim|default(0)|float %}
-        {{ tot_a + tot_a_1 + tot_a_2 + tot_a_3 + tot_a_4 + tot_b_1 + tot_b_1_1 + tot_b_1_2 + tot_b_2 + tot_b_2_1 + tot_b_2_2 + tot_b_3 + tot_b_3_1 + tot_b_3_2 + tot_c_1 + tot_c_1_1 + tot_c_1_2 + tot_c_2 + tot_c_2_1 + tot_c_2_2 + tot_d_1 + tot_d_1_1 + tot_e_1 }}
+        {% set tot_c_3   = data.anzianita_servizio_punti_c_3|render|striptags|trim|default(0)|float %}
+        {% set tot_c_3_1 = data.anzianita_servizio_punti_c_3_1|render|striptags|trim|default(0)|float %}
+        {% set tot_c_3_2 = data.anzianita_servizio_punti_c_3_2|render|striptags|trim|default(0)|float %}
+        {{ tot_a + tot_a_1 + tot_a_2 + tot_a_3 + tot_a_4 + tot_b_1 + tot_b_1_1 + tot_b_1_2 + tot_b_2 + tot_b_2_1 + tot_b_2_2 + tot_b_3 + tot_b_3_1 + tot_b_3_2 + tot_c_1 + tot_c_1_1 + tot_c_1_2 + tot_c_2 + tot_c_2_1 + tot_c_2_2 + tot_c_3 + tot_c_3_1 + tot_c_3_2 + tot_d_1 + tot_d_1_1 + tot_e_1 }}
       '#whitespace': trim
       '#store': true
     totale_esigenze_famiglia:
       '#type': webform_computed_twig
       '#title': 'Totale Esigenze Di Famiglia'
-      '#description': 'Calcolato/Aggiornato in Automatico e visibile in Anteprima'
+      '#description': 'Somma delle voci A-D (la voce E non dà punti). Calcolato in automatico, visibile anche in anteprima.'
       '#template': |-
         {% set tot_a = data.esigenze_famiglia_punti_a|render|striptags|trim|default(0)|float %}
         {% set tot_b = data.esigenze_famiglia_punti_b|render|striptags|trim|default(0)|float %}
@@ -4140,7 +4363,7 @@ elements: |-
       sub_totale_titoli_generali:
         '#type': webform_computed_twig
         '#title': 'Sub Totale Titoli Generali (B - C - D - E - F - M - N )'
-        '#description': '(MAX 10 punti) Compilato/Aggiornato in automatico e visibile in Anteprima'
+        '#description': 'Nel totale contano al massimo 10 punti (CCNI, Tabella A, titoli generali). Calcolato in automatico, visibile anche in anteprima.'
         '#template': |-
           {% set tot_b = data.titoli_generali_punti_b|render|striptags|trim|default(0)|float %}
           {% set tot_c = data.titoli_generali_punti_c|render|striptags|trim|default(0)|float %}
@@ -4155,7 +4378,7 @@ elements: |-
       sub_totale_titoli_generali_a_h_:
         '#type': webform_computed_twig
         '#title': 'Sub Totale Titoli Generali ( A - H )'
-        '#description': '(MAX 15 punti) Compilato/Aggiornato in automatico e visibile in Anteprima'
+        '#description': 'Concorso (12) ed esami di Stato (al massimo 3): fuori dal tetto dei 10 punti. Calcolato in automatico, visibile anche in anteprima.'
         '#template': |-
           {% set tot_a = data.titoli_generali_punti_a|render|striptags|trim|default(0)|float %}
           {% set tot_h = data.titoli_generali_punti_h|render|striptags|trim|default(0)|float %}
@@ -4165,7 +4388,7 @@ elements: |-
       totale_titoli_generali:
         '#type': webform_computed_twig
         '#title': 'Totale Titoli Generali'
-        '#description': '(MAX 25 punti) Calcolato/Aggiornato in Automatico e visibile in Anteprima'
+        '#description': 'Subtotale B-N fino a 10 punti, più A e H: al massimo 25. Calcolato in automatico, visibile anche in anteprima.'
         '#template': |-
           {% set tot_sub = data.sub_totale_titoli_generali|render|striptags|trim|default(0)|float %}
           {% set tot_a_h = data.sub_totale_titoli_generali_a_h_|render|striptags|trim|default(0)|float %}
@@ -4185,7 +4408,7 @@ elements: |-
     totale_punteggio_graduatoria:
       '#type': webform_computed_twig
       '#title': 'Totale Punteggio Graduatoria'
-      '#description': 'Calcolato/Aggiornato in automatico.'
+      '#description': 'Anzianità + esigenze di famiglia + titoli: è il punteggio con cui si entra in graduatoria. Calcolato in automatico.'
       '#template': |-
         {% set tot_anzianita = data.totale_anzianita_servizio|render|striptags|trim|default(0)|float %}
         {% set tot_famiglia  = data.totale_esigenze_famiglia|render|striptags|trim|default(0)|float %}
@@ -4334,6 +4557,10 @@ settings:
     titoli_generali_verifica_ds_m: titoli_generali_verifica_ds_m
     titoli_generali_verifica_ds_n: titoli_generali_verifica_ds_n
     verifica_graduatoria_ds: verifica_graduatoria_ds
+    anzianita_servizio_verifica_ds_sostegno_primi_4_anni: anzianita_servizio_verifica_ds_sostegno_primi_4_anni
+    anzianita_servizio_verifica_ds_c_3: anzianita_servizio_verifica_ds_c_3
+    anzianita_servizio_verifica_ds_c_3_1: anzianita_servizio_verifica_ds_c_3_1
+    anzianita_servizio_verifica_ds_c_3_2: anzianita_servizio_verifica_ds_c_3_2
   wizard_progress_bar: true
   wizard_progress_pages: true
   wizard_progress_percentage: false
@@ -4412,7 +4639,7 @@ access:
   create:
     roles:
       - amministratore
-      - doc_secondaria
+      - doc_secondaria_secondo_grado
       - redattore
       - dirigente_scolastico
       - direttore_amministrativo_dsga_
@@ -4542,7 +4769,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: 'Graduatoria Interna Docenti: VALIDATA'
-      body: "<p>Gentile {{ webform_token('[webform_submission:values:cognome]', webform_submission, [], options) }} {{ webform_token('[webform_submission:values:nome]', webform_submission, [], options) }}</p>\r\n<p>Il punteggio a lei attribuito è stato validato dal DS. <strong>Si prega di verificarne la correttezza.</strong></p>\r\n\r\n<p><strong>E' consentito presentare reclamo motivato entro 10 giorni dalla pubblicazione delle graduatorie all'albo. I reclami saranno esaminati entro i 10 giorni successivi.(C.C.N.I. 2022-25)</strong></p>\r\n\r\n<p>Si prega di tenere con cura la presente comunicazione in quanto i valori validati saranno automaticamente pre-caricati per l'aggiornamento delle graduatorie successive.</p>\r\n\r\n<p>I valori validati dal DS sono i seguenti:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n\r\n<p>N.B.: Questo indirizzo mail non è abilitato alla ricezione delle mail.</p>\r\n"
+      body: "<p>Gentile {{ webform_token('[webform_submission:values:cognome]', webform_submission, [], options) }} {{ webform_token('[webform_submission:values:nome]', webform_submission, [], options) }}</p>\r\n<p>Il punteggio a lei attribuito è stato validato dal DS. <strong>Si prega di verificarne la correttezza.</strong></p>\r\n\r\n<p><strong>È consentito presentare reclamo motivato entro 10 giorni dalla pubblicazione o notifica della graduatoria. I reclami sono esaminati entro i 10 giorni successivi (<a href=\"{{ webform_token('[site:url]', webform_submission) }}admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=30\">art. 17, comma 1</a>, del C.C.N.I. mobilità 2025-28).</strong></p>\r\n\r\n<p>Si prega di tenere con cura la presente comunicazione in quanto i valori validati saranno automaticamente pre-caricati per l'aggiornamento delle graduatorie successive.</p>\r\n\r\n<p>I valori validati dal DS sono i seguenti:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n\r\n<p>N.B.: Questo indirizzo mail non è abilitato alla ricezione delle mail.</p>\r\n"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true

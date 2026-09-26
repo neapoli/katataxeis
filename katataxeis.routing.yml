@@ -1,0 +1,16 @@
+# Normativa di riferimento: il CCNI sulla mobilità, a disposizione di chi
+# compila e di chi controlla le graduatorie, senza cercarlo altrove.
+katataxeis.normativa:
+  path: '/admin/graduatorie-interne/normativa'
+  defaults:
+    _controller: '\Drupal\katataxeis\Controller\NormativaController::pagina'
+    _title: 'Graduatorie interne: normativa di riferimento'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+katataxeis.normativa_pdf:
+  path: '/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf'
+  defaults:
+    _controller: '\Drupal\katataxeis\Controller\NormativaController::pdf'
+  requirements:
+    _user_is_logged_in: 'TRUE'

@@ -2,12 +2,8 @@
 
 /**
  * @file
- * Install, update and uninstall functions for the Comment module.
+ * Installazione, aggiornamenti e disinstallazione di Katatáxeis.
  */
-
-use Drupal\Core\Config\FileStorage;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Nome macchina del menù in cui pubblicare le voci delle graduatorie.
@@ -36,28 +32,8 @@ const KATATAXEIS_MENU_LINK_URIS = [
  * Implements hook_install().
  */
 function katataxeis_install() {
-  _katataxeis_install_config_update();
+  katataxeis_installa_config_update('katataxeis');
   _katataxeis_delete_manual_menu_links();
-}
-
-/**
- * Crea, alla prima installazione, le configurazioni di config/update.
- *
- * A regime quella cartella viene riallineata a ogni "drush updb" (vedi
- * src/Drush/Commands/KatataxeisCommands.php), ma su un sito nuovo
- * l'aggiornamento non e' ancora passato: senza questo passaggio il formulario
- * della graduatoria ATA e le sue viste, che risiedono solo in config/update,
- * non esisterebbero fino al primo updb. Le configurazioni gia' presenti non
- * vengono toccate.
- */
-function _katataxeis_install_config_update() {
-  $source = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath('katataxeis') . '/config/update';
-
-  if (!is_dir($source)) {
-    return;
-  }
-
-  \Drupal::service('config.installer')->installOptionalConfig(new FileStorage($source));
 }
 
 /**
@@ -101,20 +77,13 @@ function _katataxeis_delete_manual_menu_links() {
 
 /**
  * Implements hook_uninstall().
+ *
+ * Cancella il formulario ATA, le viste e le liste di opzioni del modulo (vedi
+ * katataxeis_cancella_configurazioni()). I formulari dei docenti stanno nei
+ * sottomoduli, che Drupal fa disinstallare prima di questo.
  */
 function katataxeis_uninstall() {
-
-  $webform_ids = [
-    'graduatoria_interna_ata',
-  ];
-
-  $storage = \Drupal::entityTypeManager()->getStorage('webform');
-  foreach ($webform_ids as $webform_id) {
-    $webform_entity = $storage->load($webform_id);
-    if (!is_null($webform_entity)) {
-      $webform_entity->delete();
-    }
-  }
+  katataxeis_cancella_configurazioni('katataxeis');
 }
 
 /**
@@ -129,4 +98,24 @@ function katataxeis_update_10002() {
   return $deleted
     ? t('Voci di menù aggiunte; rimosse @count voci duplicate create manualmente.', ['@count' => $deleted])
     : t('Voci di menù aggiunte al menù "Azioni principali".');
+}
+
+/**
+ * Attiva il sottomodulo dell'istituto comprensivo dove servono i suoi formulari.
+ *
+ * I formulari dei docenti di infanzia, primaria e secondaria di I grado sono
+ * passati nel sottomodulo katataxeis_comprensivo, quello del II grado in
+ * katataxeis_secondo_grado. Una scuola che già usava Katatáxeis ha i
+ * formulari del comprensivo: il sottomodulo si attiva da solo, e formulari,
+ * schede e viste restano dove sono. Il II grado invece lo attiva la scuola.
+ */
+function katataxeis_update_10004() {
+  $comprensivo = ['graduatoria_interna_docenti_inf', 'graduatoria_interna_docenti_pri', 'graduatoria_interna_docenti_scu'];
+  if (\Drupal::moduleHandler()->moduleExists('katataxeis_comprensivo')
+    || !\Drupal::entityTypeManager()->getStorage('webform')->loadMultiple($comprensivo)) {
+    return t('Nessun sottomodulo da attivare.');
+  }
+
+  \Drupal::service('module_installer')->install(['katataxeis_comprensivo']);
+  return t('Attivato il sottomodulo katataxeis_comprensivo: i formulari di infanzia, primaria e secondaria di I grado ora appartengono a lui.');
 }

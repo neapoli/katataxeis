@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Graduatoria interna dei docenti della secondaria di II grado.
+ */
+
+/**
+ * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
+ *
+ * Le classi di concorso della secondaria di II grado vengono dal vocabolario
+ * «Materie» del sito, che ogni scuola tiene con le sue materie e il codice
+ * MIUR. La voce salvata nella scheda è il testo «codice - materia»: resta
+ * leggibile nelle viste e negli export anche se il termine cambia nome o viene
+ * cancellato. Lo stesso nome può comparire con codici diversi (una lingua nel
+ * I e nel II grado), per questo il codice viene prima.
+ */
+function katataxeis_secondo_grado_webform_options_materie_miur_alter(array &$options, array &$element) {
+  $archivio = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $tids = $archivio->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('vid', 'materie')
+    ->condition('field_miur_class_id', '', '<>')
+    ->execute();
+
+  $voci = [];
+  foreach ($archivio->loadMultiple($tids) as $termine) {
+    $voce = trim($termine->get('field_miur_class_id')->value) . ' - ' . $termine->label();
+    $voci[$voce] = $voce;
+  }
+  ksort($voci, SORT_NATURAL | SORT_FLAG_CASE);
+
+  $options = $voci + $options;
+}

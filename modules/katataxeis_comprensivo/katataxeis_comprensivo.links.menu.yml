@@ -1,0 +1,23 @@
+# Voci nel menù "Azioni principali" del sito della scuola.
+# Gli identificativi restano quelli di quando stavano nel modulo principale,
+# così eventuali spostamenti o pesi impostati dalla scuola non si perdono.
+katataxeis.graduatoria_infanzia_compila:
+  title: 'Graduatoria Infanzia: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Infanzia."
+  url: 'internal:/form/graduatoria-interna-docenti-inf'
+  menu_name: azioni-principali
+  weight: 0
+
+katataxeis.graduatoria_primaria_compila:
+  title: 'Graduatoria Primaria: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Primaria."
+  url: 'internal:/form/graduatoria-interna-docenti-pri'
+  menu_name: azioni-principali
+  weight: 0
+
+katataxeis.graduatoria_sec_primogrado_compila:
+  title: 'Graduatoria Secondaria I° Grado: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Sec. primo grado."
+  url: 'internal:/form/graduatoria-interna-docenti-scu'
+  menu_name: azioni-principali
+  weight: 0

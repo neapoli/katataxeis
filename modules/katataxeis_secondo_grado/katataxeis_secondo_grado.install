@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Installazione e disinstallazione dei formulari di secondaria di II grado.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function katataxeis_secondo_grado_install() {
+  katataxeis_installa_config_update('katataxeis_secondo_grado');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function katataxeis_secondo_grado_uninstall() {
+  katataxeis_cancella_configurazioni('katataxeis_secondo_grado');
+}

@@ -2,24 +2,48 @@
 
 /**
  * @file
- * Bacheca sindacale.
+ * Katatáxeis: graduatorie interne d'istituto del personale docente e ATA.
  */
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
  */
 function katataxeis_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    case 'help.page.graduatorie_interne':
-      $output = '';
-      $output .= '<p>' . t('This module helps to provide form for managed graduatorie interne docenti e ata for the school.') . '</p>';
-      $output .= '<p>' . t('Create Webform Option too. When uninstall module, all form are deleted') . '</p>';
-      return $output;
+  if ($route_name !== 'help.page.katataxeis') {
+    return NULL;
   }
+
+  // Il link è già sicuro: il testo passa da t() e l'indirizzo da Url.
+  $link = fn($testo, $percorso) => Markup::create('<a href="' . Url::fromUserInput($percorso)->toString() . '">' . $testo . '</a>');
+
+  $output = '<h2>' . t('Graduatorie interne d\'istituto') . '</h2>';
+  $output .= '<p>' . t('Katatáxeis raccoglie le schede individuali con cui il personale dichiara servizio, esigenze di famiglia e titoli, e ne ricava le graduatorie interne d\'istituto: sono queste a stabilire chi è soprannumerario e quindi perdente posto. I formulari riprendono le schede individuali per i soprannumerari predisposte da UIL Scuola.') . '</p>';
+
+  $output .= '<h3>' . t('Formulari') . '</h3><ul>';
+  foreach (katataxeis_formulari_installati() as $id => $ordine) {
+    $output .= '<li>' . $link(\Drupal\Component\Utility\Html::escape($ordine['formulario']), '/form/' . str_replace('_', '-', $id)) . '</li>';
+  }
+  $output .= '</ul>';
+  $output .= '<p>' . t('I formulari dei docenti stanno in due sottomoduli: «Katatáxeis: istituto comprensivo» (infanzia, primaria, secondaria di I grado) e «Katatáxeis: secondaria di II grado». Ogni scuola attiva quello che le serve; un istituto omnicomprensivo li attiva entrambi.') . '</p>';
+  $output .= '<p>' . t('Il punteggio totale è la somma dei totali di anzianità di servizio, esigenze di famiglia e titoli generali, ricalcolata a ogni salvataggio della scheda.') . '</p>';
+
+  $output .= '<h3>' . t('Pagine') . '</h3><ul>';
+  $output .= '<li>' . t('@pagina: per la segreteria e il dirigente, che controllano le schede e ne registrano la verifica (non verificata, verificata parzialmente, verificata).', ['@pagina' => $link(t('Graduatorie interne: controllo'), '/admin/graduatorie-interne')]) . '</li>';
+  $output .= '<li>' . t('@pagina: per il personale, che consulta le graduatorie.', ['@pagina' => $link(t('Graduatorie interne: visualizza'), '/admin/graduatorie-interne-elenco')]) . '</li>';
+  $output .= '</ul>';
+
+  $output .= '<h3>' . t('Normativa di riferimento') . '</h3>';
+  $output .= '<p>' . t('Il testo ufficiale del CCNI sulla mobilità 2025-28, con i collegamenti diretti agli articoli e alle tabelle a cui rimandano le schede, è nella pagina @pagina.', ['@pagina' => $link(t('Graduatorie interne: normativa di riferimento'), '/admin/graduatorie-interne/normativa')]) . '</p>';
+
+  $output .= '<h3>' . t('Aggiornamenti e disinstallazione') . '</h3>';
+  $output .= '<p>' . t('Formulari e viste si riallineano alla versione del modulo a ogni <code>drush updb</code>, oppure con <code>drush katataxeis:config-update</code>. La disinstallazione cancella definitivamente formulari, schede inviate e viste: prima conviene esportare le graduatorie. Disinstallando un sottomodulo si cancellano solo i suoi formulari; il modulo principale si può disinstallare solo dopo i sottomoduli.') . '</p>';
+
+  return $output;
 }
 
 /**
@@ -28,8 +52,158 @@ function katataxeis_help($route_name, RouteMatchInterface $route_match) {
 function katataxeis_form_system_modules_uninstall_confirm_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $modules = \Drupal::request()->request->all()['uninstall'] ?? [];
   if (isset($modules['katataxeis'])) {
-    \Drupal::messenger()->addWarning(t('Attenzione: la disinstallazione di Katatáxeis eliminerà definitivamente tutti i formulari di graduatoria interna (docenti e ATA) e tutti i dati inseriti. Questa operazione è irreversibile.'));
+    \Drupal::messenger()->addWarning(t('Attenzione: la disinstallazione di Katatáxeis eliminerà definitivamente tutti i formulari di graduatoria interna (docenti e ATA) con tutte le schede inviate, e le viste di controllo e di consultazione. Questa operazione è irreversibile: prima di procedere conviene esportare le graduatorie.'));
   }
+  $ordini = [
+    'katataxeis_comprensivo' => t('infanzia, primaria e secondaria di I grado'),
+    'katataxeis_secondo_grado' => t('secondaria di II grado'),
+  ];
+  foreach (array_intersect_key($ordini, $modules) as $ordine) {
+    \Drupal::messenger()->addWarning(t('Attenzione: verranno eliminati definitivamente i formulari di graduatoria interna dei docenti di @ordine, con tutte le schede inviate e le loro viste. Prima di procedere conviene esportare le graduatorie.', ['@ordine' => $ordine]));
+  }
+}
+
+/**
+ * I formulari di Katatáxeis, nell'ordine in cui si elencano.
+ *
+ * Per ciascuno il nome nell'elenco dei formulari, quello nelle pagine delle
+ * graduatorie e la parte finale dell'indirizzo di quelle pagine. Quali ci
+ * siano davvero dipende dai sottomoduli attivi: vedi
+ * katataxeis_formulari_installati().
+ */
+const KATATAXEIS_ORDINI = [
+  'graduatoria_interna_ata' => ['formulario' => 'Personale ATA', 'graduatoria' => 'Ata', 'pagina' => 'ata'],
+  'graduatoria_interna_docenti_inf' => ['formulario' => "Docenti della scuola dell'infanzia", 'graduatoria' => 'Docenti Infanzia', 'pagina' => 'docenti-infanzia'],
+  'graduatoria_interna_docenti_pri' => ['formulario' => 'Docenti della scuola primaria', 'graduatoria' => 'Docenti Primaria', 'pagina' => 'docenti-primaria'],
+  'graduatoria_interna_docenti_scu' => ['formulario' => 'Docenti della scuola secondaria di I grado', 'graduatoria' => 'Docenti Secondaria I° Grado', 'pagina' => 'docenti-secondaria-primo-grado'],
+  'graduatoria_interna_docenti_sc2' => ['formulario' => 'Docenti della scuola secondaria di II grado', 'graduatoria' => 'Docenti Secondaria II° Grado', 'pagina' => 'docenti-secondaria-secondo-grado'],
+];
+
+/**
+ * I formulari di Katatáxeis presenti su questo sito.
+ *
+ * @return array
+ *   Le voci di KATATAXEIS_ORDINI dei formulari che esistono.
+ */
+function katataxeis_formulari_installati() {
+  $esistenti = \Drupal::entityTypeManager()->getStorage('webform')->loadMultiple(array_keys(KATATAXEIS_ORDINI));
+  return array_intersect_key(KATATAXEIS_ORDINI, $esistenti);
+}
+
+/**
+ * I moduli che portano configurazioni di Katatáxeis: il principale e i
+ * sottomoduli attivi (katataxeis_comprensivo, katataxeis_secondo_grado).
+ *
+ * @return string[]
+ *   I nomi dei moduli.
+ */
+function katataxeis_moduli_attivi() {
+  $moduli = ['katataxeis'];
+  foreach (array_keys(\Drupal::moduleHandler()->getModuleList()) as $modulo) {
+    if (str_starts_with($modulo, 'katataxeis_')) {
+      $moduli[] = $modulo;
+    }
+  }
+  return $moduli;
+}
+
+/**
+ * La cartella config/update di un modulo di Katatáxeis.
+ */
+function katataxeis_cartella_config_update($modulo) {
+  return DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath($modulo) . '/config/update';
+}
+
+/**
+ * Crea, all'installazione di un modulo, le configurazioni di config/update.
+ *
+ * A regime quella cartella viene riallineata a ogni "drush updb" (vedi
+ * src/Drush/Commands/KatataxeisCommands.php), ma su un sito nuovo
+ * l'aggiornamento non è ancora passato: senza questo passaggio formulari e
+ * viste, che stanno solo in config/update, non esisterebbero fino al primo
+ * updb. Le configurazioni già presenti non vengono toccate.
+ *
+ * @param string $modulo
+ *   Il modulo appena installato.
+ */
+function katataxeis_installa_config_update($modulo) {
+  $cartella = katataxeis_cartella_config_update($modulo);
+  if (is_dir($cartella)) {
+    \Drupal::service('config.installer')->installOptionalConfig(new \Drupal\Core\Config\FileStorage($cartella));
+  }
+}
+
+/**
+ * Cancella quello che un modulo di Katatáxeis ha portato sul sito.
+ *
+ * I formulari dipendono dal modulo principale solo per il gestore del
+ * punteggio: da solo, alla disinstallazione, Drupal toglierebbe il gestore e
+ * lascerebbe formulari e viste compilabili ma senza totale. Si cancellano
+ * quindi formulari con le risposte, viste e liste di opzioni. Gli elenchi si
+ * ricavano dai file del modulo, così un formulario aggiunto in seguito è
+ * compreso senza ricordarsene qui.
+ *
+ * @param string $modulo
+ *   Il modulo che si sta disinstallando.
+ */
+function katataxeis_cancella_configurazioni($modulo) {
+  $percorso = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.module')->getPath($modulo);
+  $gestore = \Drupal::entityTypeManager();
+
+  // Prima i formulari: cancellandoli se ne vanno anche le risposte.
+  $formulari = katataxeis_config_del_modulo($percorso . '/config/update', 'webform.webform.');
+  $archivio = $gestore->getStorage('webform');
+  if ($formulari && ($entita = $archivio->loadMultiple($formulari))) {
+    $archivio->delete($entita);
+  }
+
+  // Poi le viste, se la cancellazione dei formulari non le ha già portate via.
+  $viste = katataxeis_config_del_modulo($percorso . '/config/update', 'views.view.');
+  $archivio = $gestore->getStorage('view');
+  if ($viste && ($entita = $archivio->loadMultiple($viste))) {
+    $archivio->delete($entita);
+  }
+
+  // Infine le liste di opzioni, ma solo quelle che nessun altro formulario
+  // usa: nomi come «anno_scolastico» sono generici, e una scuola potrebbe
+  // averli adoperati in un suo formulario.
+  $opzioni = katataxeis_config_del_modulo($percorso . '/config/optional', 'webform.webform_options.');
+  $in_uso = [];
+  foreach ($gestore->getStorage('webform')->loadMultiple() as $formulario) {
+    foreach ($opzioni as $id) {
+      if (preg_match("/#options'?:\\s*'?" . preg_quote($id, '/') . "'?\\s*\$/m", $formulario->get('elements') ?? '')) {
+        $in_uso[$id] = $id;
+      }
+    }
+  }
+  $archivio = $gestore->getStorage('webform_options');
+  if ($da_cancellare = array_diff($opzioni, $in_uso)) {
+    $archivio->delete($archivio->loadMultiple($da_cancellare));
+  }
+  if ($in_uso) {
+    \Drupal::logger('katataxeis')->notice('Liste di opzioni lasciate sul sito perché usate da altri formulari: @liste.', [
+      '@liste' => implode(', ', $in_uso),
+    ]);
+  }
+}
+
+/**
+ * Gli identificativi delle configurazioni di un tipo presenti in una cartella.
+ *
+ * @param string $cartella
+ *   La cartella di configurazioni del modulo.
+ * @param string $prefisso
+ *   Il prefisso del nome, per esempio «webform.webform.».
+ *
+ * @return string[]
+ *   Gli identificativi, senza prefisso.
+ */
+function katataxeis_config_del_modulo($cartella, $prefisso) {
+  $identificativi = [];
+  foreach (glob($cartella . '/' . $prefisso . '*.yml') ?: [] as $file) {
+    $identificativi[] = substr(basename($file, '.yml'), strlen($prefisso));
+  }
+  return $identificativi;
 }
 
 /**
@@ -78,6 +252,136 @@ function katataxeis_preprocess_views_view_field(&$variables) {
     '<use href="' . $href . '"></use>' .
     '</svg>'
   );
+}
+
+/**
+ * Formulari in cui l'anno scolastico si propone da solo.
+ *
+ * I formulari si aggiungono man mano che vengono rivisti.
+ */
+const KATATAXEIS_ANNO_AUTOMATICO = [
+  'graduatoria_interna_ata',
+  'graduatoria_interna_docenti_inf',
+  'graduatoria_interna_docenti_pri',
+  'graduatoria_interna_docenti_scu',
+  'graduatoria_interna_docenti_sc2',
+];
+
+/**
+ * L'anno scolastico per cui si sta compilando la graduatoria.
+ *
+ * Le graduatorie interne si compilano fra febbraio e marzo per la mobilità
+ * dell'anno scolastico che inizia a settembre: a marzo 2026 si compila il
+ * 2026/2027. Da settembre a dicembre la compilazione successiva cade nell'anno
+ * nuovo, quindi vale già l'anno scolastico dopo.
+ *
+ * @param int|null $timestamp
+ *   Il momento di riferimento; se manca, adesso.
+ *
+ * @return string
+ *   Per esempio «2026/2027».
+ */
+function katataxeis_anno_scolastico_graduatoria($timestamp = NULL) {
+  $formatter = \Drupal::service('date.formatter');
+  $timestamp = $timestamp ?? \Drupal::time()->getRequestTime();
+
+  $anno = (int) $formatter->format($timestamp, 'custom', 'Y');
+  if ((int) $formatter->format($timestamp, 'custom', 'n') >= 9) {
+    $anno++;
+  }
+
+  return $anno . '/' . ($anno + 1);
+}
+
+/**
+ * Implements hook_webform_element_alter().
+ *
+ * Propone l'anno scolastico della graduatoria nelle schede nuove. Una scheda
+ * già salvata tiene il suo. Se la lista degli anni della scuola non contiene
+ * quello calcolato non si propone nulla: il campo è obbligatorio, e meglio
+ * farlo scegliere che suggerire un anno sbagliato.
+ */
+function katataxeis_webform_element_alter(array &$element, FormStateInterface $form_state, array $context) {
+  if (($element['#webform_key'] ?? NULL) !== 'anno_scolastico') {
+    return;
+  }
+
+  $form_object = $form_state->getFormObject();
+  if (!method_exists($form_object, 'getEntity')) {
+    return;
+  }
+  $submission = $form_object->getEntity();
+  if (!$submission instanceof \Drupal\webform\WebformSubmissionInterface
+    || !in_array($submission->getWebform()->id(), KATATAXEIS_ANNO_AUTOMATICO, TRUE)
+    || !$submission->isNew()) {
+    return;
+  }
+
+  $anno = katataxeis_anno_scolastico_graduatoria();
+  $voci = \Drupal\webform\Entity\WebformOptions::getElementOptions($element);
+
+  if (isset($voci[$anno])) {
+    $element['#default_value'] = $anno;
+  }
+  else {
+    unset($element['#default_value']);
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ *
+ * In cima a ogni pagina delle graduatorie — controllo, consultazione, per
+ * profilo e grado, esclusi — un collegamento alla normativa di riferimento.
+ * Si aggiunge qui e non nelle viste una per una, così vale anche per quelle
+ * che verranno. Le esportazioni restano senza: sono file, non pagine.
+ */
+function katataxeis_views_pre_view(\Drupal\views\ViewExecutable $view, $display_id, array &$args) {
+  if (!preg_match('/^(graduatori|webform_graduatoria_interna_)/', $view->id())) {
+    return;
+  }
+  if ($view->getDisplay()->getPluginId() !== 'page') {
+    return;
+  }
+
+  $collegamento = [
+    'id' => 'katataxeis_normativa',
+    'table' => 'views',
+    'field' => 'area_text_custom',
+    'plugin_id' => 'text_custom',
+    'empty' => TRUE,
+    'content' => '<p class="katataxeis-normativa"><a href="' . Url::fromRoute('katataxeis.normativa')->toString() . '">' . t('Normativa di riferimento: CCNI mobilità 2025-28') . '</a></p>',
+  ];
+
+  // Per primo, prima delle intestazioni della vista.
+  $display = $view->getDisplay();
+  $intestazione = ['katataxeis_normativa' => $collegamento];
+
+  // Le due pagine di elenco: i collegamenti alle graduatorie dei soli
+  // formulari presenti (un comprensivo non ha il II grado, e viceversa).
+  // Stanno nell'intestazione, così la pagina si vede anche quando non c'è
+  // ancora nessuna scheda.
+  $elenchi = [
+    'graduatorie_interne' => ['admin/graduatorie-interne', t('gestire'), t('Controllo')],
+    'graduatorie_interne_personale' => ['admin/graduatorie-interne-elenco', t('visualizzare'), t('Visualizza')],
+  ];
+  if (isset($elenchi[$view->id()])) {
+    [$base, $azione, $etichetta] = $elenchi[$view->id()];
+    $voci = '';
+    foreach (katataxeis_formulari_installati() as $ordine) {
+      $voci .= '<li><a href="' . Url::fromUserInput('/' . $base . '/' . $ordine['pagina'])->toString() . '">' . t('Graduatoria interna @ordine: @etichetta', ['@ordine' => $ordine['graduatoria'], '@etichetta' => $etichetta]) . '</a></li>';
+    }
+    $intestazione['katataxeis_ordini'] = [
+      'id' => 'katataxeis_ordini',
+      'table' => 'views',
+      'field' => 'area_text_custom',
+      'plugin_id' => 'text_custom',
+      'empty' => TRUE,
+      'content' => '<h6><p>' . t("Attraverso questa sezione è possibile @azione le graduatorie interne dell'Istituto.", ['@azione' => $azione]) . '</p><p>' . t('Le graduatorie sono suddivise per ordine e grado.') . '</p></h6><hr><ul>' . $voci . '</ul>',
+    ];
+  }
+
+  $display->setOption('header', $intestazione + ($display->getOption('header') ?: []));
 }
 
 /**

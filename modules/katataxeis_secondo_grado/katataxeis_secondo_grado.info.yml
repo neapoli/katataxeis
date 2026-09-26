@@ -1,0 +1,10 @@
+name: "Katatáxeis: secondaria di II grado"
+description: "Graduatoria interna dei docenti della secondaria di II grado; le classi di concorso vengono dal vocabolario Materie."
+package: "Neapoli"
+
+type: module
+core_version_requirement: ^10.3 || ^11 || ^12
+dependencies:
+  - katataxeis:katataxeis
+  - drupal:taxonomy
+  - lexika:lexika

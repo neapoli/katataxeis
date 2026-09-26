@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Installazione e disinstallazione dei formulari di infanzia, primaria e secondaria di I grado.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function katataxeis_comprensivo_install() {
+  katataxeis_installa_config_update('katataxeis_comprensivo');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function katataxeis_comprensivo_uninstall() {
+  katataxeis_cancella_configurazioni('katataxeis_comprensivo');
+}

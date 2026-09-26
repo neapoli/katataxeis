@@ -12,9 +12,6 @@ dependencies:
     - user.role.personale_tecnico
     - user.role.redattore
     - webform.webform.graduatoria_interna_ata
-    - webform.webform.graduatoria_interna_docenti_inf
-    - webform.webform.graduatoria_interna_docenti_pri
-    - webform.webform.graduatoria_interna_docenti_scu
   module:
     - user
     - webform
@@ -43,10 +40,10 @@ display:
           admin_label: ''
           plugin_id: custom
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
-            text: "<h6>\r\n<p>Attraverso questa sezione è possibile visualizzare le graduatorie interne dell'Istituto.</p>\r\n<p>Le graduatorie sono suddivise per ordine e grado.</p>\r\n</h6>\r\n<hr>\r\n<ul>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/ata\">Graduatoria interna Ata: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/docenti-infanzia\">Graduatoria interna Docenti Infanzia: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/docenti-primaria\">Graduatoria interna Docenti Primaria: Visualizza </a></li>\r\n<p></p>\r\n<li><a href=\"/admin/graduatorie-interne-elenco/docenti-secondaria-primo-grado\">Graduatoria interna Docenti Secondaria I° Grado: Visualizza</a></li>\r\n</ul>"
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -134,6 +131,7 @@ display:
             graduatoria_interna_docenti_inf: graduatoria_interna_docenti_inf
             graduatoria_interna_docenti_pri: graduatoria_interna_docenti_pri
             graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:

@@ -1672,46 +1672,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_e
@@ -2817,46 +2777,6 @@ display:
               doc_primaria_ciari: '0'
               doc_primaria_dacquisto: '0'
               doc_secondaria: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
             reduce: false
           is_grouped: false
           group_info:
@@ -3982,46 +3902,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_e
@@ -4194,7 +4074,7 @@ display:
     display_plugin: data_export
     position: 9
     display_options:
-      title: 'Graduatoria INTERNA ATA: Esclusi (legge 104 - disabilità personale)'
+      title: 'Graduatoria INTERNA ATA: Esclusi (art. 40, comma 2, CCNI)'
       fields:
         counter:
           id: counter
@@ -5145,46 +5025,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            si: si
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_e
@@ -5196,7 +5036,7 @@ display:
           operator: in
           value:
             si: si
-          group: 2
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -5229,7 +5069,6 @@ display:
         operator: AND
         groups:
           1: AND
-          2: OR
       style:
         type: excel_export
         options:
@@ -5315,7 +5154,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<h2>Elenco <strong>ATA: Esclusi (legge 104 e/o Disabilità personale)</strong> che hanno inviato la graduatoria</h2>'
+            value: '<h2>Elenco <strong>ATA: Esclusi dalla graduatoria (art. 40, comma 2, CCNI)</strong> che hanno inviato la graduatoria</h2>'
             format: bootstrap_italia_2
           tokenize: false
       display_extenders: {  }
@@ -6504,46 +6343,6 @@ display:
               capo_redattore: '0'
               redattore: '0'
               dirigente_scolastico: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
             reduce: false
           is_grouped: false
           group_info:
@@ -7999,46 +7798,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_e
@@ -9475,46 +9234,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_e
@@ -9783,7 +9502,7 @@ display:
     display_plugin: page
     position: 8
     display_options:
-      title: 'Graduatoria INTERNA ATA: Esclusi (legge 104 - disabilità personale)'
+      title: 'Graduatoria INTERNA ATA: Esclusi (art. 40, comma 2, CCNI)'
       fields:
         webform_submission_bulk_form:
           id: webform_submission_bulk_form
@@ -10900,46 +10619,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value_3:
-          id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            si: si
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_ata_esigenze_famiglia_si_no_e
@@ -10951,7 +10630,7 @@ display:
           operator: in
           value:
             si: si
-          group: 2
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -10984,7 +10663,6 @@ display:
         operator: AND
         groups:
           1: AND
-          2: OR
       style:
         type: table
         options:

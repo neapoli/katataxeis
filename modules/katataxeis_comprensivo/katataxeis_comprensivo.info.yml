@@ -1,0 +1,8 @@
+name: "Katatáxeis: istituto comprensivo"
+description: "Graduatorie interne dei docenti di infanzia, primaria e secondaria di I grado."
+package: "Neapoli"
+
+type: module
+core_version_requirement: ^10.3 || ^11 || ^12
+dependencies:
+  - katataxeis:katataxeis

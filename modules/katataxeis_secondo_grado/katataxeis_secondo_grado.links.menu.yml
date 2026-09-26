@@ -1,0 +1,9 @@
+# Voci nel menù "Azioni principali" del sito della scuola.
+# Gli identificativi restano quelli di quando stavano nel modulo principale,
+# così eventuali spostamenti o pesi impostati dalla scuola non si perdono.
+katataxeis.graduatoria_sec_secondogrado_compila:
+  title: 'Graduatoria Secondaria II° Grado: compila'
+  description: "Formulario per la compilazione della graduatoria interna del personale Docente Sec. secondo grado."
+  url: 'internal:/form/graduatoria-interna-docenti-sc2'
+  menu_name: azioni-principali
+  weight: 0

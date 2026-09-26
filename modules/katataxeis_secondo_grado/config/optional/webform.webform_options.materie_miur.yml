@@ -1,0 +1,8 @@
+langcode: it
+status: true
+dependencies: {  }
+id: materie_miur
+label: 'Classi di concorso (dal vocabolario Materie)'
+category: Scuola
+likert: false
+options: ''

@@ -16,6 +16,7 @@ dependencies:
   enforced:
     module:
       - webform
+      - katataxeis_comprensivo
 id: graduatoria_interna_personale_docenti_primaria
 label: 'Graduatoria Interna: Docenti Primaria'
 module: views
@@ -1975,46 +1976,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_pri_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
           table: webform_submission_field_graduatoria_interna_docenti_pri_esigenze_famiglia_si_no_e
@@ -3401,46 +3362,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_pri_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
           table: webform_submission_field_graduatoria_interna_docenti_pri_esigenze_famiglia_si_no_e
@@ -3754,7 +3675,7 @@ display:
     display_plugin: page
     position: 6
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Primaria Esclusi'
+      title: 'Graduatoria INTERNA Docenti: Primaria Esclusi (art. 13, comma 2, CCNI)'
       fields:
         counter:
           id: counter
@@ -4798,47 +4719,7 @@ display:
           operator: in
           value:
             si: si
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_pri_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            si: si
-          group: 2
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -4911,7 +4792,6 @@ display:
         operator: AND
         groups:
           1: AND
-          2: OR
       style:
         type: table
         options:

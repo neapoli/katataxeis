@@ -6,7 +6,7 @@ dependencies:
     - user.role.capo_redattore
     - user.role.dirigente_scolastico
     - user.role.redattore
-    - webform.webform.graduatoria_interna_docenti_scu
+    - webform.webform.graduatoria_interna_docenti_sc2
   module:
     - better_exposed_filters
     - rest
@@ -19,8 +19,9 @@ dependencies:
   enforced:
     module:
       - webform
-id: webform_graduatoria_interna_docenti_secondaria_i_grado
-label: 'Webform: Graduatoria Interna Docenti SECONDARIA I° Grado'
+      - katataxeis_secondo_grado
+id: webform_graduatoria_interna_docenti_secondaria_ii_grado
+label: 'Webform: Graduatoria Interna Docenti SECONDARIA II° Grado'
 module: views
 description: 'Default webform submissions views.'
 tag: ''
@@ -465,7 +466,7 @@ display:
       sorts:
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -478,7 +479,7 @@ display:
           exposed: false
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -491,7 +492,7 @@ display:
           exposed: false
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -504,7 +505,7 @@ display:
           exposed: false
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -517,7 +518,7 @@ display:
           exposed: false
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -731,11 +732,11 @@ display:
       tags: {  }
   data_export_1:
     id: data_export_1
-    display_title: 'SECONDARIA I° Grado - COMUNE: Export'
+    display_title: 'SECONDARIA II° Grado - COMUNE: Export'
     display_plugin: data_export
     position: 3
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Secondaria I° Grado Comune'
+      title: 'Graduatoria INTERNA Docenti: Secondaria II° Grado Comune'
       fields:
         counter:
           id: counter
@@ -999,7 +1000,7 @@ display:
           field_api_classes: false
         webform_submission_value_9:
           id: webform_submission_value_9
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1052,7 +1053,7 @@ display:
           webform_check_access: 1
         webform_submission_value_11:
           id: webform_submission_value_11
-          table: webform_submission_field_graduatoria_interna_docenti_scu_nome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_nome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1105,7 +1106,7 @@ display:
           webform_check_access: 1
         webform_submission_value_10:
           id: webform_submission_value_10
-          table: webform_submission_field_graduatoria_interna_docenti_scu_grado_scuola
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_grado_scuola
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1158,13 +1159,13 @@ display:
           webform_check_access: 1
         webform_submission_value_12:
           id: webform_submission_value_12
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Su Posto (Secondaria I° Grado)'
+          label: 'Su Posto (Secondaria II° Grado)'
           exclude: false
           alter:
             alter_text: false
@@ -1211,7 +1212,7 @@ display:
           webform_check_access: 1
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1264,7 +1265,7 @@ display:
           webform_check_access: 1
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_anzianita_servizio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_anzianita_servizio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1317,7 +1318,7 @@ display:
           webform_check_access: 1
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_esigenze_famiglia
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_esigenze_famiglia
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1370,7 +1371,7 @@ display:
           webform_check_access: 1
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_titoli_generali
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_titoli_generali
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1423,7 +1424,7 @@ display:
           webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1476,7 +1477,7 @@ display:
           webform_check_access: 1
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1529,7 +1530,7 @@ display:
           webform_check_access: 1
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1582,7 +1583,7 @@ display:
           webform_check_access: 1
         webform_submission_value_15:
           id: webform_submission_value_15
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1658,7 +1659,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -1690,7 +1691,7 @@ display:
             group_items: {  }
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1730,7 +1731,7 @@ display:
             group_items: {  }
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1769,7 +1770,7 @@ display:
             group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1806,49 +1807,9 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_e
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_esigenze_famiglia_si_no_e
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -1962,7 +1923,7 @@ display:
         filters: false
         filter_groups: false
         header: false
-      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA I° Grado dell'Istituto su posto COMUNE"
+      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA II° Grado dell'Istituto su posto COMUNE"
       header:
         result:
           id: result
@@ -1984,18 +1945,18 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: SECONDARIA I° Grado su posto COMUNE</strong> che hanno inviato la graduatoria</h2>'
+            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: SECONDARIA II° Grado su posto COMUNE</strong> che hanno inviato la graduatoria</h2>'
             format: bootstrap_italia_2
           tokenize: false
       display_extenders: {  }
-      path: graduatoria-interna-docenti-secondaria-i-grado-comune.xlsx
+      path: graduatoria-interna-docenti-secondaria-ii-grado-comune.xlsx
       displays:
         page_2: page_2
         default: '0'
         page_1: '0'
         page_3: '0'
         page_4: '0'
-      filename: graduatoria-interna-docenti-secondaria-i-grado-comune.xlsx
+      filename: graduatoria-interna-docenti-secondaria-ii-grado-comune.xlsx
       automatic_download: true
       export_filesystem: private
       custom_redirect_path: false
@@ -2013,11 +1974,11 @@ display:
       tags: {  }
   data_export_2:
     id: data_export_2
-    display_title: 'SECONDARIA I° Grado - SOSTEGNO: Export'
+    display_title: 'SECONDARIA II° Grado - SOSTEGNO: Export'
     display_plugin: data_export
     position: 5
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Secondaria I° Grado Sostegno'
+      title: 'Graduatoria INTERNA Docenti: Secondaria II° Grado Sostegno'
       fields:
         counter:
           id: counter
@@ -2281,7 +2242,7 @@ display:
           field_api_classes: false
         webform_submission_value_9:
           id: webform_submission_value_9
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2334,7 +2295,7 @@ display:
           webform_check_access: 1
         webform_submission_value_11:
           id: webform_submission_value_11
-          table: webform_submission_field_graduatoria_interna_docenti_scu_nome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_nome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2387,7 +2348,7 @@ display:
           webform_check_access: 1
         webform_submission_value_10:
           id: webform_submission_value_10
-          table: webform_submission_field_graduatoria_interna_docenti_scu_grado_scuola
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_grado_scuola
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2440,13 +2401,13 @@ display:
           webform_check_access: 1
         webform_submission_value_12:
           id: webform_submission_value_12
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Su Posto (Secondaria I° Grado)'
+          label: 'Su Posto (Secondaria II° Grado)'
           exclude: false
           alter:
             alter_text: false
@@ -2493,7 +2454,7 @@ display:
           webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2546,7 +2507,7 @@ display:
           webform_check_access: 1
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_anzianita_servizio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_anzianita_servizio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2599,7 +2560,7 @@ display:
           webform_check_access: 1
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_esigenze_famiglia
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_esigenze_famiglia
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2652,7 +2613,7 @@ display:
           webform_check_access: 1
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_titoli_generali
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_titoli_generali
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2705,7 +2666,7 @@ display:
           webform_check_access: 1
         webform_submission_value_14:
           id: webform_submission_value_14
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio_graduatoria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio_graduatoria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2758,7 +2719,7 @@ display:
           webform_check_access: 1
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2811,7 +2772,7 @@ display:
           webform_check_access: 1
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2864,7 +2825,7 @@ display:
           webform_check_access: 1
         webform_submission_value_15:
           id: webform_submission_value_15
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -2940,7 +2901,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -2972,7 +2933,7 @@ display:
             group_items: {  }
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3012,7 +2973,7 @@ display:
             group_items: {  }
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3051,7 +3012,7 @@ display:
             group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3088,49 +3049,9 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_e
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_esigenze_famiglia_si_no_e
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3253,7 +3174,7 @@ display:
         filters: false
         filter_groups: false
         header: false
-      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA I° Grado dell'Istituto su posto SOSTEGNO"
+      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA II° Grado dell'Istituto su posto SOSTEGNO"
       header:
         result:
           id: result
@@ -3275,18 +3196,18 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: SECONDARIA I° Grado su posto SOSTEGNO</strong> che hanno inviato la graduatoria</h2>'
+            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: SECONDARIA II° Grado su posto SOSTEGNO</strong> che hanno inviato la graduatoria</h2>'
             format: bootstrap_italia_2
           tokenize: false
       display_extenders: {  }
-      path: graduatoria-interna-docenti-secondaria-i-grado-sostegno.xlsx
+      path: graduatoria-interna-docenti-secondaria-ii-grado-sostegno.xlsx
       displays:
         page_3: page_3
         default: '0'
         page_1: '0'
         page_2: '0'
         page_4: '0'
-      filename: graduatoria-interna-docenti-secondaria-i-grado-sostegno.xlsx
+      filename: graduatoria-interna-docenti-secondaria-ii-grado-sostegno.xlsx
       automatic_download: true
       export_filesystem: private
       custom_redirect_path: false
@@ -3304,11 +3225,11 @@ display:
       tags: {  }
   data_export_3:
     id: data_export_3
-    display_title: 'SECONDARIA I° Grado - ESCLUSI: Export'
+    display_title: 'SECONDARIA II° Grado - ESCLUSI: Export'
     display_plugin: data_export
     position: 7
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Secondaria I° Grado Sostegno'
+      title: 'Graduatoria INTERNA Docenti: Secondaria II° Grado Esclusi (art. 13, comma 2, CCNI)'
       fields:
         counter:
           id: counter
@@ -3572,7 +3493,7 @@ display:
           field_api_classes: false
         webform_submission_value_9:
           id: webform_submission_value_9
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3625,7 +3546,7 @@ display:
           webform_check_access: 1
         webform_submission_value_11:
           id: webform_submission_value_11
-          table: webform_submission_field_graduatoria_interna_docenti_scu_nome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_nome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3678,7 +3599,7 @@ display:
           webform_check_access: 1
         webform_submission_value_10:
           id: webform_submission_value_10
-          table: webform_submission_field_graduatoria_interna_docenti_scu_grado_scuola
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_grado_scuola
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3731,13 +3652,13 @@ display:
           webform_check_access: 1
         webform_submission_value_12:
           id: webform_submission_value_12
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Su Posto (Secondaria I° Grado)'
+          label: 'Su Posto (Secondaria II° Grado)'
           exclude: false
           alter:
             alter_text: false
@@ -3784,7 +3705,7 @@ display:
           webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3837,7 +3758,7 @@ display:
           webform_check_access: 1
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_anzianita_servizio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_anzianita_servizio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3890,7 +3811,7 @@ display:
           webform_check_access: 1
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_esigenze_famiglia
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_esigenze_famiglia
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3943,7 +3864,7 @@ display:
           webform_check_access: 1
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_titoli_generali
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_titoli_generali
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -3996,7 +3917,7 @@ display:
           webform_check_access: 1
         webform_submission_value_14:
           id: webform_submission_value_14
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio_graduatoria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio_graduatoria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4049,7 +3970,7 @@ display:
           webform_check_access: 1
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4102,7 +4023,7 @@ display:
           webform_check_access: 1
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4155,7 +4076,7 @@ display:
           webform_check_access: 1
         webform_submission_value_15:
           id: webform_submission_value_15
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4231,7 +4152,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -4263,7 +4184,7 @@ display:
             group_items: {  }
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4302,7 +4223,7 @@ display:
             group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4341,7 +4262,7 @@ display:
             group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_e
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_esigenze_famiglia_si_no_e
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -4350,47 +4271,7 @@ display:
           operator: in
           value:
             si: si
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            si: si
-          group: 2
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -4423,7 +4304,6 @@ display:
         operator: AND
         groups:
           1: AND
-          2: OR
       style:
         type: excel_export
         options:
@@ -4505,7 +4385,7 @@ display:
         filters: false
         filter_groups: false
         header: false
-      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA I° Grado dell'Istituto con legge 104 o disabilità personale"
+      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA II° Grado dell'Istituto con legge 104 o disabilità personale"
       header:
         result:
           id: result
@@ -4527,18 +4407,18 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: SECONDARIA I° Grado eslcusi per legge 104 oppure disabilità personale</strong> che hanno inviato la graduatoria</h2>'
+            value: '<h2>Elenco di <strong>TUTTI i DOCENTI: SECONDARIA II° Grado eslcusi per legge 104 oppure disabilità personale</strong> che hanno inviato la graduatoria</h2>'
             format: bootstrap_italia_2
           tokenize: false
       display_extenders: {  }
-      path: graduatoria-interna-docenti-secondaria-i-grado-esclusi.xlsx
+      path: graduatoria-interna-docenti-secondaria-ii-grado-esclusi.xlsx
       displays:
         page_4: page_4
         default: '0'
         page_1: '0'
         page_2: '0'
         page_3: '0'
-      filename: graduatoria-interna-docenti-secondaria-i-grado-esclusi.xlsx
+      filename: graduatoria-interna-docenti-secondaria-ii-grado-esclusi.xlsx
       automatic_download: true
       export_filesystem: private
       custom_redirect_path: false
@@ -4560,7 +4440,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: 'Graduatoria interna Docenti: SECONDARIA I° Grado'
+      title: 'Graduatoria interna Docenti: SECONDARIA II° Grado'
       fields:
         webform_id:
           id: webform_id
@@ -4653,7 +4533,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -4721,11 +4601,11 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<hr>\r\n<h6>\r\n<p>Attraverso questa sezione è possibile gestire le graduatorie interne DOCENTI SECONDARIA I° Grado .</p>\r\n<p>Le graduatorie sono suddivise per posto COMUNE e SOSTEGNO.</p>\r\n</h6>\r\n<hr>"
+            value: "<hr>\r\n<h6>\r\n<p>Attraverso questa sezione è possibile gestire le graduatorie interne DOCENTI SECONDARIA II° Grado .</p>\r\n<p>Le graduatorie sono suddivise per posto COMUNE e SOSTEGNO.</p>\r\n</h6>\r\n<hr>"
             format: bootstrap_italia_2
           tokenize: false
       display_extenders: {  }
-      path: admin/graduatorie-interne/docenti-secondaria-primo-grado
+      path: admin/graduatorie-interne/docenti-secondaria-secondo-grado
       menu:
         type: 'default tab'
         title: 'Graduatoria Interna Docenti'
@@ -4751,11 +4631,11 @@ display:
       tags: {  }
   page_2:
     id: page_2
-    display_title: 'SECONDARIA I° Grado: Comune'
+    display_title: 'SECONDARIA II° Grado: Comune'
     display_plugin: page
     position: 2
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Secondaria I° Grado Comune'
+      title: 'Graduatoria INTERNA Docenti: Secondaria II° Grado Comune'
       fields:
         webform_submission_bulk_form:
           id: webform_submission_bulk_form
@@ -5078,7 +4958,7 @@ display:
           field_api_classes: false
         webform_submission_value_9:
           id: webform_submission_value_9
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5131,7 +5011,7 @@ display:
           webform_check_access: 1
         webform_submission_value_11:
           id: webform_submission_value_11
-          table: webform_submission_field_graduatoria_interna_docenti_scu_nome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_nome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5184,7 +5064,7 @@ display:
           webform_check_access: 1
         webform_submission_value_10:
           id: webform_submission_value_10
-          table: webform_submission_field_graduatoria_interna_docenti_scu_grado_scuola
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_grado_scuola
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5237,7 +5117,7 @@ display:
           webform_check_access: 1
         webform_submission_value_12:
           id: webform_submission_value_12
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5290,7 +5170,7 @@ display:
           webform_check_access: 1
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5343,7 +5223,7 @@ display:
           webform_check_access: 1
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_anzianita_servizio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_anzianita_servizio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5396,7 +5276,7 @@ display:
           webform_check_access: 1
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_esigenze_famiglia
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_esigenze_famiglia
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5449,7 +5329,7 @@ display:
           webform_check_access: 1
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_titoli_generali
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_titoli_generali
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5502,7 +5382,7 @@ display:
           webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5555,7 +5435,7 @@ display:
           webform_check_access: 1
         webform_submission_value_14:
           id: webform_submission_value_14
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio_graduatoria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio_graduatoria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5608,7 +5488,7 @@ display:
           webform_check_access: 1
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5661,7 +5541,7 @@ display:
           webform_check_access: 1
         webform_submission_value_15:
           id: webform_submission_value_15
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5714,7 +5594,7 @@ display:
           webform_check_access: 1
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5896,7 +5776,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -5928,7 +5808,7 @@ display:
             group_items: {  }
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -5968,7 +5848,7 @@ display:
             group_items: {  }
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6007,7 +5887,7 @@ display:
             group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6044,49 +5924,9 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_e
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_esigenze_famiglia_si_no_e
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6310,7 +6150,7 @@ display:
         filters: false
         filter_groups: false
         header: false
-      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA I° Grado dell'Istituto su posto COMUNE"
+      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA II° Grado dell'Istituto su posto COMUNE"
       header:
         area:
           id: area
@@ -6337,10 +6177,10 @@ display:
           empty: true
           display_id: data_export_1
       display_extenders: {  }
-      path: admin/graduatorie-interne/docenti-secondaria-primo-grado/comune
+      path: admin/graduatorie-interne/docenti-secondaria-secondo-grado/comune
       menu:
         type: tab
-        title: 'Docenti: SECONDARIA I° Grado Comune'
+        title: 'Docenti: SECONDARIA II° Grado Comune'
         description: ''
         weight: 0
         expanded: false
@@ -6364,11 +6204,11 @@ display:
       tags: {  }
   page_3:
     id: page_3
-    display_title: 'SECONDARIA I° Grado: Sostegno'
+    display_title: 'SECONDARIA II° Grado: Sostegno'
     display_plugin: page
     position: 4
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Secondaria I° Grado Sostegno'
+      title: 'Graduatoria INTERNA Docenti: Secondaria II° Grado Sostegno'
       fields:
         webform_submission_bulk_form:
           id: webform_submission_bulk_form
@@ -6691,7 +6531,7 @@ display:
           field_api_classes: false
         webform_submission_value_9:
           id: webform_submission_value_9
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6744,7 +6584,7 @@ display:
           webform_check_access: 1
         webform_submission_value_11:
           id: webform_submission_value_11
-          table: webform_submission_field_graduatoria_interna_docenti_scu_nome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_nome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6797,7 +6637,7 @@ display:
           webform_check_access: 1
         webform_submission_value_10:
           id: webform_submission_value_10
-          table: webform_submission_field_graduatoria_interna_docenti_scu_grado_scuola
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_grado_scuola
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6850,7 +6690,7 @@ display:
           webform_check_access: 1
         webform_submission_value_12:
           id: webform_submission_value_12
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6903,7 +6743,7 @@ display:
           webform_check_access: 1
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -6956,7 +6796,7 @@ display:
           webform_check_access: 1
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_anzianita_servizio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_anzianita_servizio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7009,7 +6849,7 @@ display:
           webform_check_access: 1
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_esigenze_famiglia
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_esigenze_famiglia
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7062,7 +6902,7 @@ display:
           webform_check_access: 1
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_titoli_generali
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_titoli_generali
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7115,7 +6955,7 @@ display:
           webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7168,7 +7008,7 @@ display:
           webform_check_access: 1
         webform_submission_value_14:
           id: webform_submission_value_14
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio_graduatoria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio_graduatoria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7221,7 +7061,7 @@ display:
           webform_check_access: 1
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7274,7 +7114,7 @@ display:
           webform_check_access: 1
         webform_submission_value_15:
           id: webform_submission_value_15
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7327,7 +7167,7 @@ display:
           webform_check_access: 1
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7509,7 +7349,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -7541,7 +7381,7 @@ display:
             group_items: {  }
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7581,7 +7421,7 @@ display:
             group_items: {  }
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7620,7 +7460,7 @@ display:
             group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7657,49 +7497,9 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            'no': 'no'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_e
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_esigenze_famiglia_si_no_e
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -7923,7 +7723,7 @@ display:
         filters: false
         filter_groups: false
         header: false
-      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA I° Grado dell'Istituto su posto SOSTEGNO"
+      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA II° Grado dell'Istituto su posto SOSTEGNO"
       header:
         area:
           id: area
@@ -7950,10 +7750,10 @@ display:
           empty: true
           display_id: data_export_2
       display_extenders: {  }
-      path: admin/graduatorie-interne/docenti-secondaria-primo-grado/sostegno
+      path: admin/graduatorie-interne/docenti-secondaria-secondo-grado/sostegno
       menu:
         type: tab
-        title: 'Docenti: SECONDARIA I° Grado Sostegno'
+        title: 'Docenti: SECONDARIA II° Grado Sostegno'
         description: ''
         weight: 1
         expanded: false
@@ -7977,11 +7777,11 @@ display:
       tags: {  }
   page_4:
     id: page_4
-    display_title: 'SECONDARIA I° Grado: Esclusi'
+    display_title: 'SECONDARIA II° Grado: Esclusi'
     display_plugin: page
     position: 6
     display_options:
-      title: 'Graduatoria INTERNA Docenti: Secondaria I° Grado Esclusi'
+      title: 'Graduatoria INTERNA Docenti: Secondaria II° Grado Esclusi (art. 13, comma 2, CCNI)'
       fields:
         webform_submission_bulk_form:
           id: webform_submission_bulk_form
@@ -8304,7 +8104,7 @@ display:
           field_api_classes: false
         webform_submission_value_9:
           id: webform_submission_value_9
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8357,7 +8157,7 @@ display:
           webform_check_access: 1
         webform_submission_value_11:
           id: webform_submission_value_11
-          table: webform_submission_field_graduatoria_interna_docenti_scu_nome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_nome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8410,7 +8210,7 @@ display:
           webform_check_access: 1
         webform_submission_value_10:
           id: webform_submission_value_10
-          table: webform_submission_field_graduatoria_interna_docenti_scu_grado_scuola
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_grado_scuola
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8463,7 +8263,7 @@ display:
           webform_check_access: 1
         webform_submission_value_12:
           id: webform_submission_value_12
-          table: webform_submission_field_graduatoria_interna_docenti_scu_posto_secondaria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_posto_secondaria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8516,7 +8316,7 @@ display:
           webform_check_access: 1
         webform_submission_value_6:
           id: webform_submission_value_6
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_classe_di_concorso
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8569,7 +8369,7 @@ display:
           webform_check_access: 1
         webform_submission_value_2:
           id: webform_submission_value_2
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_anzianita_servizio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_anzianita_servizio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8622,7 +8422,7 @@ display:
           webform_check_access: 1
         webform_submission_value_3:
           id: webform_submission_value_3
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_esigenze_famiglia
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_esigenze_famiglia
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8675,7 +8475,7 @@ display:
           webform_check_access: 1
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_titoli_generali
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_titoli_generali
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8728,7 +8528,7 @@ display:
           webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8781,7 +8581,7 @@ display:
           webform_check_access: 1
         webform_submission_value_14:
           id: webform_submission_value_14
-          table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio_graduatoria
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_totale_punteggio_graduatoria
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8834,7 +8634,7 @@ display:
           webform_check_access: 1
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_primo_anno
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_primo_anno
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8887,7 +8687,7 @@ display:
           webform_check_access: 1
         webform_submission_value_15:
           id: webform_submission_value_15
-          table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_verifica_graduatoria_ds
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -8940,7 +8740,7 @@ display:
           webform_check_access: 1
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -9122,7 +8922,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            graduatoria_interna_docenti_scu: graduatoria_interna_docenti_scu
+            graduatoria_interna_docenti_sc2: graduatoria_interna_docenti_sc2
           group: 1
           exposed: false
           expose:
@@ -9154,7 +8954,7 @@ display:
             group_items: {  }
         webform_submission_value_5:
           id: webform_submission_value_5
-          table: webform_submission_field_graduatoria_interna_docenti_scu_cognome
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_cognome
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -9193,7 +8993,7 @@ display:
             group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_anno_scolastico
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -9232,7 +9032,7 @@ display:
             group_items: {  }
         webform_submission_value_1:
           id: webform_submission_value_1
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_e
+          table: webform_submission_field_graduatoria_interna_docenti_sc2_esigenze_famiglia_si_no_e
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -9241,47 +9041,7 @@ display:
           operator: in
           value:
             si: si
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        webform_submission_value:
-          id: webform_submission_value
-          table: webform_submission_field_graduatoria_interna_docenti_scu_esigenze_famiglia_si_no_d
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_select_filter
-          operator: in
-          value:
-            si: si
-          group: 2
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -9314,7 +9074,6 @@ display:
         operator: AND
         groups:
           1: AND
-          2: OR
       style:
         type: table
         options:
@@ -9497,7 +9256,7 @@ display:
         filters: false
         filter_groups: false
         header: false
-      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA I° Grado dell'Istituto con legge 104 o disabilità personale"
+      display_description: "Graduatoria Interna di tutti i Docenti: SECONDARIA II° Grado dell'Istituto con legge 104 o disabilità personale"
       header:
         area:
           id: area
@@ -9524,10 +9283,10 @@ display:
           empty: true
           display_id: data_export_3
       display_extenders: {  }
-      path: admin/graduatorie-interne/docenti-secondaria-primo-grado/esclusi
+      path: admin/graduatorie-interne/docenti-secondaria-secondo-grado/esclusi
       menu:
         type: tab
-        title: 'Docenti: SECONDARIA I° Grado Esclusi'
+        title: 'Docenti: SECONDARIA II° Grado Esclusi'
         description: ''
         weight: 1
         expanded: false
