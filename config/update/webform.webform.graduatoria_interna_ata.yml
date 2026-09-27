@@ -23,7 +23,7 @@ template: false
 archive: false
 id: graduatoria_interna_ata
 title: '- Graduatoria Interna ATA -'
-description: "<p>Tipo di form da utilizzare per creare la graduatoria interna ATA dell'istituto</p>"
+description: '<p>Form per la graduatoria interna ATA</p>'
 categories:
   - Ata
 elements: |-
@@ -155,7 +155,10 @@ elements: |-
       '#required': true
     primo_anno:
       '#type': radios
-      '#title': "E' il primo anno di servizio presso il nostro Istituto"
+      '#title': "Sei entrato a far parte dell'organico di questa scuola dal 1° settembre scorso, per trasferimento a domanda volontaria oppure a seguito delle procedure di stabilizzazione (D.L. 69/2013, art. 58, comma 5)?"
+      '#description': |
+        <p>Rispondi «sì» solo in questi casi: chi è in questa situazione viene collocato in coda alla graduatoria. Rispondi «no» se sei arrivato d'ufficio o con domanda condizionata perché soprannumerario, o se sei in questa scuola da prima (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=70" target="_blank" rel="noopener">art. 45, comma 5</a>, del CCNI).</p>
+      '#description_display': before
       '#options':
         SI: SI
         'NO': 'NO'

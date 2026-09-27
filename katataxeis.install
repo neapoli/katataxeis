@@ -5,6 +5,8 @@
  * Installazione, aggiornamenti e disinstallazione di Katatáxeis.
  */
 
+use Drupal\webform\Entity\WebformOptions;
+
 /**
  * Nome macchina del menù in cui pubblicare le voci delle graduatorie.
  */
@@ -110,7 +112,11 @@ function katataxeis_update_10002() {
  * schede e viste restano dove sono. Il II grado invece lo attiva la scuola.
  */
 function katataxeis_update_10004() {
-  $comprensivo = ['graduatoria_interna_docenti_inf', 'graduatoria_interna_docenti_pri', 'graduatoria_interna_docenti_scu'];
+  $comprensivo = [
+    'graduatoria_interna_docenti_inf',
+    'graduatoria_interna_docenti_pri',
+    'graduatoria_interna_docenti_scu',
+  ];
   if (\Drupal::moduleHandler()->moduleExists('katataxeis_comprensivo')
     || !\Drupal::entityTypeManager()->getStorage('webform')->loadMultiple($comprensivo)) {
     return t('Nessun sottomodulo da attivare.');
@@ -118,4 +124,33 @@ function katataxeis_update_10004() {
 
   \Drupal::service('module_installer')->install(['katataxeis_comprensivo']);
   return t('Attivato il sottomodulo katataxeis_comprensivo: i formulari di infanzia, primaria e secondaria di I grado ora appartengono a lui.');
+}
+
+/**
+ * Aggiunge i posti di lingua inglese e di educazione motoria della primaria.
+ *
+ * Nella primaria le graduatorie sono distinte anche per questi due posti
+ * (art. 19, comma 3, del CCNI). La lista dei posti è della scuola: si
+ * aggiungono solo le due voci, se mancano, senza toccare le altre.
+ */
+function katataxeis_update_10005() {
+  $lista = WebformOptions::load('tipologia_posto_primaria');
+  if (!$lista) {
+    return t('Lista dei posti della primaria assente: niente da fare.');
+  }
+
+  $voci = $lista->getOptions();
+  $aggiunte = [];
+  foreach (['Lingua inglese', 'Educazione motoria'] as $voce) {
+    if (!isset($voci[$voce])) {
+      $voci[$voce] = $voce;
+      $aggiunte[] = $voce;
+    }
+  }
+  if (!$aggiunte) {
+    return t('I posti di lingua inglese ed educazione motoria c\'erano già.');
+  }
+
+  $lista->setOptions($voci)->save();
+  return t('Aggiunti alla lista dei posti della primaria: @voci.', ['@voci' => implode(', ', $aggiunte)]);
 }

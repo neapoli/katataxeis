@@ -8,3 +8,5 @@ likert: false
 options: |-
   Comune: Comune
   Sostegno: Sostegno
+  'Lingua inglese': 'Lingua inglese'
+  'Educazione motoria': 'Educazione motoria'

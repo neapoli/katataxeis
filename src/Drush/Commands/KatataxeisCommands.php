@@ -121,7 +121,10 @@ class KatataxeisCommands extends DrushCommands {
       return;
     }
 
-    $this->logger()->notice(dt('@modulo: riapplico le configurazioni da @source', ['@modulo' => $modulo, '@source' => $source]));
+    $this->logger()->notice(dt('@modulo: riapplico le configurazioni da @source', [
+      '@modulo' => $modulo,
+      '@source' => $source,
+    ]));
 
     $process = $this->processManager()->drush(
       Drush::aliasManager()->getSelf(),
@@ -265,7 +268,6 @@ class KatataxeisCommands extends DrushCommands {
     $this->logger()->success(dt('Spostate @n schede.', ['@n' => count($da_spostare)]));
   }
 
-
   /**
    * Il nome breve di ogni formulario, per gli elenchi dei comandi.
    */
@@ -391,7 +393,13 @@ class KatataxeisCommands extends DrushCommands {
     }
 
     // In ordine di anno scolastico, poi di cognome.
-    uasort($schede, fn($a, $b) => [$a['anno_scolastico'] ?? '', $a['cognome'] ?? ''] <=> [$b['anno_scolastico'] ?? '', $b['cognome'] ?? '']);
+    uasort($schede, fn($a, $b) => [
+      $a['anno_scolastico'] ?? '',
+      $a['cognome'] ?? '',
+    ] <=> [
+      $b['anno_scolastico'] ?? '',
+      $b['cognome'] ?? '',
+    ]);
 
     $intestazione = ['Scheda', 'A.S.', 'Cognome', 'Nome', $formulario['etichetta'], 'Caso', 'Verifica DS'];
     $tabella = function (array $elenco) use ($formulario) {
@@ -415,7 +423,11 @@ class KatataxeisCommands extends DrushCommands {
     $con_d = array_filter($schede, fn($dati) => ($dati['esigenze_famiglia_si_no_d'] ?? '') === 'si' && ($dati['esigenze_famiglia_si_no_e'] ?? '') !== 'si');
     $con_e = array_filter($schede, fn($dati) => ($dati['esigenze_famiglia_si_no_e'] ?? '') === 'si');
 
-    $segnaposto = ['@nome' => $formulario['nome'], '@punti' => $formulario['punti_d'], '@articolo' => $formulario['articolo']];
+    $segnaposto = [
+      '@nome' => $formulario['nome'],
+      '@punti' => $formulario['punti_d'],
+      '@articolo' => $formulario['articolo'],
+    ];
 
     $this->io()->title(dt('Katatáxeis: schede @nome da verificare', $segnaposto) . ($anno ? ' — ' . $anno : ''));
 

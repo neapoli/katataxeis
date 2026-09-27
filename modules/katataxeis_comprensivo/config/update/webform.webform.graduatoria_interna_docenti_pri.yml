@@ -25,9 +25,10 @@ uid: 1
 template: false
 archive: false
 id: graduatoria_interna_docenti_pri
-title: '- Graduatoria Interna Docenti Primaria -'
-description: "<p>Tipo di form da utilizzare per creare la graduatoria interna DOCENTI dell'istituto</p>"
-categories: {  }
+title: '- Graduatoria Interna Primaria -'
+description: '<p>Form per la graduatoria interna Docenti Primaria</p>'
+categories:
+  - Docenti
 elements: |-
   dati_anagrafici:
     '#type': webform_wizard_page
@@ -114,21 +115,31 @@ elements: |-
       posto_primaria:
         '#type': select
         '#title': 'Su Posto (Primaria)'
-        '#description': 'Selezionare tipologia di posto'
+        '#description': 'Graduatorie distinte per posto comune, sostegno, lingua inglese ed educazione motoria (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=33" target="_blank" rel="noopener">art. 19, comma 3</a>, del CCNI). Il docente che risulta in soprannumero su lingua inglese passa sul posto comune ed entra nella graduatoria del comune, dalla quale si individuano i perdenti posto: in quel caso il dirigente cambia qui il posto in «Comune».'
         '#options': tipologia_posto_primaria
-        '#states':
-          visible:
-            ':input[name="grado_scuola"]':
-              value: Primaria
-          required:
-            ':input[name="grado_scuola"]':
-              value: Primaria
+        '#required': true
         '#access_create_roles':
           - authenticated
         '#access_update_roles':
           - authenticated
         '#access_view_roles':
           - authenticated
+      tipologia_sostegno:
+        '#type': select
+        '#title': 'Tipologia di sostegno'
+        '#description': '<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=33" target="_blank" rel="noopener">Art. 19</a> del CCNI: sui posti di sostegno le graduatorie sono distinte per tipologia (vista, udito, psicofisici). Lasciare «Psicofisici», salvo diversa indicazione della scuola (posti per vista o udito).'
+        '#options':
+          Psicofisici: Psicofisici
+          Vista: Vista
+          Udito: Udito
+        '#default_value': Psicofisici
+        '#states':
+          visible:
+            ':input[name="posto_primaria"]':
+              value: Sostegno
+          required:
+            ':input[name="posto_primaria"]':
+              value: Sostegno
     e_mail:
       '#type': email
       '#title': E-mail
@@ -159,7 +170,10 @@ elements: |-
       '#required': true
     primo_anno:
       '#type': radios
-      '#title': "E' il primo anno di insegnamento presso il nostro Istituto"
+      '#title': "Sei entrato a far parte dell'organico di questa scuola dal 1° settembre scorso, per trasferimento o passaggio a domanda volontaria oppure per immissione in ruolo?"
+      '#description': |
+        <p>Rispondi «sì» solo in questi due casi: chi è in questa situazione viene collocato in coda alla graduatoria. Rispondi «no» se sei arrivato dal 1° settembre scorso d'ufficio o con domanda condizionata perché soprannumerario (anche se soddisfatto in una delle preferenze), se sei rientrato nella scuola di precedente titolarità entro il decennio, o se sei in questa scuola da prima (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=34" target="_blank" rel="noopener">art. 19, comma 7</a> e <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=40" target="_blank" rel="noopener">art. 21, comma 11</a>, del CCNI). Non conta il passaggio da posto comune a posto di lingua nella stessa scuola.</p>
+      '#description_display': before
       '#options':
         SI: SI
         'NO': 'NO'
@@ -4016,7 +4030,7 @@ elements: |-
           '#display_on': both
           '#text': |
             <p><strong>E)</strong> Per ogni <strong>laurea di durata almeno quadriennale</strong> (compresa scienze motorie), <strong>laurea magistrale o specialistica</strong>, <strong>diploma accademico di secondo livello</strong>, o diploma di <strong>accademia di belle arti o conservatorio del vecchio ordinamento conseguito entro il 31/12/2017</strong>, conseguito <strong>oltre il titolo necessario per l'accesso al ruolo</strong>.<br>
-            <strong>Scienze della formazione primaria:</strong> per i docenti della primaria vale <strong>5 punti la laurea a indirizzo infanzia</strong>; <strong>non vale</strong> quella a indirizzo primaria né la laurea quinquennale a ciclo unico, che sono titolo di accesso al ruolo.<br><small>La triennale da cui si è arrivati alla magistrale non va dichiarata nella voce C. La laurea in scienze motorie non si somma all'ISEF (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">12</a> del CCNI).</small></p>
+            <strong>Scienze della formazione primaria:</strong> per i docenti della primaria vale <strong>5 punti la laurea a indirizzo infanzia</strong>; <strong>non vale</strong> quella a indirizzo primaria né la laurea quinquennale a ciclo unico, che sono titolo di accesso al ruolo.<br><strong>Educazione motoria:</strong> per i docenti su posto di educazione motoria non vale la laurea in scienze motorie che ha dato accesso al posto.<br><small>La triennale da cui si è arrivati alla magistrale non va dichiarata nella voce C. La laurea in scienze motorie non si somma all'ISEF (nota <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=97" target="_blank" rel="noopener">12</a> del CCNI).</small></p>
 
             <p><strong>Punti: 5</strong> per ogni titolo (le voci B, C, D, E, F, G, M e N insieme valgono al massimo 10 punti)</p>
           '#format': bootstrap_italia_2

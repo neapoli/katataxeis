@@ -5,10 +5,15 @@
  * Katatáxeis: graduatorie interne d'istituto del personale docente e ATA.
  */
 
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+use Drupal\views\ViewExecutable;
+use Drupal\webform\Entity\WebformOptions;
+use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Implements hook_help().
@@ -26,7 +31,7 @@ function katataxeis_help($route_name, RouteMatchInterface $route_match) {
 
   $output .= '<h3>' . t('Formulari') . '</h3><ul>';
   foreach (katataxeis_formulari_installati() as $id => $ordine) {
-    $output .= '<li>' . $link(\Drupal\Component\Utility\Html::escape($ordine['formulario']), '/form/' . str_replace('_', '-', $id)) . '</li>';
+    $output .= '<li>' . $link(Html::escape($ordine['formulario']), '/form/' . str_replace('_', '-', $id)) . '</li>';
   }
   $output .= '</ul>';
   $output .= '<p>' . t('I formulari dei docenti stanno in due sottomoduli: «Katatáxeis: istituto comprensivo» (infanzia, primaria, secondaria di I grado) e «Katatáxeis: secondaria di II grado». Ogni scuola attiva quello che le serve; un istituto omnicomprensivo li attiva entrambi.') . '</p>';
@@ -72,11 +77,31 @@ function katataxeis_form_system_modules_uninstall_confirm_form_alter(&$form, For
  * katataxeis_formulari_installati().
  */
 const KATATAXEIS_ORDINI = [
-  'graduatoria_interna_ata' => ['formulario' => 'Personale ATA', 'graduatoria' => 'Ata', 'pagina' => 'ata'],
-  'graduatoria_interna_docenti_inf' => ['formulario' => "Docenti della scuola dell'infanzia", 'graduatoria' => 'Docenti Infanzia', 'pagina' => 'docenti-infanzia'],
-  'graduatoria_interna_docenti_pri' => ['formulario' => 'Docenti della scuola primaria', 'graduatoria' => 'Docenti Primaria', 'pagina' => 'docenti-primaria'],
-  'graduatoria_interna_docenti_scu' => ['formulario' => 'Docenti della scuola secondaria di I grado', 'graduatoria' => 'Docenti Secondaria I° Grado', 'pagina' => 'docenti-secondaria-primo-grado'],
-  'graduatoria_interna_docenti_sc2' => ['formulario' => 'Docenti della scuola secondaria di II grado', 'graduatoria' => 'Docenti Secondaria II° Grado', 'pagina' => 'docenti-secondaria-secondo-grado'],
+  'graduatoria_interna_ata' => [
+    'formulario' => 'Personale ATA',
+    'graduatoria' => 'Ata',
+    'pagina' => 'ata',
+  ],
+  'graduatoria_interna_docenti_inf' => [
+    'formulario' => "Docenti della scuola dell'infanzia",
+    'graduatoria' => 'Docenti Infanzia',
+    'pagina' => 'docenti-infanzia',
+  ],
+  'graduatoria_interna_docenti_pri' => [
+    'formulario' => 'Docenti della scuola primaria',
+    'graduatoria' => 'Docenti Primaria',
+    'pagina' => 'docenti-primaria',
+  ],
+  'graduatoria_interna_docenti_scu' => [
+    'formulario' => 'Docenti della scuola secondaria di I grado',
+    'graduatoria' => 'Docenti Secondaria I° Grado',
+    'pagina' => 'docenti-secondaria-primo-grado',
+  ],
+  'graduatoria_interna_docenti_sc2' => [
+    'formulario' => 'Docenti della scuola secondaria di II grado',
+    'graduatoria' => 'Docenti Secondaria II° Grado',
+    'pagina' => 'docenti-secondaria-secondo-grado',
+  ],
 ];
 
 /**
@@ -91,8 +116,10 @@ function katataxeis_formulari_installati() {
 }
 
 /**
- * I moduli che portano configurazioni di Katatáxeis: il principale e i
- * sottomoduli attivi (katataxeis_comprensivo, katataxeis_secondo_grado).
+ * I moduli che portano configurazioni di Katatáxeis.
+ *
+ * Il principale e i sottomoduli attivi (katataxeis_comprensivo,
+ * katataxeis_secondo_grado).
  *
  * @return string[]
  *   I nomi dei moduli.
@@ -129,7 +156,7 @@ function katataxeis_cartella_config_update($modulo) {
 function katataxeis_installa_config_update($modulo) {
   $cartella = katataxeis_cartella_config_update($modulo);
   if (is_dir($cartella)) {
-    \Drupal::service('config.installer')->installOptionalConfig(new \Drupal\Core\Config\FileStorage($cartella));
+    \Drupal::service('config.installer')->installOptionalConfig(new FileStorage($cartella));
   }
 }
 
@@ -210,6 +237,16 @@ function katataxeis_config_del_modulo($cartella, $prefisso) {
  * Implements hook_preprocess_views_view_field().
  */
 function katataxeis_preprocess_views_view_field(&$variables) {
+  // La posizione in graduatoria riparte da 1 in ogni gruppo (vedi
+  // katataxeis_views_pre_render()).
+  if (($variables['field']->options['id'] ?? '') === 'counter') {
+    $posizioni = $variables['view']->katataxeisPosizioni ?? NULL;
+    if (isset($posizioni[$variables['row']->index])) {
+      $variables['output'] = $posizioni[$variables['row']->index];
+    }
+    return;
+  }
+
   $table = $variables['field']->options['table'] ?? '';
 
   if (!str_contains($table, 'verifica_graduatoria_ds')) {
@@ -311,14 +348,14 @@ function katataxeis_webform_element_alter(array &$element, FormStateInterface $f
     return;
   }
   $submission = $form_object->getEntity();
-  if (!$submission instanceof \Drupal\webform\WebformSubmissionInterface
+  if (!$submission instanceof WebformSubmissionInterface
     || !in_array($submission->getWebform()->id(), KATATAXEIS_ANNO_AUTOMATICO, TRUE)
     || !$submission->isNew()) {
     return;
   }
 
   $anno = katataxeis_anno_scolastico_graduatoria();
-  $voci = \Drupal\webform\Entity\WebformOptions::getElementOptions($element);
+  $voci = WebformOptions::getElementOptions($element);
 
   if (isset($voci[$anno])) {
     $element['#default_value'] = $anno;
@@ -336,7 +373,7 @@ function katataxeis_webform_element_alter(array &$element, FormStateInterface $f
  * Si aggiunge qui e non nelle viste una per una, così vale anche per quelle
  * che verranno. Le esportazioni restano senza: sono file, non pagine.
  */
-function katataxeis_views_pre_view(\Drupal\views\ViewExecutable $view, $display_id, array &$args) {
+function katataxeis_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
   if (!preg_match('/^(graduatori|webform_graduatoria_interna_)/', $view->id())) {
     return;
   }
@@ -369,7 +406,17 @@ function katataxeis_views_pre_view(\Drupal\views\ViewExecutable $view, $display_
     [$base, $azione, $etichetta] = $elenchi[$view->id()];
     $voci = '';
     foreach (katataxeis_formulari_installati() as $ordine) {
-      $voci .= '<li><a href="' . Url::fromUserInput('/' . $base . '/' . $ordine['pagina'])->toString() . '">' . t('Graduatoria interna @ordine: @etichetta', ['@ordine' => $ordine['graduatoria'], '@etichetta' => $etichetta]) . '</a></li>';
+      // Solo le graduatorie che chi guarda può aprire: la pagina è aperta a
+      // tutto il personale, ma ognuno vede quelle del suo ordine o profilo.
+      $url = Url::fromUserInput('/' . $base . '/' . $ordine['pagina']);
+      if (!$url->access()) {
+        continue;
+      }
+      $testo = t('Graduatoria interna @ordine: @etichetta', [
+        '@ordine' => $ordine['graduatoria'],
+        '@etichetta' => $etichetta,
+      ]);
+      $voci .= '<li><a href="' . $url->toString() . '">' . $testo . '</a></li>';
     }
     $intestazione['katataxeis_ordini'] = [
       'id' => 'katataxeis_ordini',
@@ -382,6 +429,58 @@ function katataxeis_views_pre_view(\Drupal\views\ViewExecutable $view, $display_
   }
 
   $display->setOption('header', $intestazione + ($display->getOption('header') ?: []));
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Nella secondaria le graduatorie si fanno per classe di concorso (art. 21 del
+ * CCNI) e sui posti di sostegno di infanzia, primaria e I grado per tipologia
+ * (artt. 19 e 21): le pagine sono raggruppate così, e la posizione deve
+ * ripartire da 1 in ogni gruppo. Il contatore di Views conta
+ * invece tutte le righe di seguito: qui si calcola la posizione giusta, che
+ * katataxeis_preprocess_views_view_field() mette al suo posto.
+ */
+function katataxeis_views_pre_render(ViewExecutable $view) {
+  if (!preg_match('/^(graduatori|webform_graduatoria_interna_)/', $view->id())) {
+    return;
+  }
+  $raggruppamento = $view->style_plugin->options['grouping'] ?? [];
+  if (!$raggruppamento) {
+    return;
+  }
+
+  // Gli elementi del formulario su cui si raggruppa, ricavati dalle colonne.
+  $elementi = [];
+  foreach ($raggruppamento as $livello) {
+    $tabella = $view->field[$livello['field']]->options['table'] ?? '';
+    if (preg_match('/^webform_submission_field_(graduatoria_interna_[a-z0-9_]+?)_(anno_scolastico|classe_di_concorso|tipologia_sostegno|posto_[a-z]+)$/', $tabella, $m)) {
+      $elementi[] = $m[2];
+    }
+  }
+  if (!$elementi) {
+    return;
+  }
+
+  $posizioni = [];
+  $conteggi = [];
+  foreach ($view->result as $riga) {
+    $chiave = '';
+    if ($riga->_entity) {
+      foreach ($elementi as $elemento) {
+        $valore = (string) $riga->_entity->getElementData($elemento);
+        // Le schede compilate prima del campo non hanno la tipologia di
+        // sostegno: la vista le mostra come psicofisici, e così si contano.
+        if ($elemento === 'tipologia_sostegno' && $valore === '') {
+          $valore = 'Psicofisici';
+        }
+        $chiave .= '|' . $valore;
+      }
+    }
+    $conteggi[$chiave] = ($conteggi[$chiave] ?? 0) + 1;
+    $posizioni[$riga->index] = $conteggi[$chiave];
+  }
+  $view->katataxeisPosizioni = $posizioni;
 }
 
 /**

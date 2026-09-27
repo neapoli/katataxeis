@@ -25,9 +25,10 @@ uid: 1
 template: false
 archive: false
 id: graduatoria_interna_docenti_sc2
-title: '- Graduatoria Interna Docenti Scuola Secondaria II Grado -'
-description: "<p>Tipo di form da utilizzare per creare la graduatoria interna DOCENTI dell'istituto</p>"
-categories: {  }
+title: '- Graduatoria Interna Secondaria II Grado -'
+description: '<p>Form per la graduatoria interna Docenti Secondaria II Grado</p>'
+categories:
+  - Docenti
 elements: |-
   dati_anagrafici:
     '#type': webform_wizard_page
@@ -114,7 +115,7 @@ elements: |-
       posto_secondaria:
         '#type': select
         '#title': 'Su Posto (Secondaria II Grado)'
-        '#description': 'Selezionare tipologia di posto'
+        '#description': 'Graduatorie distinte per posto comune e di sostegno e per classe di concorso; nella secondaria di II grado il sostegno non si distingue per tipologia (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=37" target="_blank" rel="noopener">art. 21</a> del CCNI).'
         '#options': tipologia_posto_secondaria_2degg
         '#required': true
         '#access_create_roles':
@@ -158,7 +159,10 @@ elements: |-
       '#required': true
     primo_anno:
       '#type': radios
-      '#title': "E' il primo anno di insegnamento presso il nostro Istituto"
+      '#title': "Sei entrato a far parte dell'organico di questa scuola dal 1° settembre scorso, per trasferimento o passaggio a domanda volontaria oppure per immissione in ruolo?"
+      '#description': |
+        <p>Rispondi «sì» solo in questi due casi: chi è in questa situazione viene collocato in coda alla graduatoria. Rispondi «no» se sei arrivato dal 1° settembre scorso d'ufficio o con domanda condizionata perché soprannumerario (anche se soddisfatto in una delle preferenze), se sei rientrato nella scuola di precedente titolarità entro il decennio, o se sei in questa scuola da prima (<a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=34" target="_blank" rel="noopener">art. 19, comma 7</a> e <a href="/admin/graduatorie-interne/normativa/ccni-mobilita-2025-2028.pdf#page=40" target="_blank" rel="noopener">art. 21, comma 11</a>, del CCNI).</p>
+      '#description_display': before
       '#options':
         SI: SI
         'NO': 'NO'

@@ -477,6 +477,19 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+        webform_submission_value_4:
+          id: webform_submission_value_4
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field_sort
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
         webform_submission_value_2:
           id: webform_submission_value_2
           table: webform_submission_field_graduatoria_interna_docenti_scu_verifica_graduatoria_ds
@@ -503,19 +516,6 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
-        webform_submission_value_4:
-          id: webform_submission_value_4
-          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
-          field: webform_submission_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: webform_submission_field_sort
-          order: ASC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
         webform_submission_value_1:
           id: webform_submission_value_1
           table: webform_submission_field_graduatoria_interna_docenti_scu_totale_punteggio
@@ -525,6 +525,19 @@ display:
           admin_label: ''
           plugin_id: webform_submission_field_numeric_sort
           order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+        datanascita:
+          id: datanascita
+          table: webform_submission_field_graduatoria_interna_docenti_scu_datanascita
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field_numeric_sort
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
@@ -1218,7 +1231,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Classe di concorso'
+          label: 'Classe di Concorso'
           exclude: false
           alter:
             alter_text: false
@@ -1756,6 +1769,45 @@ display:
             remember_roles:
               authenticated: authenticated
             placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        classe_di_concorso:
+          id: classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_select_filter
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: classe_di_concorso_op
+            label: 'Classe di Concorso'
+            description: 'Filtra per Classe di Concorso'
+            use_operator: false
+            operator: classe_di_concorso_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: classe_di_concorso
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -2452,6 +2504,59 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
+        tipologia_sostegno:
+          id: tipologia_sostegno
+          table: webform_submission_field_graduatoria_interna_docenti_scu_tipologia_sostegno
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field
+          label: Tipologia
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: Psicofisici
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          webform_check_access: 1
         webform_submission_value_5:
           id: webform_submission_value_5
           table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
@@ -2460,7 +2565,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Classe di concorso'
+          label: 'Classe di Concorso'
           exclude: false
           alter:
             alter_text: false
@@ -2998,6 +3103,45 @@ display:
             remember_roles:
               authenticated: authenticated
             placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        classe_di_concorso:
+          id: classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_select_filter
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: classe_di_concorso_op
+            label: 'Classe di Concorso'
+            description: 'Filtra per Classe di Concorso'
+            use_operator: false
+            operator: classe_di_concorso_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: classe_di_concorso
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -3711,7 +3855,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: webform_submission_field
-          label: 'Classe di concorso'
+          label: 'Classe di Concorso'
           exclude: false
           alter:
             alter_text: false
@@ -4209,6 +4353,45 @@ display:
             remember_roles:
               authenticated: authenticated
             placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        classe_di_concorso:
+          id: classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_select_filter
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: classe_di_concorso_op
+            label: 'Classe di Concorso'
+            description: 'Filtra per Classe di Concorso'
+            use_operator: false
+            operator: classe_di_concorso_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: classe_di_concorso
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
@@ -5885,6 +6068,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        classe_di_concorso:
+          id: classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_select_filter
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: classe_di_concorso_op
+            label: 'Classe di Concorso'
+            description: 'Filtra per Classe di Concorso'
+            use_operator: false
+            operator: classe_di_concorso_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: classe_di_concorso
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
@@ -5971,7 +6193,11 @@ display:
       style:
         type: table
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: webform_submission_value_6
+              rendered: true
+              rendered_strip: false
           row_class: ''
           default_row_class: true
           columns:
@@ -6741,6 +6967,59 @@ display:
           webform_multiple_value: true
           webform_multiple_delta: 0
           webform_check_access: 1
+        tipologia_sostegno:
+          id: tipologia_sostegno
+          table: webform_submission_field_graduatoria_interna_docenti_scu_tipologia_sostegno
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field
+          label: Tipologia
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: Psicofisici
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          webform_element_format: value
+          webform_multiple_value: true
+          webform_multiple_delta: 0
+          webform_check_access: 1
         webform_submission_value_6:
           id: webform_submission_value_6
           table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
@@ -7458,6 +7737,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        classe_di_concorso:
+          id: classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_select_filter
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: classe_di_concorso_op
+            label: 'Classe di Concorso'
+            description: 'Filtra per Classe di Concorso'
+            use_operator: false
+            operator: classe_di_concorso_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: classe_di_concorso
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         webform_submission_value_4:
           id: webform_submission_value_4
           table: webform_submission_field_graduatoria_interna_docenti_scu_anno_scolastico
@@ -7544,7 +7862,15 @@ display:
       style:
         type: table
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: tipologia_sostegno
+              rendered: true
+              rendered_strip: false
+            -
+              field: webform_submission_value_6
+              rendered: true
+              rendered_strip: false
           row_class: ''
           default_row_class: true
           columns:
@@ -8979,6 +9305,45 @@ display:
             remember_roles:
               authenticated: authenticated
             placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        classe_di_concorso:
+          id: classe_di_concorso
+          table: webform_submission_field_graduatoria_interna_docenti_scu_classe_di_concorso
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_select_filter
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: classe_di_concorso_op
+            label: 'Classe di Concorso'
+            description: 'Filtra per Classe di Concorso'
+            use_operator: false
+            operator: classe_di_concorso_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: classe_di_concorso
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
           is_grouped: false
           group_info:
             label: ''

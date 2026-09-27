@@ -2,15 +2,7 @@ langcode: it
 status: true
 dependencies:
   config:
-    - user.role.amministratore
-    - user.role.capo_redattore
-    - user.role.collaboratore
-    - user.role.direttore_amministrativo_dsga_
-    - user.role.dirigente_scolastico
-    - user.role.personale_amministrativo
-    - user.role.personale_non_docente
-    - user.role.personale_tecnico
-    - user.role.redattore
+    - user.role.authenticated
     - webform.webform.graduatoria_interna_ata
   module:
     - user
@@ -99,15 +91,7 @@ display:
         type: role
         options:
           role:
-            personale_non_docente: personale_non_docente
-            collaboratore: collaboratore
-            direttore_amministrativo_dsga_: direttore_amministrativo_dsga_
-            personale_amministrativo: personale_amministrativo
-            personale_tecnico: personale_tecnico
-            amministratore: amministratore
-            capo_redattore: capo_redattore
-            redattore: redattore
-            dirigente_scolastico: dirigente_scolastico
+            authenticated: authenticated
       cache:
         type: tag
         options: {  }

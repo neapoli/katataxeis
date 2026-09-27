@@ -516,6 +516,19 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+        datanascita:
+          id: datanascita
+          table: webform_submission_field_graduatoria_interna_ata_datanascita
+          field: webform_submission_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: webform_submission_field_numeric_sort
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments:
         webform_id:
           id: webform_id

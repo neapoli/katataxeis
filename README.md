@@ -22,6 +22,8 @@ Disinstallando un sottomodulo si cancellano **definitivamente** i suoi formulari
 - Le liste di opzioni stanno in `config/optional`: si installano una volta sola e poi ogni scuola le adatta alla propria organizzazione. Il modulo non le sovrascrive mai.
 - Il punteggio si calcola nel formulario, voce per voce, senza correzioni a mano; il dirigente spunta la «Verifica DS» su ogni voce.
 - La scheda nuova propone da sola l'anno scolastico della mobilità per cui si compila (a marzo 2027: 2027/2028).
+- Graduatorie ordinate come prevede il CCNI: in coda chi è entrato nell'organico dal 1° settembre scorso per domanda volontaria o immissione in ruolo, poi per punteggio e, a parità, per età (più anziano prima). Nella secondaria una graduatoria per classe di concorso; sul sostegno di infanzia, primaria e I grado una per tipologia (psicofisici, vista, udito); nella primaria anche lingua inglese ed educazione motoria.
+- Nelle pagine di consultazione il personale vede la graduatoria del proprio ordine (solo schede verificate, solo il totale) senza poter aprire le schede dei colleghi.
 
 ## Aggiornare una scuola
 
@@ -30,7 +32,7 @@ Dalla versione 2.1.0, nelle scuole che già usano il modulo:
 1. fare una copia del database;
 2. caricare il modulo;
 3. `drush katataxeis:verifica-esclusioni` (`katataxeis-ve`): elenca, in sola lettura, le schede con la voce D (cura e assistenza) o E (esclusione). Dopo l'aggiornamento la voce D non esclude più dalla graduatoria: il dirigente verifica l'elenco;
-4. `drush updb`: attiva da solo `katataxeis_comprensivo` dove ci sono i formulari di infanzia, primaria e I grado, e riallinea formulari e viste;
+4. `drush updb`: attiva da solo `katataxeis_comprensivo` dove ci sono i formulari di infanzia, primaria e I grado, aggiunge alla lista dei posti della primaria «Lingua inglese» ed «Educazione motoria» (solo se mancano) e riallinea formulari e viste;
 5. `drush katataxeis:sposta-anno` (`katataxeis-sa`): mostra le schede che portano l'anno in corso invece di quello della mobilità; con `--applica` le sposta di un anno (cambia solo l'etichetta, non i punti).
 
 In una scuola secondaria di II grado, dopo l'aggiornamento: `drush en katataxeis_secondo_grado`.
